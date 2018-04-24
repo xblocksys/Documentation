@@ -73,7 +73,8 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
 * **Sub Node**: 특정 Sub-Chain의 블록만 관리하는 노드.
 * **Blockchain Depth**: 노드가 관리하는 최상위 블록체인을 기준으로 관리 하고자 하는 Sub-Chain의 Depth.
 
-
+*블록 연결 구조 설명*
+*block, transaction 정의?*
 
 
 ## Consensus Algorithm
@@ -83,10 +84,14 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
 #### POX
 
 ## Accounts
+*잔액 정보 관리하는 방식*
 
-## Coin & Token Model
+## Coin Model
 
-## Inter Blockchain Communication
+*sub-chain 별 coin 가짐*
+*double hash link 설명*
+*coin 간 환전 메커니즘*
+*채굴, tx fee (for common, joint block)*
 
 ## Development Roadmap
 

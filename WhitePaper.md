@@ -1,4 +1,4 @@
-#X.Blockchain White Paper v1<hr1>
+# X.Blockchain White Paper v1
 **Yongseok Kwon**
 **May 23, 2017**
 

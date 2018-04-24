@@ -2,10 +2,10 @@
 Yongseok Kwon  
 April 24, 2018  
 
-*Copyright © 2018 XBlock Systems CO., LTD.*  
+*Copyright © 2018 XBLOCK SYSTEMS CO., LTD.*  
 *Without permission, anyone may use, reproduce or distribute any material in this white paper for non-commercial and educational use (i.e., other than for a fee or for commercial purposes) provided that the original source and the applicable copyright notice are cited.*  
 
-**DISCLAIMER:** This X.Blockchain Technical White Paper is for information purposes only. XBlock Systems does not guarantee the accuracy of or the conclusions reached in this white paper, and this white paper is provided “as is”. block.one does not make and expressly disclaims all representations and warranties, express, implied, statutory or otherwise, whatsoever, including, but not limited to: (i) warranties of merchantability, fitness for a particular purpose, suitability, usage, title or noninfringement; (ii) that the contents of this white paper are free from error; and (iii) that such contents will not infringe third-party rights. block.one and its affiliates shall have no liability for damages of any kind arising out of the use, reference to, or reliance on this white paper or any of the content contained herein, even if advised of the possibility of such damages. In no event will block.one or its affiliates be liable to any person or entity for any damages, losses, liabilities, costs or expenses of any kind, whether direct or indirect, consequential, compensatory, incidental, actual, exemplary, punitive or special for the use of, reference to, or reliance on this white paper or any of the content contained herein, including, without limitation, any loss of business, revenues, profits, data, use, goodwill or other intangible losses.  
+**DISCLAIMER:** This X.Blockchain Technical White Paper is for information purposes only. XBLOCK SYSTEMS does not guarantee the accuracy of or the conclusions reached in this white paper, and this white paper is provided “as is”. XBLOCK SYSTEMS does not make and expressly disclaims all representations and warranties, express, implied, statutory or otherwise, whatsoever, including, but not limited to: (i) warranties of merchantability, fitness for a particular purpose, suitability, usage, title or noninfringement; (ii) that the contents of this white paper are free from error; and (iii) that such contents will not infringe third-party rights. XBLOCK SYSTEMS and its affiliates shall have no liability for damages of any kind arising out of the use, reference to, or reliance on this white paper or any of the content contained herein, even if advised of the possibility of such damages. In no event will XBLOCK SYSTEMS or its affiliates be liable to any person or entity for any damages, losses, liabilities, costs or expenses of any kind, whether direct or indirect, consequential, compensatory, incidental, actual, exemplary, punitive or special for the use of, reference to, or reliance on this white paper or any of the content contained herein, including, without limitation, any loss of business, revenues, profits, data, use, goodwill or other intangible losses.  
 <br />
 <br />
 **Abstract:** Bitcoin의 등장과 이를 이용한 거래의 급증은, 블록체인 기술이 거래 원장으로서 신뢰 할 수 있을 만큼 충분히 안전하다는 것을 증명하였다. 블록체인 기술이 주목 받게 된 주된 이유는, 기존 방식과 달리 신뢰성 확보 문제에 있어서 제3의 신뢰기관 (Trusted Third Party, TTP) 을 제거 하였다는 것과, 모든 거래 내역이 네트워크에 참여하는 모든 참여자들에게 분산 저장됨으로 거래 내용에 대한 조작이 사실상 불가능 하도록 만들었다는 점이다.  
@@ -55,27 +55,26 @@ Figure 1. Bitcoin & Ethtereum blockchain size (출처:http://bc.daniel.net.nz/)
 
 이러한 일정 수준의 '자격조건'은, 절대 다수의 사용자 클라이언트 (모바일 디바이스 포함)로 하여금 블록체인 네트워크에 완전 노드로서 참여 하는 것을 사실상 불가능하게 만든다. 결과적으로 사용자 클라이언트는 거래에 대한 신뢰 여부를 스스로 (제3의 신뢰기관 없이) 판단하지 못하고, 상대적으로 소수인 완전 노드 집단에 ‘의뢰’ 해야 만 하며, 그 결과를 일방적으로 ‘수용’ 해야 한다. 여기서 소수의 완전 노드 집단은 ‘제3의 신뢰기관’ 처럼 작동한다.
 이런 ‘완전 노드의 집중화’ 문제의 배경에는 앞서 언급한 바와 같이 거대해진 전체 블록체인의 저장과 블록 생성(채굴) 시 요구되는 높은 computing power가 원인으로 자리 잡고 있다. 여기서 다시 전체 블록체인의 저장이 요구되는 이유는, 블록체인의 구조가 선형적인 연결 구조로 이루어져 있기 때문에 정작 필요한 블록들만 따로 떼어내는 것이 불가능 하기 때문이다. 중간 연결 관계가 끊긴 블록의 집합은 어떤 신뢰도 확인해 줄 수 없기에 아무런 가치를 갖지 못한다.
-이런 문제는 이중 지불 문제를 해결하기 위한 암호화 화폐의 ‘거래’ 에 있어서 일면 불가피한 측면이 있다. 얼마 만큼의 화폐가, 어느 계좌에서 어느 계좌로 이동함을 기록하는데 있어서 어떠한 제한 또는 분류가 불가능하다. 화폐의 ‘양’ 또는 화폐의 이동에 사용되는 ‘계좌’를 기준으로 거래를 분류할 수 없다. 모든 거래는 동일한 의의를 지니고, 동일한 의의를 갖는 모든 거래는 어떠한 기준으로도 분류될 수 없기에, 이러한 성격의 기록을 다루는데 있어서 선형적인 구조를 탈피하는 것은 사실상 불가능해 보인다.
-반면에 ‘전자문서’의 경우, 암호화 화폐의 그것과는 달리 문서에 대한 다양한 기록들이 모두 해당 ‘문서’를 중심으로 이루어지게 된다. 문서에 대한 생성, 수정, 전송, 열람, 폐기 등 모든 기록은 해당 ‘문서’가 대상이다.
-이는 문서 자체와 그와 관련된 기록이 바로 그 ‘문서’를 기준으로 분류 될 수 있음을 의미하며, 이는 블록체인상의 체인이 하나의 선형적인 구조가 아닌 다수의 체인으로 분류될 수 있음을 의미한다.
+이러한 블록체인의 특성은, 그 것이 갖는 뛰어난 혁신성에도 불구하고, 여러가지 비효율을 감수하도록 한다. 예를 들어 어느 회사에서 내부 부서 활동 기록을 기록하여 관리하고자 어떤 공개 블록체인(Public Blockchain)을 활용하기로 결정하였다고 가정하자. 이 회사에서 운영하는 블록체인 노드에는 자신의 기록과는 상관없는, 전세계적으로 이 공개 블록체인 상에 발생되고 있는 수 많은 트랜잭션 전체가 저장되어야 한다. 그리고 이 전체 블록체인 데이터는 아마도(거의 확실하게) 이 회사가 발생시킨 트랜잭션보다 수 백, 수천 만배는 더 클 것이다. 이 회사 입장에서 보자면 불필요한, 그러나 자신이 발생시킨 데이터와는 비교도 안될 만큼의 큰 데이터를 저장 관리 해야 하는 것이다.
+이러한 문제를 해결하기 위해 비공개 블록체인(Private Blockchain) 활용을 검토해 볼 수 있다. 물론 비공개 블록체인 역시 중요한 그리고 충분한 가치를 갖지만, 앞서 제기한 문제 이상으로 중앙 집중화된 구조를 갖는다는 점에서 우리가 바라는 해결책은 아니다.
 
- 
+우리는 공개 블록체인과 같은 분산 구조를 유지하면서, 블록체인 네트워크상에 제출(발생) 되는 모든 트랜잭션들을 유의미한 관계에 따라 트랜잭션 집합으로 구성하고, 각 집합을 구성하는 트랜잭션들로 하나의 독립적이고 개별적인 블록체인을 구성하고자 한다. 이로서 공개 블록체인 상의 모든 노드가 반드시 전체 블록을 관리해야 하는 제한사항에서 벗어나, 선택적 블록체인 구성 및 관리가 충분히 가능한 방법을 제시하고자 한다.
 
- 
+X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나의 선형적인 구조로 구성하는 것을 강제 하지 않는다. 이는 트랜잭션에 따라 의도적으로 분기(fork) 를 허용함으로서, 유의미한 관계를 갖는 Transaction 들로 이루어진 개별적인 블록체인 구성이 가능함을 의미한다.
 
- 
+예를 들어 ‘문서’를 기준으로 하였을 때, 각 문서의 ‘최초 생성’ 은 기존 블록체인과 동일한 선형적인 구조의 블록체인(main-chain) 에 기록된다. 그러나 이미 main-chain에 기록된 특정 문서에 대하여 발생한 변경 등의 추가 기록(Transaction)은, main-chain이 아닌 main-chain 상의 해당 블록을 genesis block[[4]](#\_ftn4)으로 하는 또 다른 블록체인인 sub-chain상에 기록 된다.
 
- 
+다시 앞서 제시한 예를 들자면, 공개 블록체인 상에 내부 활동 기록을 관리하고자 하는 회사에서는 이미 존재하는 main-chain 에 자신의 블록체인의 Gennesis Block 으로 사용될 블록을 생성하고, 그 블록을 시작으로 하는 별도의 sub-chain을 구성하여 여기에 회사 내부 활동 기록을 저장 관리 한다. 이로서 회사는 다른 목적을 갖는 트랜잭션 및 블록의 저장을 최소화 할 수 있다.
+
+<br />
+<br />
+
 ## Blockchain Structure
- 
- 
-X.Blockchain 은, 앞서 언급한 전자문서의 특성을 반영하여, 문서에 대한 모든 기록(Transaction) 을 하나의 선형적인 구조로 연결하지 않고 ‘문서’ 또는 그 에 준하는 어떤 ‘기준’ 으로 분류한다. 그리고 이 기준에 따라 복수의 체인을 구성 함으로서 다차원 형태의 블록체인을 제안한다.
-
-예를 들어 ‘문서’를 기준으로 하였을 때, 각 문서의 ‘최초 생성’ 은 기존 블록체인과 동일한 선형적인 구조의 블록체인(main-chain) 에 기록된다. 그러나 이미 main-chain에 기록된 특정 문서에 대하여 발생한 변경 등의 추가 기록(Transaction)은, main-chain이 아닌 main-chain 상의 해당 블록을 genesis block[[4]](#_ftn4)으로 하는 또 다른 블록체인인 sub-chain상에 기록 된다.
-
- 
-
- 
+**Main-Chain**: 선형적인 블록연결 구조로 구성된 독립적인 블록체인으로 복수의 Sub-Chain을 가질 수 있다. Main-Chain 은 또 다른 상위 Main-Chain의 Sub-Chain일 수 있다.
+**Sub-Chain**: Main-Chain의 특정 블록을 Genesis 블록으로 하여 구성된 독립적인 블록체인. Sub-Chain은 또 다른 하위 Sub-Chain의 Main-Chain이 될 수 있다.
+**Full Node**: Main-Chain 과 전체 하위 Sub-Chain의 블록을 관리하는 노드.
+**Sub Node**: 특정 Sub-Chain의 블록만 관리하는 노드.
+**Blockchain Depth**: 노드가 관리하는 최상위 블록체인을 기준으로 관리 하고자 하는 Sub-Chain의 Depth.
 
 ![](images/image002.png)
 

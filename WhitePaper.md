@@ -15,21 +15,27 @@ April 24, 2018
 
 <br />
 
-
 <!-- MarkdownTOC depth=4 autolink=true bracket=round list_bullets="-*+" -->
+## Table of Contrents
 
 - [Problems](#problems)
 - [Blockchain Structure](#blockchain-structure)
-  * [Multi-Dimensional Blockchain](#multi-dimensional-blockchain)
-  * [Joint Block](#join-block)
 - [Consensus Algorithm](#consensus-algorithm)
   * [PBFT](#pbft)
   * [DPOS](#dpos)
   * [PBFT\+DPOS](#pbftdpos)
+- [Data Structure](#datastructure)
+  * [Common Block](#join-block)
+  * [Joint Block](#join-block)
+  * [Transaction](#transaction)
+  * [Fee](#fee)
 - [Accounts](#accounts)
 - [Coin Model](#coin-model)
 - [Inter Sub-chain Communication](#inter-sub-chain-communication)
-- [Roadmap](#roadmap)
+- [Development Roadmap](#development-roadmap)
+
+<br />
+<br />
 
 ## Problems
 
@@ -293,7 +299,7 @@ Figure 7. Transaction Processing – X.Blockchain
 
 ## Inter Sub-chain Communication
 
-## Roadmap
+## Development Roadmap
 * * * * *
 
 ###### 1

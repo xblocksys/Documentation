@@ -39,6 +39,7 @@ April 24, 2018
 
 <br />
 
+<p align="justify">
 <center>
 <img src="images/blockchain_sz.png" width="480px" />
 
@@ -50,6 +51,7 @@ Figure 1. Bitcoin & Ethtereum blockchain size (출처:http://bc.daniel.net.nz/)
 
 Figure 1. Bitcoin & Ethtereum blockchain size (출처:http://bc.daniel.net.nz/)
 </center>
+</p>
 
 <br /><br />
 

@@ -1,21 +1,4 @@
-<center>
-<table>
-<col width="100%" />
-<tbody>
-<tr class="odd">
-<td align="left"><p><strong>X.Blockchain</strong></p>
-<p>Yongseok Kwon</p>
-<p>2017-05-23 Rev 1.</p>
-<p>Copyright © 2017 CERTON CO., LTD.</p></td>
-</tr>
-</tbody>
-</table>
-</center>
- 
-
- 
-
-# X.Blockchain Technical White Paper v1
+#X.Blockchain White Paper v1<hr1>
 **Yongseok Kwon**
 **May 23, 2017**
 

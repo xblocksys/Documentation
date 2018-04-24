@@ -39,13 +39,17 @@ April 24, 2018
 
 <br />
 
-![](images/blockchain_sz.png)
-Figure 1. Bitcoin & Ethtereum blockchain size (출처:http://bc.daniel.net.nz/)
-
+<center>
+<img src="images/blockchain_sz.png" width="480px" />
 <br />
-
-![](images/cpu_pw.png)
 Figure 1. Bitcoin & Ethtereum blockchain size (출처:http://bc.daniel.net.nz/)
+
+<br /><br />
+
+<img src="images/cpu_pw.png" width="480px" />
+<br />
+Figure 1. Bitcoin & Ethtereum blockchain size (출처:http://bc.daniel.net.nz/)
+</center>
 
 <br />
 
@@ -97,8 +101,12 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
 
 
 ## Effectiveness
-![](images/image002.png)
+<center>
+<img src="images/image002.png" width="450px"/>
+<br />
 Figure 2. X.Blockchain
+</center>
+<br />
 
 
 
@@ -108,10 +116,12 @@ Figure 2. X.Blockchain
 
  
 
-
-![](images/image003.png)
+<center>
+<img src="images/image003.png" width="450px"/>
+<br />
 Figure 3. 선형적인 블록체인
-
+</center>
+<br />
 
 선형적인 블록체인 구조에서는 동일한 문서라 할 지라도 해당 문서의 변경 등의 추가 기록은 블록체인의 추가 블록을 필요로 한다.
 

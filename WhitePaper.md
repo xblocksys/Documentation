@@ -70,15 +70,17 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
 <br />
 
 ## Blockchain Structure
-**Main-Chain**: 선형적인 블록연결 구조로 구성된 독립적인 블록체인으로 복수의 Sub-Chain을 가질 수 있다. Main-Chain 은 또 다른 상위 Main-Chain의 Sub-Chain일 수 있다.
+* **Main-Chain**: 선형적인 블록연결 구조로 구성된 독립적인 블록체인으로 복수의 Sub-Chain을 가질 수 있다. Main-Chain 은 또 다른 상위 Main-Chain의 Sub-Chain일 수 있다.
 
-**Sub-Chain**: Main-Chain의 특정 블록을 Genesis 블록으로 하여 구성된 독립적인 블록체인. Sub-Chain은 또 다른 하위 Sub-Chain의 Main-Chain이 될 수 있다.
+* **Sub-Chain**: Main-Chain의 특정 블록을 Genesis 블록으로 하여 구성된 독립적인 블록체인. Sub-Chain은 또 다른 하위 Sub-Chain의 Main-Chain이 될 수 있다.
 
-**Full Node**: Main-Chain 과 전체 하위 Sub-Chain의 블록을 관리하는 노드.  
+* **Full Node**: Main-Chain 과 전체 하위 Sub-Chain의 블록을 관리하는 노드.
 
-**Sub Node**: 특정 Sub-Chain의 블록만 관리하는 노드.  
+* **Sub Node**: 특정 Sub-Chain의 블록만 관리하는 노드.
 
-**Blockchain Depth**: 노드가 관리하는 최상위 블록체인을 기준으로 관리 하고자 하는 Sub-Chain의 Depth.
+* **Blockchain Depth**: 노드가 관리하는 최상위 블록체인을 기준으로 관리 하고자 하는 Sub-Chain의 Depth.
+
+
 
 ![](images/image002.png)
 

@@ -1,18 +1,31 @@
 # X.Blockchain White Paper v1  
 Yongseok Kwon  
 April 24, 2018  
-*Copyright © 2018 XBlock Systems CO., LTD.*
+
+*Copyright © 2018 XBlock Systems CO., LTD.*  
+*Without permission, anyone may use, reproduce or distribute any material in this white paper for non-commercial and educational use (i.e., other than for a fee or for commercial purposes) provided that the original source and the applicable copyright notice are cited.*  
+  
 
 **Abstract:** Bitcoin의 등장과 이를 이용한 거래의 급증은, 블록체인 기술이 거래 원장으로서 신뢰 할 수 있을 만큼 충분히 안전하다는 것을 증명하였다. 블록체인 기술이 주목 받게 된 주된 이유는, 기존 방식과 달리 신뢰성 확보 문제에 있어서 제3의 신뢰기관 (Trusted Third Party, TTP) 을 제거 하였다는 것과, 모든 거래 내역이 네트워크에 참여하는 모든 참여자들에게 분산 저장됨으로 거래 내용에 대한 조작이 사실상 불가능 하도록 만들었다는 점이다.  
 블록체인 기술에서 가장 중요한 핵심 개념은 ‘Decentralization (탈 중앙화)’ 과 ‘Distributed Ledger (분산원장)’ 개념이다. 기존 방식은, 모든 거래가 하나의 집중화된 중앙 서버에 기록 되고, 해당 거래의 신뢰는 이 중앙서버 (제3의 신뢰기관) 에 의하여 ‘보증 되는’ 방식 이였다. 그러나 블록체인 상에서 발생한 거래는 네트워크에 참여하는 모든 참여자들에게 전달되어 ‘검증’, ‘합의’되고, ‘블록’ 단위로 묶여 순차적(선형적)으로 연결된다.  
 모든 거래 내역이 기록 되는 블록체인의 크기는 누적 거래 건수가 증가 할수록, 즉 시간이 지날수록 점차 커질 수 밖에 없으며, 이는 네트워크의 모든 참여자가 전체 블록체인을 저장 관리 하는 것이 사실상 불가능해 지는 시점이 언젠가 도래함을 의미한다. 즉 블록체인 전체를 저장 관리 할 수 있을 만큼의 성능을 갖춘 시스템(노드)는 점차 그 수가 줄어 상대적으로 소수의 노드 집단을 이루게 될 가능성이 크다. 그리고 이 것은 또 다른 형태의 중앙 집중화의 결과를 가져올 것이다. 상대적으로 소수의 노드 집단이 전체 블록체인을 관리 하게 되는 상황에서 거래의 신뢰성은 이 소수의 노드 집단에 의존할 수 밖에 없게 된다. 즉, 블록체인의 근본 개념인 ‘탈 중앙화’ 가 심각히 훼손 될 수 있음을 의미한다.  
 **본 문서는 특별히 전자문서의 보호를 위한 블록체인 기술 응용에 있어서,블록체인 연결구조를 기존의 선형적인 구조에서 다차원 구조로 변형한 X.Blockchain 을 제안 함으로서 전체 블록체인 크기 문제와 그로 인한 노드 집중화 문제에 대한 해결책을 모색 하고자 한다.**
 
+
+
+
+**DISCLAIMER:** This X.Blockchain Technical White Paper is for information purposes only. XBlock Systems does not guarantee the accuracy of or the conclusions reached in this white paper, and this white paper is provided “as is”. block.one does not make and expressly disclaims all representations and warranties, express, implied, statutory or otherwise, whatsoever, including, but not limited to: (i) warranties of merchantability, fitness for a particular purpose, suitability, usage, title or noninfringement; (ii) that the contents of this white paper are free from error; and (iii) that such contents will not infringe third-party rights. block.one and its affiliates shall have no liability for damages of any kind arising out of the use, reference to, or reliance on this white paper or any of the content contained herein, even if advised of the possibility of such damages. In no event will block.one or its affiliates be liable to any person or entity for any damages, losses, liabilities, costs or expenses of any kind, whether direct or indirect, consequential, compensatory, incidental, actual, exemplary, punitive or special for the use of, reference to, or reliance on this white paper or any of the content contained herein, including, without limitation, any loss of business, revenues, profits, data, use, goodwill or other intangible losses.
+
 <!-- MarkdownTOC depth=4 autolink=true bracket=round list_bullets="-*+" -->
 
 - [Problems](#problems)
 - [Blockchain Structure](#blockchain-structure)
+  * [Multi-Dimensional Blockchain](#multi-dimensional-blockchain)
+  * [Joint Block](#join-block)
 - [Consensus Algorithm](#consensus-algorithm)
+  * [PBFT](#pbft)
+  * [DPOS](#dpos)
+  * [PBFT\+DPOS](#pbftdpos)
 - [Accounts](#accounts)
 - [Coin Model](#coin-model)
 - [Inter Sub-chain Communication](#inter-sub-chain-communication)
@@ -180,7 +193,6 @@ Figure 7. Transaction Processing – X.Blockchain
  
 
  
-## Inter Sub-chain Communication
  
 
 **Effectiveness**
@@ -195,51 +207,14 @@ Figure 7. Transaction Processing – X.Blockchain
 
  
 
-[단위:천명, %, 천건], 출처:통계청 「국내인구이동통계」
 
-** **
-
-**2016**
-
-**총이동******
-
-**이동자수******
-
-7,378
-
-**이동률****(%)**
-
-14.4
-
-**전입신고건수******
-
-4,636
-
-**이동자성비****(****여자****=100)**
-
-103.9
-
-**권역별****
-****순이동자수******
-
-**수도권******
-
--1
-
-**중부권******
-
-41
-
-**호남권******
-
--16
-
-**영남권******
-
--40
-
- 
-
+| | |2016년|
+|---|---|---:|
+|총이동|이동자수|7,378 명|
+|    |이동률(%)|14.4%|
+|    |전입신고건수|14.4%|
+|    |이동률(%)|14.4%|
+*[단위:천명, %, 천건], 출처:통계청 「국내인구이동통계」*
  
 
 대한민국의 총인구는 국가통계포털([http://kosis.kr](http://kosis.kr)) 발표에 따르면 2015년말 기준 51,525,338명 이다. 인구 1명당 주민등록초본 1부가 존재하고 거주 지역을 이동 할 때 마다 이 초본은 갱신되어야 하며, 위 표의 데이터에 따르자면 2016년 한 해 동안 총 7,378,000번[[7]](#_ftn7)의 초본 갱신이 발생 되었음을 알 수 있다.
@@ -248,23 +223,16 @@ Figure 7. Transaction Processing – X.Blockchain
 
 이를 선형적인 블록체인으로 구성한다면, 최초 블록체인은 전체 인구수 만큼의 블록으로 구성되고, 해마다 인동 인구수 만큼의 블록이 추가되어야 한다. 만약 2016년부터 적용한다면 2016년 말 기준으로 블록체인의 블록 수는 아래와 같다.
 
- 
 
- 
-
-*51,525,338 (**초기**블록**수) + 7,378,000 (2016**년**변경**블록**수)  =  58,903,338**개*
-
-* *
-
-* *
+| $ 51,525,338 + 7,378,000 = 58,903,338 $ |
+|---|
 
 그리고 한 해 평균 7,000,000 명이 이동한다 가정 하였을 때, 해마다 7백만개의 블록이 추가된다. 여기에 한 블록당 80byte의 크기[[8]](#_ftn8)로 하여 10년 동안의 기록이 누적된 전체 블록체인 크기를 산출하면 아래와 같다.
 
- 
 
- 
 
-*블록체인의**크기 = (51,525,338 + 7,000,000 \* 10) \* 80 / 1024<sup>3</sup>  =  9.1 G*
+| 블록체인의 크기 = $ (51,525,338 + 7,000,000 * 10) * 80 / 1024^3 = 9.1 G $|
+|---|
 
  
 
@@ -276,37 +244,26 @@ Figure 7. Transaction Processing – X.Blockchain
 
 동일한 조건을 X.Blockchain에 적용하면, 전체 블록의 수와 크기는 동일하지만, 해마다 추가되는 변경 블록수가 main-chain에 선형적으로 연결되는 것이 아닌 sub-chain으로 구성 될 것이다. 즉 10년 동안의 변경분에 대한 70,000,000개의 블록은 51,525,338 개의 블록으로 구성된 main-chain의 sub-chain 으로 분산되어 구성될 것이다. 변경분의 블록이 main-chain의 sub-chain에 분산되는 정도를 단순 산술 평균으로 적용하면, main-chain의 블록 1개당 1개의 sub-chain을 갖고, sub-chain당 1.35개[[9]](#_ftn9) 의 블록을 갖게 된다. 이에 근거한 인구 1명당 블록체인의 크기는 아래와 같다.
 
- 
 
-<table>
-<col width="100%" />
-<tbody>
-<tr class="odd">
-<td align="left"><p><em>sub-chain</em><em>의</em><em>평균크기  = (7,000,000 * 10 / 51,525,338) * 80  =  108.68 B</em></p>
-<p><em>main-chain</em><em>의</em><em>크기 =  51,525,338 * 80 / 1024<sup>3 </sup>=  3.83 G</em></p></td>
-</tr>
-</tbody>
-</table>
 
- 
+| sub-chain의 평균크기  = $ (7,000,000 * 10 / 51,525,338) * 80 = 108.68 B $ |
+|---|
+
+
+
+| main-chain의 크기 = $ 51,525,338 * 80 / 1024^3 = 3.83 G $ |
+|---|
+
+
+
 
  
 
 선형 구조의 블록체인과는 달리 X.Blockchain 의 경우, 필요한 데이터에 대한 선별적 관리가 가능하다. 만약 어떤 이유에 의하여 특정 인구 1백만명에 대한 주민등록초본관리 등과 같은 서비스가 가능하다는 것이다. 이 경우 인구 1백만명의 10년동안의 주민등록초본 변경 이력에 대한 검증을 위해서 필요한 총 저장 용량은 다음과 같다.
 
- 
 
-<table>
-<col width="100%" />
-<tbody>
-<tr class="odd">
-<td align="left"><p>3.83  +  108.68  *  1,000,000  /  1024<sup>3</sup>  =  3.93 G</p></td>
-</tr>
-</tbody>
-</table>
-
- 
-
+| $ 3.83 + 108.68 * 1,000,000 / 1024^3 = 3.93 G $ |
+|---|
  
 
 향후 블록체인의 크기는 해마다 1백만명에 대한, 한해 평균 변경 블록 크기 만큼만 증가하게 된다.
@@ -325,7 +282,8 @@ Figure 7. Transaction Processing – X.Blockchain
 
  
 
- 
+
+
 
 **Conclusion**
 
@@ -333,9 +291,18 @@ Figure 7. Transaction Processing – X.Blockchain
 
 언급한 바와 같이 전체 블록체인의 크기는 달라지지 않는다. 다차원 구조의 X.Blockchain의 주요 차별성은 특정 기준에 따른 데이터(블록)의 선택적 관리가 가능 하다는 점에 있다. 그리고 사용자 클라이언트가 필요한 범위의 블록체인을 선택적으로, 직접 저장 관리 함으로서, 해당 범위 내에서 만큼은 문서에 대한 신뢰의 문제를 제3의 신뢰기관의 개입 없이 스스로 해결 할 수 있도록 하는 데 그 목적이 있다.
 
- 
+## Consensus Algorithm
+#### PBFT
+#### DPOS
+#### PBFT\+DPOS
 
+## Accounts
 
+## Coin Model
+
+## Inter Sub-chain Communication
+
+## Roadmap
 * * * * *
 
 ###### ref 1

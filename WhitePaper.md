@@ -40,15 +40,15 @@ April 24, 2018
 <br />
 
 
-<img style="display:block;margin:auto;" src="images/blockchain_sz.png" width="480px" />
+<img src="images/blockchain_sz.png" width="480px" />
 
-Figure 1. Bitcoin & Ethtereum blockchain size (출처:http://bc.daniel.net.nz/)
+-> Figure 1. Bitcoin & Ethtereum blockchain size (출처:http://bc.daniel.net.nz/) <-
 
 <br /><br />
 
 <img src="images/cpu_pw.png" width="480px" />
 
-Figure 1. Bitcoin & Ethtereum blockchain size (출처:http://bc.daniel.net.nz/)
+-> Figure 1. Bitcoin & Ethtereum blockchain size (출처:http://bc.daniel.net.nz/) <-
 
 <br /><br />
 

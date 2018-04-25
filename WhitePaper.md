@@ -4,7 +4,7 @@ April 24, 2018
 *Copyright © 2018 XBLOCK SYSTEMS CO., LTD.*  
 *Without permission, anyone may use, reproduce or distribute any material in this white paper for non-commercial and educational use (i.e., other than for a fee or for commercial purposes) provided that the original source and the applicable copyright notice are cited.*  
 
-**DISCLAIMER:** This X.Blockchain Technical White Paper is for information purposes only. XBLOCK SYSTEMS does not guarantee the accuracy of or the conclusions reached in this white paper, and this white paper is provided "to be". XBLOCK SYSTEMS does not make and expressly disclaims all representations and warranties, express, implied, statutory or otherwise, whatsoever, including, but not limited to: (i) warranties of merchantability, fitness for a particular purpose, suitability, usage, title or noninfringement; (ii) that the contents of this white paper are free from error; and (iii) that such contents will not infringe third-party rights. XBLOCK SYSTEMS and its affiliates shall have no liability for damages of any kind arising out of the use, reference to, or reliance on this white paper or any of the content contained herein, even if advised of the possibility of such damages. In no event will XBLOCK SYSTEMS or its affiliates be liable to any person or entity for any damages, losses, liabilities, costs or expenses of any kind, whether direct or indirect, consequential, compensatory, incidental, actual, exemplary, punitive or special for the use of, reference to, or reliance on this white paper or any of the content contained herein, including, without limitation, any loss of business, revenues, profits, data, use, goodwill or other intangible losses.  
+**DISCLAIMER:** This X.Blockchain Technical White Paper is for information purposes only. XBLOCK SYSTEMS does not guarantee the accuracy of or the conclusions reached in this white paper, and this white paper is provided "as is". XBLOCK SYSTEMS does not make and expressly disclaims all representations and warranties, express, implied, statutory or otherwise, whatsoever, including, but not limited to: (i) warranties of merchantability, fitness for a particular purpose, suitability, usage, title or noninfringement; (ii) that the contents of this white paper are free from error; and (iii) that such contents will not infringe third-party rights. XBLOCK SYSTEMS and its affiliates shall have no liability for damages of any kind arising out of the use, reference to, or reliance on this white paper or any of the content contained herein, even if advised of the possibility of such damages. In no event will XBLOCK SYSTEMS or its affiliates be liable to any person or entity for any damages, losses, liabilities, costs or expenses of any kind, whether direct or indirect, consequential, compensatory, incidental, actual, exemplary, punitive or special for the use of, reference to, or reliance on this white paper or any of the content contained herein, including, without limitation, any loss of business, revenues, profits, data, use, goodwill or other intangible losses.  
 <br />
 <br />
 **Abstract:** Bitcoin의 등장과 이를 이용한 거래의 급증은, 블록체인 기술이 거래 원장으로서 신뢰 할 수 있을 만큼 충분히 안전하다는 것을 증명하였다. 블록체인 기술이 주목 받게 된 주된 이유는, 기존 방식과 달리 신뢰성 확보 문제에 있어서 제3의 신뢰기관 (Trusted Third Party, TTP) 을 제거 하였다는 것과, 모든 거래 내역이 네트워크에 참여하는 모든 참여자들에게 분산 저장됨으로 거래 내용에 대한 조작이 사실상 불가능 하도록 만들었다는 점이다.  
@@ -75,6 +75,21 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
 * **Sub Node**: 특정 Sub-Chain의 블록만 관리하는 노드.
 * **Blockchain Depth**: 노드가 관리하는 최상위 블록체인을 기준으로 관리 하고자 하는 Sub-Chain의 Depth.
 
+X.Blockchain은 합의 알고리즘을 통해 제한적으로 분기를 허용한다. 이는 [X.Transaction](#xtransaction) 을 통해 이루어지는데, X.Transaction 은 Sub-Chain 의 Genesis Block이 되는 [X.Block](#xblock)을 생성하기 위한 특별한 트랜잭션이다.
+
+- X.Transaction 은 Sub-Chain 의 정책을 담고 있다. (코인 이름, 생성 수수료, tx 수수료 등 )
+
+*<X.Tx confirmation ???>*
+*<X.Tx 비용 ???>*
+
+- X.Block 은 오직 하나의 X.Transaction 만을 포함하여야 한다.
+- X.Block 은 오직 하나의 Sub-Chain 만을 갖는다.
+- X.Block 의 block number 는 chain id 로서 기능한다.
+- Sub-Chain 의 블록은 X.Block number + sequential no.
+- X.Block 으로 시작되는 Sub-Chain 은 독립적인 Coin 정책을 갖는다. (link to Coin Model)
+
+X.Transaction 을 통해 X.Block 이 생성되면, X.Block 을 시작으로 Main-Chain 의 블록 연결과는 별개의 블록들이 새어성되어 연결된다.
+
 *블록 연결 구조 설명*
 *Tx/블록의 생성 과정 예시로 설명???*
 
@@ -87,15 +102,19 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
 #### DPOS
 #### PBFT\+DPOS
 #### POX
+*POSO? - singing order*
+*validator 선정 방법 - 분산성, 임의성*
+*Casper, Tendermint*
 
 ## Accounts
-*잔액 정보 관리하는 방식*
+*ethereum's patricia merkle tree*
+*tx와의 관계? -> state hash root <- block*
 
 ## Coin Model
 
 *sub-chain 별 coin 가짐*
 *double hash link 설명*
-*coin 간 환전 메커니즘*
+*coin 간 환전 (inter sub-chain communication)*
 *채굴, tx fee (for common, joint block)*
 
 ## Development Roadmap
@@ -315,10 +334,9 @@ Figure 7. Transaction Processing – X.Blockchain
 언급한 바와 같이 전체 블록체인의 크기는 달라지지 않는다. 다차원 구조의 X.Blockchain의 주요 차별성은 특정 기준에 따른 데이터(블록)의 선택적 관리가 가능 하다는 점에 있다. 그리고 사용자 클라이언트가 필요한 범위의 블록체인을 선택적으로, 직접 저장 관리 함으로서, 해당 범위 내에서 만큼은 문서에 대한 신뢰의 문제를 제3의 신뢰기관의 개입 없이 스스로 해결 할 수 있도록 하는 데 그 목적이 있다.
 
 
-###### 1
-완전 노드는 전체 블록체인을 저장하고 새로운 블록 채굴 작업을 진행하는 노드를 의미한다.
+###### [1] # 완전 노드는 전체 블록체인을 저장하고 새로운 블록 채굴 작업을 진행하는 노드를 의미한다.
 
-[[2]](#_ftnref2) 이 문제에 대한 해결책으로서 Bitcoin 에서는 SPV를 제안하고 있다. Transaction 데이터를 제외한 블록 헤더 정보만으로 거래 입증을 수행 함으로서 이에 필요한 리소스를 최소화 하는 방법이며 전자문서를 위한 블록체인 응용에서 이는 필수적으로 적용 된다. 암호화폐에서 transaction을 구성하는 것이 거래 내역 이라면, 전자문서 응용에서는 전자문서 데이터가 transaction의 주요 부분이 된다. 이 때 문서의 크기는 암호화폐의 거래 내역과는 비교할 수 없을 만큼 크기 때문에 블록체인에 문서 데이터 그 자체를 포함하지 않는다.
+###### [2] # 이 문제에 대한 해결책으로서 Bitcoin 에서는 SPV를 제안하고 있다. Transaction 데이터를 제외한 블록 헤더 정보만으로 거래 입증을 수행 함으로서 이에 필요한 리소스를 최소화 하는 방법이며 전자문서를 위한 블록체인 응용에서 이는 필수적으로 적용 된다. 암호화폐에서 transaction을 구성하는 것이 거래 내역 이라면, 전자문서 응용에서는 전자문서 데이터가 transaction의 주요 부분이 된다. 이 때 문서의 크기는 암호화폐의 거래 내역과는 비교할 수 없을 만큼 크기 때문에 블록체인에 문서 데이터 그 자체를 포함하지 않는다.
 
 본 문서에서 특별한 언급이 없는 한 ‘블록체인 크기’는 ‘블록체인 헤더 크기’를 의미한다.
 

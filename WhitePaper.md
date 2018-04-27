@@ -1,3 +1,12 @@
+<head>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+
+
+\(
+  x(t)=\frac{-b\pm \sqrt{{b}^{2}-4ac}}{2a}
+\)
+\\({e}^{i\pi}+1=0\\)
 # X.Blockchain Technical White Paper v1  
 April 24, 2018  
 
@@ -75,21 +84,24 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
 * **Blockchain Depth**: 노드가 관리하는 최상위 블록체인을 기준으로 관리 하고자 하는 Sub-Chain의 Depth.
 
 X.Blockchain은 분기(fork)를 허용한다. X.Blockchain 상에서 분기가 발생하는 블록을 X.Block 이라 하며, 이 블록을 시작으로 분기되어 생성되는 (Sub-Chain) 의 genesis block 이 된다.
-기존의 블록체인에서 분기는 전체 블록체인의 일관성(consistance)을 훼손 시킨다. 예를 들어 사용자 거래 t를 반영한 사용자 A의 자산상태(state) 를 S(A)<sub>t</sub>라 할 때, A가 B에게 m을 전송하는 거래 t1과 A가 C에게 m을 전송하는 거래 t2가 있다고 가정하자. 이 때 t1과 t2는 반드시 순차적으로 발생되어야 한다. 즉, S(A)가 t1에 의하여 S(A)<sub>t1</sub>으로 상태변환이 확정된 상태에서 t2가 처리되어야 함을 의미한다. 이 때 A,B,C 각각의 상태 변환은 다음과 같이 이루어질 것이다.
+기존의 블록체인에서 분기는 전체 블록체인의 일관성(consistance)을 훼손 시킨다. 분기되어 같은 블록 높이(block height)를 갖는 복수의 블록이 존재한다는 것은 특정 시점에 서로 다른 상태가 동시에 존재하게 됨을 의미하는 것이며 이는 다른 블록체인으로 결별(hard fork) 하거나 아니면, 복수의 상태값 중 어느 하나를 선택(consensus)하여야 한다. 예를 들어 사용자 거래 t 에 대하여 사용자 A의 자산상태(state) 를 S(A)<sub>t</sub> 라 하고, A가 B에게 m을 전송하는 거래 t1, A가 C에게 m을 전송하는 거래 t2 를 가정하자. 이 때 t1과 t2는 반드시 순차적으로 처리되어야 한다. 즉, S(A)가 t1에 의하여 S(A)<sub>t1</sub>으로 상태 변환이 확정 후에 t2가 처리되어야 함을 의미한다. 이 때 A,B,C 각각의 상태 변환은 다음과 같이 이루어질 것이다.
 
 | | S(A) | S(B) | S(C) |
 |:---:|---|---|---|
 |t1|S(A)<sub>t1</sub> = S(A) - m|S(B)<sub>t1</sub> = S(B) + m| - |
 |t2|S(A)<sub>t2</sub> = S(A)<sub>t1</sub> - m| - | S(C)<sub>t2</sub> = S(C) + m |
 
-거래 t1와 t2가 모두 처리된 후 전체 자산 총액은 아래와 같이 거래가 발생하기 이전과 동일하다.
+결과적으로 거래 t1와 t2가 모두 처리된 후, 전체 자산 총액은 아래와 같이 거래가 발생하기 이전과 동일하며 채굴과 같은 추가적인 자산 증가가 없는한 계속 유지되어야 한다.
 
-S(A,B,C) = S(A)<sub>t1</sub> - m + S(B) + m + S(C) + m
-         = S(A) - m - m + S(B) + m + S(C) + m
+\\(
+S(A,B,C) & = S(A)  - m + S(B) + m + S(C) + m
+         & = S(A) - m - m + S(B) + m + S(C) + m  
          = S(A) + S(B)+ S(C)
+\\)
 
+\\( x(t)=\frac{-b\pm \sqrt{{b}^{2}-4ac}}{2a} \\)
 
-그러나 t1과 t2가 동시에 또는 선행하는 거래(t1)에 의한 상태 변경이 확정되기 이전에 새로운 거래(t2)가 처리된다면,
+그러나 t1과 t2가 동시에 또는 선행하는 거래(t1)에 의한 상태 변경이 확정되기 이전에 새로운 거래(t2)가 처리된다면, t1의 경우 S(A) -> S(A)<sub>t1</sub> 의 상태 변환을 발생시킬 것이고, t2 역시 S(A) -> S(A)<sub>t2</sbu>
 
 | | S(A) | S(B) | S(C) |
 |:---:|---|---|---|

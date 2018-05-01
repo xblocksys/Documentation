@@ -1,4 +1,3 @@
-
 # X.Blockchain Technical White Paper v1  
 April 24, 2018  
 

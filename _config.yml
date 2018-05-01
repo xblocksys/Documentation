@@ -3,3 +3,5 @@ mathjax:
   enable: true
   per_page: true
   cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+
+theme: jekyll-theme-cayman

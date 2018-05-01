@@ -113,9 +113,9 @@ S(A) \xrightarrow{t2} S(A)_{t2}
 \end{array}
 \right \} \space\space S(A)_{t1} \space\space or \space\space S(A)_{t2} \space\space ?
 $$
-
-<br /><br />
 </center>
+<br /><br />
+
 
 S(A)는 특정 시점에서 두개의 값(상태)으로 중첩되어 존재하게 된다. 전형적인 이중 지불 문제가 발생한 경우이다. 특정 시점 - 아래 그림에서 block height #n-1 - 에서 A의 상태는 오직 하나 이어야 한다.
 

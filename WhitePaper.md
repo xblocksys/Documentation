@@ -1,12 +1,10 @@
 <head>
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript">
+</script>
 </head>
 
 
-\(
-  x(t)=\frac{-b\pm \sqrt{{b}^{2}-4ac}}{2a}
-\)
-\\({e}^{i\pi}+1=0\\)
 # X.Blockchain Technical White Paper v1  
 April 24, 2018  
 
@@ -84,48 +82,37 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
 * **Blockchain Depth**: 노드가 관리하는 최상위 블록체인을 기준으로 관리 하고자 하는 Sub-Chain의 Depth.
 
 X.Blockchain은 분기(fork)를 허용한다. X.Blockchain 상에서 분기가 발생하는 블록을 X.Block 이라 하며, 이 블록을 시작으로 분기되어 생성되는 (Sub-Chain) 의 genesis block 이 된다.
-기존의 블록체인에서 분기는 전체 블록체인의 일관성(consistance)을 훼손 시킨다. 분기되어 같은 블록 높이(block height)를 갖는 복수의 블록이 존재한다는 것은 특정 시점에 서로 다른 상태가 동시에 존재하게 됨을 의미하는 것이며 이는 다른 블록체인으로 결별(hard fork) 하거나 아니면, 복수의 상태값 중 어느 하나를 선택(consensus)하여야 한다. 예를 들어 사용자 거래 t 에 대하여 사용자 A의 자산상태(state) 를 S(A)<sub>t</sub> 라 하고, A가 B에게 m을 전송하는 거래 t1, A가 C에게 m을 전송하는 거래 t2 를 가정하자. 이 때 t1과 t2는 반드시 순차적으로 처리되어야 한다. 즉, S(A)가 t1에 의하여 S(A)<sub>t1</sub>으로 상태 변환이 확정 후에 t2가 처리되어야 함을 의미한다. 이 때 A,B,C 각각의 상태 변환은 다음과 같이 이루어질 것이다.
+기존의 블록체인에서 분기는 블록에 기록된 데이터의 일관성(consistance)을 훼손 시킨다. 분기되어 같은 블록 높이(block height)를 갖는 복수의 블록이 존재한다는 것은 특정 시점에 서로 다른 상태가 동시에 존재함을 의미하는 것이다. 이는 A의 자산 총액(상태)이 m 일 수도 있고, n 일 수도 있다 라고 선언하는 것과 다름 아니다. 이를 해소하기 위해서 상태의 변화를 일으키는 사건은 반드시 순차적으로 처리되어야 한다. 상태를 변경시키는 임의의 사건에 대한 처리가 완료되어 상태 변경이 완료된 이후에 다른 사건에 대한 처리가 이루어져 함을 의미한다. 예를 들어 A의 상태를 변경하는 사건을 t 라 하고, t에 의하여 변경된 A의 상태를 S(A)<sub>t</sub> 라 하자. 복수의 사건 t1 과 t2 를 가정하였을 때, 사건 t1 의 처리가 완료되어 A의 상태가 S(A)<sub>t1</sub> 으로 확정된 이후에 사건 t2 의 처리가 진행되어야 한다. t2가 선행하여 발생하는 경우도 마찬가지이다.
 
-| | S(A) | S(B) | S(C) |
-|:---:|---|---|---|
-|t1|S(A)<sub>t1</sub> = S(A) - m|S(B)<sub>t1</sub> = S(B) + m| - |
-|t2|S(A)<sub>t2</sub> = S(A)<sub>t1</sub> - m| - | S(C)<sub>t2</sub> = S(C) + m |
+<br /><br />
 
-결과적으로 거래 t1와 t2가 모두 처리된 후, 전체 자산 총액은 아래와 같이 거래가 발생하기 이전과 동일하며 채굴과 같은 추가적인 자산 증가가 없는한 계속 유지되어야 한다.
+$$
+\begin{array}{c}
+S(A) \xrightarrow{t1} S(A)_{t1} \xrightarrow{t2} S(A)_{t2} \\\\
+or \\\\
+S(A) \xrightarrow{t2} S(A)_{t2} \xrightarrow{t1} S(A)_{t1}
+\end{array}
+$$
 
-\\(
-S(A,B,C) & = S(A)  - m + S(B) + m + S(C) + m
-         & = S(A) - m - m + S(B) + m + S(C) + m  
-         = S(A) + S(B)+ S(C)
-\\)
+<br /><br />
 
-\\( x(t)=\frac{-b\pm \sqrt{{b}^{2}-4ac}}{2a} \\)
+그러나 S(A) 에 대하여 t1 의 처리가 완료되기 이전에 t2 에 대한 처리가 동시에 이루어진다면, S(A)는 특정 시점에서 두개의 값(상태)으로 중첩되어 존재하게 된다. 전형적인 이중 지불 문제가 발생한 경우이다. 특정 시점에서 A의 상태는 오직 하나 이어야 한다. 즉 S(A)의 최종 상태는 S(A)<sub>t1</sub> 과 S(A)<sub>t2</sub> 둘 중 어느 하나로 결정되어져야 한다. 결과적으로 사건 t1, t2 중 어느 하나는 버려져야 함을 의미한다.
 
-그러나 t1과 t2가 동시에 또는 선행하는 거래(t1)에 의한 상태 변경이 확정되기 이전에 새로운 거래(t2)가 처리된다면, t1의 경우 S(A) -> S(A)<sub>t1</sub> 의 상태 변환을 발생시킬 것이고, t2 역시 S(A) -> S(A)<sub>t2</sbu>
+<br /><br />
 
-| | S(A) | S(B) | S(C) |
-|:---:|---|---|---|
-|t1|S(A)<sub>t1</sub> = S(A) - m|S(B)<sub>t1</sub> = S(B) + m| - |
-|t2|S(A)<sub>t2</sub> = S(A) - m| - | S(C)<sub>t2</sub> = S(C) + m |
+$$
+\left .
+\begin{array}{l}
+S(A) \xrightarrow{t1} S(A)_{t1} \\\\
+S(A) \xrightarrow{t2} S(A)_{t2}
+\end{array}
+\right \} \space\space S(A)_{t1} \space\space or \space\space S(A)_{t2} \space\space ?
+$$
+
+<br /><br />
 
 
-예를 들어, A 가 B 에게 m 만큼의 자산을 전송하는 거래를 T1 이라 하고, A 가 동일한 양의 자산을 C 에게 전송하는 거래를 T2 라고 하자. 그리고 A 와 B 의 자산 총액을 assets(A), assets(B) 라고 하였을 때, 거래 T1 과 T2 는 반드시 순차적으로 발생하여야 한다. 즉, T1 이 확정되어 그 결과 A 의 자산 총액이 assets(A) = assets(A) - m 으로 상태 변경이 완료된 상태에서 T2 가 발생하거나, 또는 T2 가 확정되어 그 결과 A 의 자산 총액이 assets(A) = assets(A) - m2 로 상태 변경이 완료된 상태에서 T1 이 발생하여야 한다. 어느 경우이든 두 거래가 모두 확정되었을 때 각자의 자산총액은 다음과 같다.
 
-```
-assets(A) = assets(A) - 2m
-assets(B) = assets(B) + m
-assets(C) = assets(C) + m
-```
-
- 그러나 만약 선행하는 거래가 확정 되기 이전에 또 다른 거래가 발생하거나 또는 두 거래가 동시에 발생한다면, 그리고 두 거래 모두 최종적으로 확정되어 진다면, 각각의 자산총액은 아래와 같을 것이다.
-
- ```
- assets(A) = assets(A) - m
- assets(B) = assets(B) + m
- assets(C) = assets(C) + m
- ```
-
-이는 전형적인 이중지불 문제가 발생하였음을 보여준다. 즉 A의 자산총액은 m 만큼 감소한 반면에 B와 C는 각각 m 만큼 자산이 증가하여 전체 자산총액이 m 증가하였음을 보여준다. 이러한 이유로
 
 Sub-Chain 을 구성하는 모든 트랜잭션과 블록은 Main-Chain 상의 트랜잭션 및 블록과 어떤한 연결관계도 갖지 않는다. 때문에 그 자체로 하나의 완전하고 독립적인 블록체인으로 기능한다. 동시에 적용된는 모든 메커니즘은 Main-Chain 에 적용되는 그것과 완벽히 동일하다. Sub-Chain 상에서 또 다른 X.Block 을 생성하는 것도 가능하다. 즉 Sub-Chain 은 또 다른 Sub-Chain 의 Main-Chain 이 될 수도 있음을 의미한다.
 

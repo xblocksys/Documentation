@@ -1,5 +1,10 @@
+<head>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+
 # X.Blockchain Technical White Paper v1  
 April 24, 2018  
+
 
 *Copyright © 2018 XBLOCK SYSTEMS CO., LTD.*  
 *Without permission, anyone may use, reproduce or distribute any material in this white paper for non-commercial and educational use (i.e., other than for a fee or for commercial purposes) provided that the original source and the applicable copyright notice are cited.*  

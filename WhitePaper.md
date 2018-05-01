@@ -21,15 +21,14 @@ April 24, 2018
 
 - [Problems](#problems)
 - [X.Blockchain Structure](#xblockchain-structure)
-- [Data Structure](#data-structure)
-  * [Common Block](#common-block)
+  * [Block Header](#common-block)
   * [X.Block](#xblock)
   * [X.Transaction](#xtransaction)
-  * [Tx Fee](#tx-fee)
 - [Consensus Algorithm](#consensus-algorithm)
-- [Accounts](#accounts)
-- [Coin Model](#coin-model)
 - [Inter Sub-chain Communication](#inter-sub-chain-communication)
+- [Assets Model](#coin-model)
+- [Accounts](#accounts)
+- [Mining & Reward](#mining)
 - [Development Roadmap](#development-roadmap)
 
 <br />
@@ -77,109 +76,123 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
 * **Blockchain Depth**: 노드가 관리하는 최상위 블록체인을 기준으로 관리 하고자 하는 Sub-Chain의 Depth.
 
 X.Blockchain은 분기(fork)를 허용한다. X.Blockchain 상에서 분기가 발생하는 블록을 X.Block 이라 하며, 이 블록을 시작으로 분기되어 생성되는 (Sub-Chain) 의 genesis block 이 된다.
-기존의 블록체인에서 분기는 블록에 기록된 데이터의 일관성(consistance)을 훼손 시킨다. 분기되어 같은 블록 높이(block height)를 갖는 복수의 블록이 존재한다는 것은 특정 시점에 서로 다른 상태가 동시에 존재함을 의미하는 것이다. 이는 A의 자산 총액(상태)이 m 일 수도 있고, n 일 수도 있다 라고 선언하는 것과 다름 아니다. 이를 해소하기 위해서 상태의 변화를 일으키는 사건은 반드시 순차적으로 처리되어야 한다. 상태를 변경시키는 임의의 사건에 대한 처리가 완료되어 상태 변경이 완료된 이후에 다른 사건에 대한 처리가 이루어져 함을 의미한다. 예를 들어 A의 상태를 변경하는 사건을 t 라 하고, t에 의하여 변경된 A의 상태를 S(A)<sub>t</sub> 라 하자. 복수의 사건 t1 과 t2 를 가정하였을 때, 사건 t1 의 처리가 완료되어 A의 상태가 S(A)<sub>t1</sub> 으로 확정된 이후에 사건 t2 의 처리가 진행되어야 한다. t2가 선행하여 발생하는 경우도 마찬가지이다.
+기존의 블록체인에서 분기는 블록에 기록된 데이터의 일관성(consistance)을 훼손 시킨다. 분기되어 같은 블록 높이(block height)를 갖는 복수의 블록이 존재한다는 것은 특정 시점에 서로 다른 상태가 동시에 존재함을 의미하는 것이다. 이는 A의 자산 총액(상태)이 m 일 수도 있고, n 일 수도 있다 라고 선언하는 것과 다름 아니다. 이를 해소하기 위해서 상태의 변화를 일으키는 사건은 반드시 순차적으로 처리되어야 한다. 상태를 변경시키는 임의의 사건에 대한 처리가 완료되어 상태 변경이 확정된 이후 다른 사건에 대한 처리가 이루어져 함을 의미한다. 예를 들어 A의 상태를 변경하는 사건을 t 라 하고, t에 의하여 변경된 A의 상태를 S(A)<sub>t</sub> 라 하자. 복수의 사건 t1 과 t2 를 가정하였을 때, 사건 t1 의 처리가 완료되어 A의 상태가 S(A)<sub>t1</sub> 으로 확정된 이후에 사건 t2 의 처리가 진행되어야 한다. t2가 선행하여 발생하는 경우도 마찬가지이다.
 
-<br /><br />
+<br />
 
 $$
 \begin{array}{c}
-S(A) \xrightarrow{t1} S(A)_{t1} \xrightarrow{t2} S(A)_{t2} \\\\
+S(A)_{t0} \xrightarrow{t1} S(A)_{t1} \xrightarrow{t2} S(A)_{t2} \\\\
 or \\\\
-S(A) \xrightarrow{t2} S(A)_{t2} \xrightarrow{t1} S(A)_{t1}
+S(A)_{t0} \xrightarrow{t2} S(A)_{t2} \xrightarrow{t1} S(A)_{t1}
 \end{array}
 $$
 
-<br /><br />
+<br />
 
 이것을 블록 구조로 표현하면 다음과 같다.
 
-<br /><br />
+<br />
 <center>
-<img src="images/bc1.png" width="240px"/>
+<img src="images/bc1.png" width="320px"/>
 <br /><br /> or <br /><br />
-<img src="images/bc1-2.png" width="240px" />
+<img src="images/bc1-2.png" width="320px" />
 </center>
-<br /><br />
+<br />
 
-그러나 S(A) 에 대하여 t1 의 처리가 완료되기 이전에 t2 에 대한 처리가 동시에 이루어진다면, 다음과 같은 상황이 발생하게 될 것이다.
+그러나 S(A) 에 대하여 t1 의 처리가 완료되기 이전에 t2 에 대한 처리가 동시에 이루어진다면, 사건 t1 이 처리되는 시점의 A의 상태를 S(A)<sub>t0</sub> 라 할 때, 사건 t2 가 처리되는 시점의 A의 상태 역시 S(A)<sub>t0</sub> 가 되므로, S(A)<sub>t0</sub>는 S(A)<sub>t1</sub> 와 S(A)<sub>t2</sub> 두가지 상태로 분기된다. 이는 전형적인 이중 지불 문제가 발생한 경우이며, 이 문제를 해결하기 위해서는 특정 시점(block height = #n-1) 에서 A의 상태는 오직 하나로 강제 되어야 한다.
 
-<br /><br />
+<br />
 <center>
 $$
 \left .
 \begin{array}{c}
-S(A) \xrightarrow{t1} S(A)_{t1} \\\\
-S(A) \xrightarrow{t2} S(A)_{t2}
+S(A)_{t0} \xrightarrow{t1} S(A)_{t1} \\\\
+S(A)_{t0} \xrightarrow{t2} S(A)_{t2}
 \end{array}
-\right \} \space\space S(A)_{t1} \space\space or \space\space S(A)_{t2} \space\space ?
+\right \} \space \text{What is real ?} \space\space S(A)_{t1} \space\space or \space\space S(A)_{t2}
 $$
 </center>
-<br /><br />
+<br />
 
 
-S(A)는 특정 시점에서 두개의 값(상태)으로 중첩되어 존재하게 된다. 전형적인 이중 지불 문제가 발생한 경우이다. 특정 시점 - 아래 그림에서 block height #n-1 - 에서 A의 상태는 오직 하나 이어야 한다.
 
-<br /><br />
+<br />
 <center>
-<img src="images/bc1-3.png" width="240px" />
+<img src="images/bc1-3.png" width="320px" />
 </center>
-<br /><br />
+<br />
 
+즉 S(A)의 최종 상태는 S(A)<sub>t1</sub> 과 S(A)<sub>t2</sub> 둘 중 어느 하나로 결정되어져야 하며, 이로 인해 결과적으로 사건 t1, t2 중 어느 하나는 버려져야 함을 의미한다.
 
-즉 S(A)의 최종 상태는 S(A)<sub>t1</sub> 과 S(A)<sub>t2</sub> 둘 중 어느 하나로 결정되어져야 한다.결과적으로 사건 t1, t2 중 어느 하나는 버려져야 함을 의미한다.
-
-<br /><br />
+<br />
 <center>
-<img src="images/bc1-4.png" width="300px" />
+<img src="images/bc1-4.png" width="360px" />
 </center>
-<br /><br />
-
-
-
-
-Sub-Chain 을 구성하는 모든 트랜잭션과 블록은 Main-Chain 상의 트랜잭션 및 블록과 어떤한 연결관계도 갖지 않는다. 때문에 그 자체로 하나의 완전하고 독립적인 블록체인으로 기능한다. 동시에 적용된는 모든 메커니즘은 Main-Chain 에 적용되는 그것과 완벽히 동일하다. Sub-Chain 상에서 또 다른 X.Block 을 생성하는 것도 가능하다. 즉 Sub-Chain 은 또 다른 Sub-Chain 의 Main-Chain 이 될 수도 있음을 의미한다.
-
-
-
-
-
-
-
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-
-
-
-X.Block 은 단 하나의 X.Transaction 이라 하는 특별한 트랜잭션을 포함한다. X.Transaction 은 생성되는 Sub-Chain 의 특성을 기술하는 내용을 포함 하고 있다.
-결과적으로 X.Blockchain 상에서 Sub-Chain 을 생성하기 위해서는 X.Transaction 을 발행하고, 이 트랜잭션에 대한 합의가 이루어지면 X.Block 이 생성된다. 이 X.Block 을 시작으로, 기존 체인 (Main-Cain) 과는 다른, 독립적인 체인 (Sub-Chain) 이 생성될 수 있다.
-
-<img src="images/image002.png" width="640" />
-
-<br />
 <br />
 
-*Figure 2. X.Blockchain 구조*
+이는 동일한 대상의 상태 변경을 일으키는 모든 사건은 동시성을 가질 수 없고 순차적인 처리가 강제 되어야 하고, 이로 인해 사건들을 포함하는 블록과 블록의 연결구조는 선형적인 형태의 구조로 될 수 밖에 없음을 잘 설명하여 준다. 반면에 각각의 사건들로 인하여 상태 변환이 발생하는 대상들이 모두 동일하지 않다면 해당 사건들은 '반드시' 순차적으로 처리 되어야 할 필요는 없다. 이 경우 각 사건들의 처리가 순차적으로 강제되지 않아도 앞서 언급한 이중 지불 문제와 같은 모순은 발생되지 않을 것이다. 사건의 순차적인 처리는 동일한 대상의 상태 변환을 일으키는 사건들 사이에서만 의미를 갖는다.  
+이것은 n개의 서로 다른 대상의 상태를 변화 시키는 사건 집합 각각을 T<sub>n</sub> 이라 할 때, T<sub>1</sub> ~ T<sub>n</sub>을 n 개의 독립적인 선형 구조로 각각 구성하는 것이 가능함을 의미한다. 즉 동일한 대상을 갖는 특정 사건 집합 T 내에서만 순차성이 보장된다면, 서로 다른 사건 집합 T<sub>n</sub> 과 T<sub>m</sub> 에 속하는 사건 t<sub>n</sub> 과 t<sub>m</sub> 은 순차적으로 처리되어야 할 필요도, 동일한 직렬화 구조에 포함될 필요도 없다.
+
+X.Blockchain 은 사건 집합 T<sub>n</sub> 으로 이루어진 개별적이고 독립적인 블록체인, Sub-Chain 을 구현한다.
+Sub-Chain 을 구성하는 모든 트랜잭션(사건)과 블록은 Main-Chain 또는 다른 Sub-Chain 상의 트랜잭션 및 블록과 어떤한 인과관계를 갖지 않는다. 각각의 Sub-Chain 에 적용되는 모든 메커니즘은 Sub-Chain 상에서 또 다른 X.Block 을 생성하는 것을 포함하여 Main-Chain 상의 그것과 완벽히 동일하다. 때문에 Sub-Chain 그 자체로 하나의 완전한 블록체인으로 기능할 수 있다.
+
 
 <br />
+<center>
+<img src="images/xbc1.png" width="480px" />
+</center>
 <br />
 
-*<X.Tx confirmation ???>*
-*<X.Tx 비용 ???>*
 
-- X.Block 은 오직 하나의 X.Transaction 만을 포함하여야 한다.
-- X.Block 은 오직 하나의 Sub-Chain 만을 갖는다.
-- X.Block 의 block number 는 chain id 로서 기능한다.
-- Sub-Chain 의 블록은 X.Block number + sequential no.
-- X.Block 으로 시작되는 Sub-Chain 은 독립적인 Coin 정책을 갖는다. (link to Coin Model)
 
-X.Transaction 을 통해 X.Block 이 생성되면, X.Block 을 시작으로 Main-Chain 의 블록 연결과는 별개의 블록들이 새어성되어 연결된다.
 
-*블록 연결 구조 설명*
-*Tx/블록의 생성 과정 예시로 설명???*
+#### Common Block Header
 
-## Data Structure
+- X.Block 은 Main-Chain 상에서의 블록 번호를 가지며 이 번호는 해당 X.Block 으로 부터 생성되는 Sub-Chain 을 식별하기 위한 ChainID 로 사용된다. 위 그림에서 X.Block 의 블록번호 \#4 는 Main-Chain 상의 block number 에 해당되며 동시에 ChainID \#4 를 의미한다. ChainID \#4 가 가리키는 Sub-Chain 의 블록은 {ChainID}.{BlockNo} 형식의 블록 번호를 갖는다.
+
+```
+{
+  blockNo:1234.5678
+  blockHash: "0xABCDEF0123456789"
+  preBlockHash: "0xABCDEF0123456789"
+  preXBlockHash: "0xABCDEF0123456789"
+  version:XB1
+  stateHash: "0xABCDEF0123456789"
+  transactions:[]
+}
+```
+
+- State Hash (Petricia Merkle Tree's Root Hash)
+
 #### X.Block
+- X.Block 은 오직 하나의 X.Transaction 을 포함한다.
+- Sub-Chain 이 생성되는 블록, 즉 Sub-Chain 의 genesis block 이자, Main-Chain 의 특별한 블록을 X.Block 이라 한다. 특정 X.Block 으로 부터는 오직 하나의 Sub-Chain 만이 생성된다. 그러나 Sub-Chain 은 연결되는 블록중에 또 다른 X.Block 을 포함할 수 있어 다차원적인 블록체인 구조가 가능해 진다.
+- 각각의 Sub-Chain 은 그 상위의 Main-Chain 과는 독립적인 자산을 갖는데, 이 자산의 기본적인 특성은 해당 X.Block 을 생성하는 X.Transaction 에 기술 된다.
+
+- X.Block 은 이전 X.Block 의 해쉬를 포함하고, 현재 X.Block 의 해쉬는 다음 X.Block 에 포함된다. 때문에 X.Block 은 다른 블록들과는 달리 복수의 해쉬 연결 구조를 갖는다.
+
+- Block Header
+
 #### X.Transaction
-- X.Transaction 은 Sub-Chain 의 정책을 담고 있다. (코인 이름, 생성 수수료, tx 수수료 등 )
+X.Block 을 생성하기 위한 특별한 트랜잭션을 X.Transactioin 이라 한다. X.Transaction 의 발행을 시작으로 X.Block 이 생성되고, 이 X.Block 으로 부터 Sub-Chain 이 생성된다.
+
+- X.Transaction 에는 이로 인하여 생성될 Sub-Chain 의 기본적인 특성을 기술하는 내용으로 구성된다.
+
+- Transaction 이 포함되어 기록되어야 할 Target ChainID를 갖는다.
+
+- X.Transaction 생성자(계정)
+- Sub-Chain 이름
+- Sub-Chain 자산 이름
+- Tx. fee
+
+
+X.Transaction 은 보통의 Transaction 보다 높은 비용을 소비한다. 이는 불필요한 X.Transaction 의 생성을 방지하여 X.Block 및 Sub-Chain 의 과다한 발생으로 인한 전체 블록체인의 효율성을 높이기 위함이다.
+
+- X.Transaction 은 생성되는 Sub-Chain 의 특성을 기술한다.
+- X.Tx confirmation ????
+- X.Tx 비용
+
 
 ## Consensus Algorithm
 #### PBFT
@@ -190,16 +203,23 @@ X.Transaction 을 통해 X.Block 이 생성되면, X.Block 을 시작으로 Main
 *validator 선정 방법 - 분산성, 임의성*
 *Casper, Tendermint*
 
-## Accounts
-*ethereum's patricia merkle tree*
-*tx와의 관계? -> state hash root <- block*
-
 ## Coin Model
 
 *sub-chain 별 coin 가짐*
 *double hash link 설명*
 *coin 간 환전 (inter sub-chain communication)*
 *채굴, tx fee (for common, joint block)*
+
+## Mining
+
+## Accounts
+X.Blockchain 계정의 지출액과 잔고를 기록하기 위해 회계 모델을 도입해야 한다. X.Blockchain이 채택하는 모델은 이더리움 yellow paper에 기술되어 있는 머클 패트리샤 트리(Merkle Patricia Trie) 데이터 구조이다[35]. 일련의 트랜잭션이 발행되면 모든 트랜잭션 이력을 하나의 해시값으로 저장하고 있는 월드 스테이트가 업데이트 되고 그 값은 각 블록에 저장된다. 이 월드 스테이트 값은 모든 하이콘 계정의 계정 데이터를 나타내는 머클-패트리샤 루트의 해시값이다.
+계정 데이터에는 특정 하이콘 계정의 잔고, 그 특정 계정을 참조하는 가장 최근 블록에 대한 레퍼런스, 그 특정 계정에서 시작된 트랜잭션 수를 나타내는 넌스값이 저장되어 있다. 넌스값은 리플레이 공격에서 데이터를 보호하는 데 사용된다. 이전 블록에 대한 레퍼런스는 트랜잭션 이력을 더욱 빨리 검색할 수 있게 해주고 스펙터 알고리즘에서 이중지불을 쉽게 추적할 수 있도록 해주는 최적화된 기능이다.
+
+*ethereum's patricia merkle tree*
+*tx와의 관계? -> state hash root <- block*
+
+
 
 ## Development Roadmap
 

@@ -82,11 +82,11 @@ X.Blockchain은 분기(fork)를 허용한다. X.Blockchain 상에서 분기가 �
 <br /><br />
 
 $$
-\begin{align}
+\begin{array}{c}
 S(A) \xrightarrow{t1} S(A)_{t1} \xrightarrow{t2} S(A)_{t2} \\\\
 or \\\\
 S(A) \xrightarrow{t2} S(A)_{t2} \xrightarrow{t1} S(A)_{t1}
-\end{align}
+\end{array}
 $$
 
 <br /><br />
@@ -106,10 +106,10 @@ $$
 <br /><br />
 $$
 \left .
-\begin{align}
+\begin{array}{c}
 S(A) \xrightarrow{t1} S(A)_{t1} \\\\
 S(A) \xrightarrow{t2} S(A)_{t2}
-\end{align}
+\end{array}
 \right \} \space\space S(A)_{t1} \space\space or \space\space S(A)_{t2} \space\space ?
 $$
 

@@ -104,7 +104,6 @@ $$
 그러나 S(A) 에 대하여 t1 의 처리가 완료되기 이전에 t2 에 대한 처리가 동시에 이루어진다면, 다음과 같은 상황이 발생하게 될 것이다.
 
 <br /><br />
-
 $$
 \left .
 \begin{align}
@@ -241,7 +240,7 @@ Figure 3. 선형적인 블록체인
 
  
 
- 
+
 ![](images/image004.png)
 Figure 4. X.Blockchain
 
@@ -261,7 +260,7 @@ Figure 4. X.Blockchain
 
  
 
- 
+
 ![](images/image005.png)
 Figure 5. 3차원 구조의 X.Blockchain
 
@@ -291,7 +290,7 @@ X.Blockchain 상에서 새로운 블록 채굴을 담당하는 완전노드는 �
 
  
 
- 
+
 ![](images/image006.png)
 Figure 6. Transaction Processing - 선형구조 블록체인
 
@@ -305,7 +304,7 @@ Figure 6. Transaction Processing - 선형구조 블록체인
 
  
 
- 
+
 ![](images/image007.png)
 Figure 7. Transaction Processing – X.Blockchain
 
@@ -318,7 +317,7 @@ Figure 7. Transaction Processing – X.Blockchain
  
 
  
- 
+
 
 **Effectiveness**
 
@@ -340,7 +339,7 @@ Figure 7. Transaction Processing – X.Blockchain
 |    |전입신고건수|14.4%|
 |    |이동률(%)|14.4%|
 *[단위:천명, %, 천건], 출처:통계청 「국내인구이동통계」*
- 
+
 
 대한민국의 총인구는 국가통계포털([http://kosis.kr](http://kosis.kr)) 발표에 따르면 2015년말 기준 51,525,338명 이다. 인구 1명당 주민등록초본 1부가 존재하고 거주 지역을 이동 할 때 마다 이 초본은 갱신되어야 하며, 위 표의 데이터에 따르자면 2016년 한 해 동안 총 7,378,000번[[7]](#_ftn7)의 초본 갱신이 발생 되었음을 알 수 있다.
 
@@ -382,14 +381,14 @@ Figure 7. Transaction Processing – X.Blockchain
 
 
 
- 
+
 
 선형 구조의 블록체인과는 달리 X.Blockchain 의 경우, 필요한 데이터에 대한 선별적 관리가 가능하다. 만약 어떤 이유에 의하여 특정 인구 1백만명에 대한 주민등록초본관리 등과 같은 서비스가 가능하다는 것이다. 이 경우 인구 1백만명의 10년동안의 주민등록초본 변경 이력에 대한 검증을 위해서 필요한 총 저장 용량은 다음과 같다.
 
 
 | $ 3.83 + 108.68 * 1,000,000 / 1024^3 = 3.93 G $ |
 |---|
- 
+
 
 향후 블록체인의 크기는 해마다 1백만명에 대한, 한해 평균 변경 블록 크기 만큼만 증가하게 된다.
 

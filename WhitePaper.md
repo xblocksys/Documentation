@@ -352,7 +352,9 @@ Figure 7. Transaction Processing – X.Blockchain
 
 **Effectiveness**
 
+Bla bla <sup id="a1">[1](#f1)</sup>
  
+
 
 주민등록초본을 전자문서화 하고 블록체인 기술을 적용 하여 관리 하는 상황을 가정하였을 때, X.Blockchain 적용과 기존 블록체인 적용이 어떻게 다른가에 대하여 설명한다.
 
@@ -433,7 +435,10 @@ Figure 7. Transaction Processing – X.Blockchain
 
  
 
- 
+
+
+
+
 
  
 
@@ -443,3 +448,8 @@ Figure 7. Transaction Processing – X.Blockchain
 **Conclusion**
 
 언급한 바와 같이 전체 블록체인의 크기는 달라지지 않는다. 다차원 구조의 X.Blockchain의 주요 차별성은 특정 기준에 따른 데이터(블록)의 선택적 관리가 가능 하다는 점에 있다. 그리고 사용자 클라이언트가 필요한 범위의 블록체인을 선택적으로, 직접 저장 관리 함으로서, 해당 범위 내에서 만큼은 문서에 대한 신뢰의 문제를 제3의 신뢰기관의 개입 없이 스스로 해결 할 수 있도록 하는 데 그 목적이 있다.
+
+
+---------
+
+<b id="f1">[1]</b> Footnote content here. [↩](#a1)

@@ -1,6 +1,6 @@
 # X.Blockchain Technical White Paper v1  
 Yongseok Kwon
-April 24, 2018  
+April 24, 2018
 
 
 *Copyright © 2018 XBLOCK SYSTEMS CO., LTD.*  

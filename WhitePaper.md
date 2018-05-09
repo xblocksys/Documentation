@@ -87,7 +87,7 @@ $$
 <br />
 <center>
 <img src="images/bc1.png" width="320px"/>
-<br /><br /> or <br /><br />
+<br /> or <br /><br /> 
 <img src="images/bc1-2.png" width="320px" />
 </center>
 <br />

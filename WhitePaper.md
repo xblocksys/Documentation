@@ -74,21 +74,12 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
 <br />
 $$
 \begin{array}{c}
-T_A = \{t_{a1}, t_{a2},\space...\}, \space\space T_B = \{t_{b1}, t_{b2},\space...\}, \\\\ T_A \cap T_B = \emptyset , \\\\\\
-A's \space blockchain : S_{A,t_{a0}} \xrightarrow{t_{a1}} S_{A,t_{a1}} \xrightarrow{t_{a2}} S_{A,t_{a2}}  \cdots\\\\
-B's \space blockchain : S_{A,t_{b0}} \xrightarrow{t_{b1}} S_{A,t_{b1}} \xrightarrow{t_{b2}} S_{A,t_{b2}} \cdots
-\end{array}
-$$
-lllll
-$$
-\begin{array}{c}
 T_A = \{ t1, t2, \space ... \} , \\\\\\
 S_{A,t0} \xrightarrow{t1} S_{A,t1} \xrightarrow{t2} S_{A,t2} \\\\
 or \\\\
 S_{A,t0} \xrightarrow{t2} S_{A,t2} \xrightarrow{t1} S_{A,t1}
 \end{array}
 $$
-
 <br />
 
 이것을 블록 구조로 표현하면 다음과 같다.

@@ -74,9 +74,9 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
 <br />
 $$
 \begin{array}{c}
-T_A = \{ t1, t2, \space ... \} , \\\\\\
-S_{A,t0} \xrightarrow{t1} S_{A,t1} \xrightarrow{t2} S_{A,t2} \\\\
-or \\\\
+T_A = \{t1, t2, \space ...\}, \\\\\\
+S_{A,t0} \xrightarrow{t1} S_{A,t1} \xrightarrow{t2} S_{A,t2} \\
+or \\
 S_{A,t0} \xrightarrow{t2} S_{A,t2} \xrightarrow{t1} S_{A,t1}
 \end{array}
 $$

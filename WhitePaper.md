@@ -72,7 +72,14 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
 예를 들어 A의 상태를 S<sub>A</sub>, 이를 변경하는 사건들의 집합을 T<sub>A</sub>라 하고, 개별 사건 t ($t \in T_{A}$) 에 의하여 변경된 A의 상태를 S<sub>A,t</sub> 라 하자. 복수의 사건 t1 과 t2 를 가정하였을 때, 사건 t1 의 처리가 완료되어 A의 상태가 S<sub>A,t1</sub> 으로 확정된 이후에 사건 t2 의 처리가 진행되어야 한다. t2가 선행하여 발생하는 경우도 마찬가지 이다. t2 의 처리 결과로서 A의 상태가 S<sub>A,t2</sub>로 확정된 상황에서 t1 처리가 진행되어야 한다.
 
 <br />
-
+$$
+\begin{array}{c}
+T_A = \{t_{a1}, t_{a2},\space...\}, \space\space T_B = \{t_{b1}, t_{b2},\space...\}, \\\\ T_A \cap T_B = \emptyset , \\\\\\
+A's \space blockchain : S_{A,t_{a0}} \xrightarrow{t_{a1}} S_{A,t_{a1}} \xrightarrow{t_{a2}} S_{A,t_{a2}}  \cdots\\\\
+B's \space blockchain : S_{A,t_{b0}} \xrightarrow{t_{b1}} S_{A,t_{b1}} \xrightarrow{t_{b2}} S_{A,t_{b2}} \cdots
+\end{array}
+$$
+lllll
 $$
 \begin{array}{c}
 T_A = \{ t1, t2, \space ... \} , \\\\\\
@@ -147,7 +154,7 @@ $$
 <br />
 $$
 \begin{array}{c}
-T_A = \{t_{a1}, t_{a2},\space...\}, \space\space T_B = \{t_{b1}, t_{b2},\space...\},  \\\\ T_A \cap T_B = \emptyset , \\\\\\
+T_A = \{t_{a1}, t_{a2},\space...\}, \space\space T_B = \{t_{b1}, t_{b2},\space...\}, \\\\ T_A \cap T_B = \emptyset , \\\\\\
 A's \space blockchain : S_{A,t_{a0}} \xrightarrow{t_{a1}} S_{A,t_{a1}} \xrightarrow{t_{a2}} S_{A,t_{a2}}  \cdots\\\\
 B's \space blockchain : S_{A,t_{b0}} \xrightarrow{t_{b1}} S_{A,t_{b1}} \xrightarrow{t_{b2}} S_{A,t_{b2}} \cdots
 \end{array}

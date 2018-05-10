@@ -235,24 +235,31 @@ X.Transaction 은 보통의 Transaction 보다 높은 비용을 소비한다. �
 
 ## Consensus Algorithm
 
-#### PBFT + dPoS
-X.Blockchain 은 기본적으로 PBFT + dPoS 메커니즘을 이용하여 합의에 도달한다. 이는 Tendermint 에서 제안한 합의 메커니즘으로 전통적인 BFT 알고리즘을 개선한 PBFT 알고리즘과, EOS 에서 제안한 dPoS 알고리즘을 조합한 것이다. 이 합의 메커니즘은 빠른 트랜잭션 처리를 보장하면서도 동시에 분기가 발생하지 않으며, 전통적인 PoS 알고리즘에 내포된 Nothing at Stake 문제를 해결하였다. BFT 알고리즘에 기반을 두는 합의 메커니즘의 경우, 합의 과정에 참여하는 노드의 수가 커질 수록 발생되는 네트워크 비용이 높아지게 되는 문제가 있다. 그러나 Tendermint 에서 제안하는 PBFT + dPoS 는 100 여개의 노드로 구성된 상황에서도 높은 트랜잭션 처리 성능을 보장한다.
+X.Blockchain 은 기본적으로 PBFT + dPoS 메커니즘을 이용하여 합의에 도달한다. 이는 Tendermint 에서 제안한 합의 메커니즘으로 전통적인 BFT 알고리즘을 개선한 PBFT 알고리즘과, EOS 에서 제안한 dPoS 알고리즘을 결합한 것이다. 이 합의 메커니즘은 빠른 트랜잭션 처리를 보장하면서도 동시에 분기 발생을 허용하지 않는다. 또한 예치금을 통한 검증 노드 선정과 오동작을 유발하는 행위에 대한 일종의 처벌 개념을 도입함으로서 전통적인 PoS 알고리즘의 주요 문제점으로 지적되고 있는 Nothing at Stake 문제를 해결하였다.
+
+
+
+BFT 알고리즘에 기반을 두는 합의 메커니즘의 경우, 합의 과정에 참여하는 노드의 수가 커질 수록 발생되는 네트워크 비용이 높아지게 되는 문제가 있다. 그러나 Tendermint 에서 제안하는 PBFT + dPoS 는 100 여개의 노드로 구성된 상황에서도 높은 트랜잭션 처리 성능을 보장한다.
 
 *<Tendermint 합의 알고리즘 개념 설명>*
 
 그 외 validator set 구성, 잘못된 블록을 제안 또는 커밋 한 경우 해당 계정에 대한 penalty 기능 등, PBFT + dPoS 에서 제안된 특징적인 기능은 모두 X.Blockchain 구현에 그대로 적용될 것이다. PBFT + dPoS 메커니즘에 대한 보다 자세한 사항은 <a href="tenderming.com">Tendermint의 기술 문서</a>를 참조하기 바란다.
 
 #### Proof of Fork
-
 X.Blockchain 의 특수한 블록 연결 구조로 인하여, 이미 알려진 합의 메커니즘을 그대로 적용하는 것은 불가능하다. 어떠한 합의 메커니즘도 X.Blockchain 이 제안하는 '분기허용' 에 대한 고려가 없기 때문이다. 즉 X.Blockchain 에서는 분기 허용을 고려한 추가적인 합의 과정이 필요하다. 바로 'X.Block 생성'과 '신규 블록이 특정 SubChain 으로 연결'이 적법한지에 대한 것이 그것이다. '분기 허용'을 고려한 증명 방식을 Proof of Fork (PoF) 라 하고 이는 PBFT + dPoS 와 함께 X.Blockchain 에서 사용되는 합의 메커니즘의 주요 구성 요소이다.
 
 ##### X.Tx confirmation
-X.Tx 이 네트워크에 제출 되면, validator 는 트랜잭션을 구성하는 각 필드 값의 유효성을 확인한다. 현재 X.Tx 를 제출한 제출자의 전자서명을 확인하고, 해당 계정에 X.Block 생성에 필요한 비용을 질불할 충분한 자산이 있는지 확인한다.
+X.Tx 이 네트워크에 제출 되면, 트랜잭션을 구성하는 각 필드 값의 유효성과 현재 X.Tx 를 제출한 제출자의 전자서명을 확인하고, 해당 계정에 X.Block 생성에 필요한 비용을 지불할 충분한 자산이 있는지 확인한다.
 X.Tx 에 대한 유효성 검사가 확인되면 X.Block 이 생성되어 validators 에게 제출된다. 이 때 X.Block 은 고유의 블록번호를 부여 받게 되는데 이 블록 번호는 현재 X.Block 을 시작으로 하는 SubChain 의 ChainID 값이 된다.
 
 ##### X.Block confirmation
 X.Block 이 제출되면 포함된 X.Tx 에 대한 confirmation 작업을 각각의 validator 가 다시 진행 한다. 다음으로 X.Block 에 할당된 블록번호와 이전 블록들과의 해쉬 연결을 확인한다. 앞서 언급한 바와 같이 X.Block 은 Double Hash Link 구조를 가지므로 두가지 해쉬 연결 모두가 확인되어야 한다.
 이 과정이 완료되면 현재 X.Block 에 대하여 validator 각자의 서명이 이루어지고 서명된 X.Block 은 다시 다른 validators 에게 제출되어 PBFT 합의 알고리즘의 절차가 진행된다.
+
+##### Forking on X.Block
+X.Block 에는 최대 2개의 블록이 연결될 수 있다. 첫번째가 MainChain 상에서 X.Block 다음을 차지하는 블록이다. 이 블록은 블록번호가 X.Block의 블록번호 +1 이 된다. 두번째는, X.Block 을 시작으로 생성되는 SubChain 으로 연결되어질 블록이다. 이 블록의 블록번호는 ```{ChainID}.{N}``` 의 형식을 갖는다. 여기서 ```{ChainID}```는 MainChain 에서 X.Block 이 갖는 블록번호이고, ```{N}```은 Subchain 내에서의 블록 연결 순서를 의미한다. 만일 블록번호가 100 인 X.Block 의 Subchain 에 10번째 블록의 블록 번호는 ```100.10```가 된다. 마찬가지로 이 SubChain의 200번째에 존재하는 X.Block(블록번호:```100.200```) 에서 시작되는 또 다른 SubChain 에 20번째 블록의 블록 번호는 ```100.200.20``` 이 된다.
+
+
 
 <br /><br />
 

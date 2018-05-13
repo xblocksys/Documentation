@@ -176,7 +176,7 @@ SubChain 상에서의 모든 기능과 합의에 도달하는 메커니즘은 Ma
 <br />
 
 
-- Ex.Block(common) 과 차이 -> double hash link 필요한 이유 설명
+*Note: <Ex.Block(common) 과 차이 -> double hash link 필요한 이유 설명>*
 
 앞서 설명한 바와 같이, 암호 화폐 거래는 분기가 허용되는 블록체인 구조에서는 처리가 불가능하다. 다시 설명하면,
 
@@ -198,20 +198,22 @@ SubChain 상에서의 모든 기능과 합의에 도달하는 메커니즘은 Ma
 X.Block 을 생성하기 위한 특별한 트랜잭션을 X.Transactioin 이라 한다. X.Transaction 의 발행을 시작으로 X.Block 이 생성되고, 이 X.Block 으로 부터 SubChain 이 생성된다.
 
 - X.Transaction 에는 이로 인하여 생성될 SubChain 의 기본적인 특성을 기술하는 내용으로 구성된다.
-
 - Transaction 이 포함되어 기록되어야 할 Target ChainID를 갖는다.
-- 각각의 SubChain 은 그 상위의 MainChain 과는 독립적인 자산을 갖는데, 이 자산의 기본적인 특성은 해당 X.Block 을 생성하는 X.Transaction 에 기술 된다.
+- X.Tx 는 생성 되어질 SubChain 의 초기 상태를 기술한다.
 - X.Transaction 생성자(계정)
 - SubChain 이름
 - SubChain 자산 이름
 - Tx. fee
-
+- 각각의 SubChain 은 그 상위의 MainChain 과는 독립적인 자산을 갖는데, 이 자산의 기본적인 특성은 해당 X.Block 을 생성하는 X.Transaction 에 기술 된다.
 
 X.Transaction 은 보통의 Transaction 보다 높은 비용을 소비한다. 이는 불필요한 X.Transaction 의 생성을 방지하여 X.Block 및 SubChain 의 과다한 발생으로 인한 전체 블록체인의 효율성을 높이기 위함이다.
 
 - X.Transaction 은 생성되는 SubChain 의 특성을 기술한다.
 - X.Tx confirmation ????
 - X.Tx 비용
+
+
+#### Multiple Hash Link
 
 #### Common Block Header
 
@@ -228,8 +230,9 @@ X.Transaction 은 보통의 Transaction 보다 높은 비용을 소비한다. �
   transactions:[]
 }
 ```
-
 - State Hash (Petricia Merkle Tree's Root Hash)
+
+
 
 <br /><br />
 
@@ -241,7 +244,7 @@ X.Blockchain 은 기본적으로 PBFT + dPoS 메커니즘을 이용하여 합의
 
 BFT 알고리즘에 기반을 두는 합의 메커니즘의 경우, 합의 과정에 참여하는 노드의 수가 커질 수록 발생되는 네트워크 비용이 높아지게 되는 문제가 있다. 그러나 Tendermint 에서 제안하는 PBFT + dPoS 는 100 여개의 노드로 구성된 상황에서도 높은 트랜잭션 처리 성능을 보장한다.
 
-*<Tendermint 합의 알고리즘 개념 설명>*
+*Note: <Tendermint 합의 알고리즘 개념 설명>*
 
 그 외 validator set 구성, 잘못된 블록을 제안 또는 커밋 한 경우 해당 계정에 대한 penalty 기능 등, PBFT + dPoS 에서 제안된 특징적인 기능은 모두 X.Blockchain 구현에 그대로 적용될 것이다. PBFT + dPoS 메커니즘에 대한 보다 자세한 사항은 <a href="tenderming.com">Tendermint의 기술 문서</a>를 참조하기 바란다.
 
@@ -259,14 +262,14 @@ X.Block 이 제출되면 포함된 X.Tx 에 대한 confirmation 작업을 각각
 ##### Forking on X.Block
 X.Block 에는 최대 2개의 블록이 연결될 수 있다. 첫번째가 MainChain 상에서 X.Block 다음을 차지하는 블록이다. 이 블록은 블록번호가 X.Block의 블록번호 +1 이 된다. 두번째는, X.Block 을 시작으로 생성되는 SubChain 으로 연결되어질 블록이다. 이 블록의 블록번호는 ```{ChainID}.{N}``` 의 형식을 갖는다. 여기서 ```{ChainID}```는 MainChain 에서 X.Block 이 갖는 블록번호이고, ```{N}```은 Subchain 내에서의 블록 연결 순서를 의미한다. 만일 블록번호가 100 인 X.Block 의 Subchain 에 10번째 블록의 블록 번호는 ```100.10```가 된다. 마찬가지로 이 SubChain의 200번째에 존재하는 X.Block(블록번호:```100.200```) 에서 시작되는 또 다른 SubChain 에 20번째 블록의 블록 번호는 ```100.200.20``` 이 된다.
 
-
-
 <br /><br />
 
-## Coins Model
+## Coins Model & Accounts
+X.Blockchain 은 분기가 허용되는 특수한 블록, X.Block 을 통하여 수많은 SubChain 이 생성되고 연결이 이어질 수 있다. 그러나 X.Block 에서 발생되는 이러한 분기는 암호 화폐 거래에 있어서 '이중 지불 문제' 를 발생시킨다. 때문에 MainChain 상에서 관리되는 거래원장과 SubChain 상에서 관리되는 거래 원장 사이에는 어떠한 상관 관계가 존재 해서는 안되며, 이를 구현하기 위한 방법은 각 거래 원장을 통해 관리하는 계정을 철저히 분리하거나 아니면 자산 그 자체를 분리하여야 한다.
 
-*SubChain 별 coin 가짐*
-*double hash link 설명*
+X.Blockchain 은 자산을 분리한다. X.Blockchain 에서 MainChain 상의 자산과 SubChain 상의 자산, 그리고 또 다른 SubChain 상의 자산은 모두 완전히 다른 자산이며, 일반적인 거래 메커니즘으로는 서로 거래 될 수 없다. 즉 MainChain을 포함하여 모든 SubChain 은 각자 자신만의 자산(코인)을 갖는다.
+
+SubChain 자산의 특성과 초기 상태는, 시작 블록에 해당되는 X.Block 에 기술되며 이는 해당 X.Block
 
 #### Accounts
 X.Blockchain 상에서 각 계정별 상태를 기록 관리는 이더리움에서 채택하고 있는 Merkle Patricia Trie 구조를 사용한다. 각 계정에 대한 복수의 상태값은 Key-Value 형식으로 저장되고, 이는 하나의 해시 값으로 표현된다. 각 계정을 표현하는 해시 값들로 전체 계정 상태를 반영하는 Patricia Trie 의 최상위 해시 값인 월드 스테이트 해시 값이 구성된다. 즉 특정 계정의 상태 변경은 월드 스테이트 해시 값의 변경으로 이어지고, 이 월드 스테이트 해시값이 블록에 포함됨으로서 전체 계정의 상태가 각 블록에 반영되게 된다.  

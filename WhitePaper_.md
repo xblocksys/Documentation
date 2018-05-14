@@ -1,7 +1,7 @@
 # X.Blockchain Technical White Paper
   
-Yongseok Kwon  
-April 24, 2018
+****Yongseok Kwon****  
+****April 24, 2018****
   
 *Copyright © 2018 XBLOCK SYSTEMS CO., LTD.*  
 *Without permission, anyone may use, reproduce or distribute any material in this white paper for non-commercial and educational use (i.e., other than for a fee or for commercial purposes) provided that the original source and the applicable copyright notice are cited.*  
@@ -149,7 +149,7 @@ X.Blockchain은 분기(fork)를 허용한다. 이로서 개별적인 사건 집�
   
 #### SubChain
   
-SubChain 은 MainChain 상에 존재하는, 분기가 가능한 특수한 블록으로 부터 시작되는 또 다른 블록 연결 및 확장이다. MainChain 의 특수한 블록으로 부터 시작된 복수의 블록체인은 이후 독립적인 사건집합에 속하는 트랜잭션들로 구성된 각각의 블록을 생성하게 되고, 생성된 블록은 각 블록체인의 마지막 블록에 연결되므로서 동기화 되지 않는 독립적인 블록체인을 구성하게 된다. 이 때 독자적인 블록 연결 및 확장이 가능한 복수의 블록체인중 기존의 사건집합과 서로소 집합 관계에 있는 새로운 사건 집합에 대한 블록체인을 SubChain 이라 한다. SubChain 은 그 자체로 하나의 완전하고 독립적인 블록체인이다.
+SubChain 은 MainChain 상에 존재하는, 분기가 가능한 특수한 블록으로 부터 시작되는 또 다른 블록 연결 및 확장이다. MainChain 의 특수한 블록으로 부터 시작된 복수의 블록체인은 이후 독립적인 사건집합에 속하는 트랜잭션들로 구성된 각각의 블록을 생성하게 되고, 생성된 블록은 각 블록체인의 마지막 블록에 연결되므로서 동기화 되지 않는 독립적인 블록체인을 구성하게 된다. 이 때 독자적인 블록 연결 및 확장이 가능한 복수의 블록체인중 기존의 사건집합과 서로소 집합 관계에 있는 새로운 사건 집합에 대한 블록체인을 SubChain 이라 한다. SubChain 은 그 자체로 하나의 완전하고 독립적인 블록체인이다.  
 SubChain 상에서의 모든 기능과 합의에 도달하는 메커니즘은 MainChain의 그것과 완벽하게 동일하다. MainChain 과 마찬가지로 SubChain 상에서도 X.Block 생성이 가능하기 때문에 SubChain 은 또 다른 SubChain 의 MainChain 될 수도 있다. 이로서 X.Blockchain 은 다차원적인 블록체인 구조로 발전 할 수 있다.
   
 #### X.Block
@@ -163,7 +163,7 @@ SubChain 상에서의 모든 기능과 합의에 도달하는 메커니즘은 Ma
 <br />
   
 동일한 사건 집합에 속하는 사건들 사이에는 순차성이 보장되어야 하므로 단일한 선형적 구조로 표현되어야 한다. 때문에 분기가 허용되는 X.Block 으로는 자산 전송과 같은 거래 처리가 불가능 하다. 따라서 자산 이동과 같은 거래를 포함 할 수 없으면서 분기를 허용하는 X.Block과, 자산 이동과 같은 거래를 포함하면서 분기가 허용되지 않는 일반 블록을 구분지어야 할 필요가 있다.  
-X.Blockchain 상의 모든 블록체인 (MainChain & SubChain) 은 X.Block 과 일반 블록이라는 두가지 형태 블록의 연결로 구성된다. 또한 X.Block 은 일반 블록과 달리 복수의 해쉬 연결 구조를 갖는다. X.Block 은 바로 이전 블록(일반블록) 과의 해쉬 연결과 동시에 이전 X.Block 과의 연결이 그것이다.
+X.Blockchain 상의 모든 블록체인 (MainChain & SubChain) 은 X.Block 과 일반 블록이라는 두가지 형태 블록의 연결로 구성된다. 또한 X.Block 은 일반 블록과 달리 복수의 해쉬 연결 구조를 갖는다. X.Block 은 바로 이전 블록(일반블록) 과의 해쉬 연결과 동시에 이전 X.Block 과의 연결이 그것이다.  
 이러한 다중의 연결 구조를 갖는 이유는, X.Blockchain 이 전자문서를 포함한 모든 '전자적 데이터'의 무결성을 보다 효율적으로 보장하기 위함에서 출발한 것과 관련이 있다. '데이터'의 무결성만을 검증 처리하고자 하는 경우, 해당 데이터가 포함된 SubChain 과 이 SubChain 의 상위 MainChain 만을 유지함으로서 데이터 검증이 충분히 가능하고 이것이 X.Blockchain 제안의 중요한 모티브가 되었다. 그러나 MainChain 상에서 빈번한 자산 거래가 발생할 경우, 이를 기록하는 수많은 일반 블록들이 유지 대상에 포함되어야 함으로서 X.Blockchain 이 가졌던 애초의 효율성은 심각하게 훼손될 수 밖에 없다.
   
 <br />

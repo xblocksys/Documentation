@@ -1,7 +1,7 @@
 # X.Blockchain Technical White Paper
   
-****Yongseok Kwon****  
-****April 24, 2018****
+Yongseok Kwon  
+April 24, 2018
   
 *Copyright © 2018 XBLOCK SYSTEMS CO., LTD.*  
 *Without permission, anyone may use, reproduce or distribute any material in this white paper for non-commercial and educational use (i.e., other than for a fee or for commercial purposes) provided that the original source and the applicable copyright notice are cited.*  
@@ -32,26 +32,22 @@
 - [Currency & Issurance](#currency-issurance )
 - [Development Roadmap](#development-roadmap )
   
-<br />
-<br />
+<br /><br />
   
 ## Problems
   
   
 블록체인의 크기는 시간이 지날수록 거래의 누적 건수에 비례하여 지속적으로 증가할 수 밖에 없다. 블록체인 네트워크에 참여하는 모든 노드에 원장이 분산 저장 관리 되고, 이를 통해 제3의 신뢰기관 없이 거래에 대한 신뢰 확보가 가능하다는 블록체인 근본 개념에 충실하고자 할 때, 계속 증가되는 블록체인의 크기 문제는 거래 검증을 위한 노드의 참여에 있어서 한계 상황을 발생 시키게 된다. 즉 거대해진 블록체인을 저장 관리하는 완전노드<sup id="a1">[1](#f1 )</sup>  로서 참여하기 위해서는 저장공간 확보와 같은 일정한 수준 이상의 성능이 요구된다. 이 성능 수준은 블록체인의 크기에 비례하여 지속적으로 상향 조정될 것이므로 참여 노드의 수적 감소는 불가피하게 되고 결, 또 다른 ‘중앙 집중화’ 형태로 귀결 될 수 밖에 없게 된다<sup id="a2">[2](#f2 )</sup>. 2017년 5월 현재 Bitcoin의 거래를 포함한 전체 블록체인 크기<sup id="a3">[3](#f3 )</sup> 는 이미 150G를 넘어섰고, Ethereum 의 블록체인 데이터는 최근 600G를 넘어섰다.
-<br />
   
-<img src="images/blockchain_sz.png" width="480px" />
+<p align="center">
+<img src="images/blockchain_sz.png" width="480px" /><br />
+Bitcoin & Ethtereum blockchain size (출처:http://bc.daniel.net.nz/)
+</p>
   
-*<Bitcoin & Ethtereum blockchain size (출처:http://bc.daniel.net.nz/)>*
-  
-<br /><br />
-  
-<img src="images/cpu_pw.png" width="480px" />
-  
-*<Bitcoin & Ethtereum CPU usage (출처:http://bc.daniel.net.nz/)>*
-  
-<br /><br />
+<p align="center">
+<img src="images/cpu_pw.png" width="480px" /><br />
+Bitcoin & Ethtereum CPU usage (출처:http://bc.daniel.net.nz/)
+</p>
   
 이러한 일정 수준의 '자격조건'은, 절대 다수의 사용자 클라이언트 (모바일 디바이스 포함)로 하여금 블록체인 네트워크에 완전 노드로서 참여 하는 것을 사실상 불가능하게 만든다. 결과적으로 사용자 클라이언트는 거래에 대한 신뢰 여부를 스스로 (제3의 신뢰기관 없이) 판단하지 못하고, 상대적으로 소수인 완전 노드 집단에 ‘의뢰’ 해야 만 하며, 그 결과를 일방적으로 ‘수용’ 해야 한다. 여기서 소수의 완전 노드 집단은 ‘제3의 신뢰기관’ 처럼 작동한다.
 이런 ‘완전 노드의 집중화’ 문제의 배경에는 앞서 언급한 바와 같이 거대해진 전체 블록체인의 저장과 블록 생성(채굴) 시 요구되는 높은 computing power가 원인으로 자리 잡고 있다. 여기서 다시 전체 블록체인의 저장이 요구되는 이유는, 블록체인의 구조가 선형적인 연결 구조로 이루어져 있기 때문에 정작 필요한 블록들만 따로 떼어내는 것이 불가능 하기 때문이다. 중간 연결 관계가 끊긴 블록의 집합은 어떤 신뢰도 확인해 줄 수 없기에 아무런 가치를 갖지 못한다.
@@ -80,13 +76,11 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
   
 이것을 블록 구조로 표현하면 다음과 같다.
   
-<br />
-<center>
+<p align="center">
 <img src="images/bc1.png" width="320px"/>
 <br /> or <br /><br />
 <img src="images/bc1-2.png" width="320px" />
-</center>
-<br />
+</p>
   
 그러나 S<sub>A</sub> 에 대하여 t1 의 처리가 완료되기 이전에 t2 에 대한 처리가 동시에 이루어진다면, 사건 t1 이 처리되는 시점의 A의 이전 상태를 S<sub>A,t0</sub> 라 할 때, 사건 t2 가 처리되는 시점의 A의 이전 상태 역시 S<sub>A,t0</sub> 가 되므로, S<sub>A,t0</sub>는 S<sub>A,t1</sub> 와 S<sub>A,t2</sub> 두가지 상태로 분기된다. 이는 전형적인 이중 지불 문제가 발생한 경우에 해당된다. 이 문제를 해결하기 위해서는 특정 시점(block height = #n-1) 에서 S<sub>A</sub>는 오직 하나로 강제 되어야 한다.
   

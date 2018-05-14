@@ -25,14 +25,11 @@ April 24, 2018
 - [Problems](#problems )
 - [Background](#background )
 - [X.Blockchain Overview](#xblockchain-overview )
-  * [Block Header](#common-block )
-  * [X.Block](#xblock )
-  * [X.Transaction](#xtransaction )
 - [Consensus Algorithm](#consensus-algorithm )
 - [Coin Model](#coin-model )
 - [Inter SubChain Communication](#inter-subchain-communication )
-- [Accounts](#accounts )
-- [Reward Policy](#mining )
+- [Accounts & States](#accounts-states )
+- [Currency & Issurance](#currency-issurance )
 - [Development Roadmap](#development-roadmap )
   
 <br />
@@ -46,13 +43,13 @@ April 24, 2018
   
 <img src="images/blockchain_sz.png" width="480px" />
   
-Figure 1. Bitcoin & Ethtereum blockchain size (출처:http://bc.daniel.net.nz/)
+*<Bitcoin & Ethtereum blockchain size (출처:http://bc.daniel.net.nz/)>*
   
 <br /><br />
   
 <img src="images/cpu_pw.png" width="480px" />
   
-Figure 1. Bitcoin & Ethtereum blockchain size (출처:http://bc.daniel.net.nz/)
+*<Bitcoin & Ethtereum CPU usage (출처:http://bc.daniel.net.nz/)>*
   
 <br /><br />
   
@@ -256,13 +253,6 @@ X.Blockchain 은 분기가 허용되는 X.Block 을 통하여 다수의 SubChain
   
 X.Blockchain 은 자산을 분리한다. X.Blockchain 에서 MainChain 상의 자산과 SubChain 상의 자산, 그리고 또 다른 SubChain 상의 자산은 모두 완전히 다른 자산이다. 즉 MainChain을 포함하여 모든 SubChain 은 각자 자신만의 자산(코인)을 가지며 이 자산의 상태가 기록되는 독립적인 거래원장을 가지며 일반적인 거래 메커니즘으로는 자산간 상호 이동은 불가능하다. X.Blockchain 에서는 [Inter SubChain Communication](#intersubchaincommunication ) 을 통하여 SubChain 상의 서로 다른 자산의 이동이 가능하다.
   
-  
-#### Accounts & States
-  
-X.Blockchain 상에서 각 계정별 상태를 기록 관리는 이더리움에서 채택하고 있는 Merkle Patricia Trie 구조를 사용한다. 각 계정에 대한 복수의 상태값은 Key-Value 형식으로 저장되고, 이는 하나의 해시 값으로 표현된다. 각 계정을 표현하는 해시 값들로 전체 계정 상태를 반영하는 Patricia Trie 의 최상위 해시 값인 월드 스테이트 해시 값이 구성된다. 즉 특정 계정의 상태 변경은 월드 스테이트 해시 값의 변경으로 이어지고, 이 월드 스테이트 해시값이 블록에 포함됨으로서 전체 계정의 상태가 각 블록에 반영되게 된다.
-  
-각 SubChain은 독립적인 자산을 가지므로 각 계정의 자산의 상태를 나타내는 거래 원장 역시 SubChain 별로 독립적이어야 한다. 때문에 각 SubChain 은 계정의 독립적인 상태 관리를 위하여 독자적인 Merkle Patricia Trie 를 갖는다.
-  
 <br /><br />
   
 ## Inter SubChain Communication
@@ -272,11 +262,19 @@ X.Blockchain 상에서 각 계정별 상태를 기록 관리는 이더리움에�
   
 <br /><br />
   
+## Accounts & States
+  
+X.Blockchain 상에서 각 계정별 상태를 기록 관리는 이더리움에서 채택하고 있는 Merkle Patricia Trie 구조를 사용한다. 각 계정에 대한 복수의 상태값은 Key-Value 형식으로 저장되고, 이는 하나의 해시 값으로 표현된다. 각 계정을 표현하는 해시 값들로 전체 계정 상태를 반영하는 Patricia Trie 의 최상위 해시 값인 월드 스테이트 해시 값이 구성된다. 즉 특정 계정의 상태 변경은 월드 스테이트 해시 값의 변경으로 이어지고, 이 월드 스테이트 해시값이 블록에 포함됨으로서 전체 계정의 상태가 각 블록에 반영되게 된다.
+  
+각 SubChain은 독립적인 자산을 가지므로 각 계정의 자산의 상태를 나타내는 거래 원장 역시 SubChain 별로 독립적이어야 한다. 때문에 각 SubChain 은 계정의 독립적인 상태 관리를 위하여 독자적인 Merkle Patricia Trie 를 갖는다.
+  
+<br /><br />
+  
+  
 ## Currency & Issurance
   
 현재 X.Blockchain 의 자산 ATX 는 ICO 를 통해 공급된 량과 보유금 등을 합쳐 총 1,000,000,000 ATX 가 발행된 상태이다. 현재의 총 발행량은 X.Blockchain의 메인넷 오픈 이전 까지만 유지 될 것이며, 그 후에는 추가 발행이 이루어짐에 따라 총 발행량이 점차 증가하게 될 것이다.
-ATX 의 추가 발행은, 시간이 지남에 따라 발생 가능한 ATX 집중화 현상을 막기 위함이다. 만일 적절한 추가 발행 방법이 제공되지 않는다면, 시간이 지남에 따라 트랜잭션 수수료 명목으로 일부 블록 생산자들에게 ATX 가 집중 되는 현상이 발생할 수 있고, 시장에 유통되는 실질 통화량은 감소하게 된다.
-또한 추가 발행 및 공급이 없다면 블록체인 네트워크 유지를 위해 필요한 강력한 인센티브 수단이 사라지거나 적어도 심각한 수준으로 줄어들게 될 것이다. 블록 생산자들의 참여로 보다 높은 수준의 신뢰 확보가 가능한 X.Blockchain 과 같이 공개된 블록체인 네트워크에서 이는 치명적인 문제를 야기 할 수 있다.
+ATX 의 추가 발행은, 시간이 지남에 따라 발생 가능한 ATX 집중화 현상을 막기 위함이다. 만일 적절한 추가 발행 방법이 제공되지 않는다면, 시간이 지남에 따라 트랜잭션 수수료 명목으로 일부 블록 생산자들에게 ATX 가 집중 되는 현상이 발생할 수 있고, 시장에 유통되는 실질 통화량은 감소하게 된다. 또한 추가 발행 및 공급이 없다면 블록체인 네트워크 유지를 위해 필요한 강력한 인센티브 수단이 사라지거나 적어도 심각한 수준으로 줄어들게 될 것이다. 블록 생산자들의 참여로 보다 높은 수준의 신뢰 확보가 가능한 X.Blockchain 과 같이 공개된 블록체인 네트워크에서 이는 치명적인 문제를 야기 할 수 있다.
 반면 무제한 추가 발행은 인플레이션을 유발하여 화폐의 실질 가치를 떨어뜨리고 이는 결과적으로 앞서 언급한 블록체인 네트워크 참여자의 동기를 약화 시킬 수 있다는 문제점이 있다.
   
 대표적인 공개형 블록체인 이더리움의 통화 관련 정책을 살펴보면, 이더리움은 매년 정해진 양의 이더가 추가 발행 및 공급되도록 함으로서 '부의 집중 현상'을 완화 시킬 수 있다고 설명한다. 추가 발행량을 고정하여 공급함으로서 공급 성장률(Supply growth rate)은 계속해서 줄어들어 0 으로 수렴되도록 하였고, 현재 또는 미래의 참여자들이 계속해서 이더를 시장이 아닌 채굴을 통해 얻을 수 있는 기회를 제공한다. 동시에 추가 발행되는 이더의 양이, 시간이 지남에 따라 사용자들의 부주의 등으로 인해 현실적으로 사라지게 되는 일부 통화량과 균형을 이룰 것이라 말하고 있다. 아래는 이더리움 백서 내용의 일부이다.

@@ -1,14 +1,14 @@
 # X.Blockchain Technical White Paper
   
 Yongseok Kwon  
-April 24, 2018  
+April 24, 2018
   
 *Copyright © 2018 XBLOCK SYSTEMS CO., LTD.*  
 *Without permission, anyone may use, reproduce or distribute any material in this white paper for non-commercial and educational use (i.e., other than for a fee or for commercial purposes) provided that the original source and the applicable copyright notice are cited.*  
   
 **DISCLAIMER:** This X.Blockchain Technical White Paper is for information purposes only. XBLOCK SYSTEMS does not guarantee the accuracy of or the conclusions reached in this white paper, and this white paper is provided "as is". XBLOCK SYSTEMS does not make and expressly disclaims all representations and warranties, express, implied, statutory or otherwise, whatsoever, including, but not limited to: (i) warranties of merchantability, fitness for a particular purpose, suitability, usage, title or noninfringement; (ii) that the contents of this white paper are free from error; and (iii) that such contents will not infringe third-party rights. XBLOCK SYSTEMS and its affiliates shall have no liability for damages of any kind arising out of the use, reference to, or reliance on this white paper or any of the content contained herein, even if advised of the possibility of such damages. In no event will XBLOCK SYSTEMS or its affiliates be liable to any person or entity for any damages, losses, liabilities, costs or expenses of any kind, whether direct or indirect, consequential, compensatory, incidental, actual, exemplary, punitive or special for the use of, reference to, or reliance on this white paper or any of the content contained herein, including, without limitation, any loss of business, revenues, profits, data, use, goodwill or other intangible losses.  
   
-<br /><br />
+<br />
   
 **Abstract:** Bitcoin의 등장과 이를 이용한 거래의 급증은, 블록체인 기술이 거래 원장으로서 신뢰 할 수 있을 만큼 충분히 안전하다는 것을 증명하였다. 블록체인 기술이 주목 받게 된 주된 이유는, 기존 방식과 달리 신뢰성 확보 문제에 있어서 제3의 신뢰기관 (Trusted Third Party, TTP) 을 제거 하였다는 것과, 모든 거래 내역이 네트워크에 참여하는 모든 참여자들에게 분산 저장됨으로 거래 내용에 대한 조작이 사실상 불가능 하도록 만들었다는 점이다.  
 블록체인 기술에서 가장 중요한 핵심 개념은 ‘Decentralization (탈 중앙화)’ 과 ‘Distributed Ledger (분산원장)’ 개념이다. 기존 방식은, 모든 거래가 하나의 집중화된 중앙 서버에 기록 되고, 해당 거래의 신뢰는 이 중앙서버 (제3의 신뢰기관) 에 의하여 ‘보증 되는’ 방식 이였다. 그러나 블록체인 상에서 발생한 거래는 네트워크에 참여하는 모든 참여자들에게 전달되어 ‘검증’, ‘합의’되고, ‘블록’ 단위로 묶여 순차적(선형적)으로 연결된다.  
@@ -130,9 +130,7 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
 * **Blockchain Depth**: 노드가 관리하는 최상위 블록체인을 기준으로 관리 하고자 하는 SubChain의 Depth.
   
 앞서 기존의 블록체인이 선형적인 구조에 한정될 수 밖에 없었던 이유를 이중 지불 문제를 중심으로 하여 살펴 보았다. 동일한 대상의 상태 변경을 일으키는 모든 사건은 동시성을 가질 수 없으며 반드시 순차적인 처리가 강제 되어야 한다는 것이 그것이다.
-그러나 서로 다른 대상의 상태를 변경하는 사건들의 경우, '반드시' 순차적으로 처리 되어야 할 필요가 없다. 예를 들어 각각 독립적으로 존재하는 '문서'를 대상으로 할 경우, 특정 문서의 상태 변경이 다른 문서의 상태 변경과 의미있는 관계를 갖지 않는다[^문서변경]. 개별 사건들이 오직 하나의 대상 (여기서는 특정 문서) 에 대해서만 적용되기 때문에, 사건들은 서로에 대하여 동기화 될 필요가 없다. 다시 말해서 다수의 문서들의 각 상태가 동시에 변경되어도 앞서 언급한 이중 지불 문제와 같은 모순은 발생되지 않을 것이다. 사건의 순차적인 처리는 동일한 대상의 상태 변환을 일으키는 사건들 사이에서만 의미를 갖기 때문이다.
-  
-[^문서변경]: 문서간의 상호 참조와 같은 것이 존재하는 경우, 문서 내용의 변경은 그것을 참조하는 다른 문서의 내용 변경을 발생시킨다고 볼 수 있으나, 이 때 문서간의 상호참조 관계는 문제는 각 문서의 개별적 상태일 뿐, 동일한 사건 집합에 포함되어야 할 조건으로서 동일한 상태변환 대상이 아니다.
+그러나 서로 다른 대상의 상태를 변경하는 사건들의 경우, '반드시' 순차적으로 처리 되어야 할 필요가 없다. 예를 들어 각각 독립적으로 존재하는 '문서'를 대상으로 할 경우, 특정 문서의 상태 변경이 다른 문서의 상태 변경과 의미있는 관계를 갖지 않는다<sup id="a4">[4](#f4 ). 개별 사건들이 오직 하나의 대상 (여기서는 특정 문서) 에 대해서만 적용되기 때문에, 사건들은 서로에 대하여 동기화 될 필요가 없다. 다시 말해서 다수의 문서들의 각 상태가 동시에 변경되어도 앞서 언급한 이중 지불 문제와 같은 모순은 발생되지 않을 것이다. 사건의 순차적인 처리는 동일한 대상의 상태 변환을 일으키는 사건들 사이에서만 의미를 갖기 때문이다.
   
 이것은 복수의 서로 다른 대상(문서) A, B, C ... 각각의 사건 집합을 T<sub>A</sub>, T<sub>B</sub>, T<sub>C</sub>, ... 이라 할 때, 각각의 사건 집합은 하나의 독립적인 선형 구조로 구성되는 것이 가능함을 의미한다. 즉, 서로 다른 사건 집합 T<sub>A</sub> 과 T<sub>B</sub> 에 속하는 사건 t<sub>a1</sub> 과 t<sub>b1</sub> 은 서로에 대하여 순차적으로 처리되어야 할 필요도, 동일한 직렬화 구조에 포함될 필요도 없다.
   
@@ -252,17 +250,11 @@ X.Block 에는 최대 2개의 블록이 연결될 수 있다. 첫번째가 MainC
   
 <br /><br />
   
-## Coins Model
+## Coin Model
   
 X.Blockchain 은 분기가 허용되는 X.Block 을 통하여 다수의 SubChain 이 생성되고 연결이 이어질 수 있다. 그러나 X.Block 에서 발생되는 이러한 분기는 암호 화폐 거래에 있어서 '이중 지불 문제' 를 발생시킨다. 때문에 MainChain 상에서 관리되는 거래원장과 SubChain 상에서 관리되는 거래 원장 사이에는 어떠한 상관 관계가 존재 해서는 안되며, 이를 해결하기 위한 방법은 각 블록체인을 통해 관리되는 계정을 철저히 분리하거나 아니면 자산 그 자체(거래원장 그 자체)를 분리하여야 한다.
   
-X.Blockchain 은 자산을 분리한다. X.Blockchain 에서 MainChain 상의 자산과 SubChain 상의 자산, 그리고 또 다른 SubChain 상의 자산은 모두 완전히 다른 자산이며, 일반적인 거래 메커니즘으로는 서로 거래 될 수 없다. 즉 MainChain을 포함하여 모든 SubChain 은 각자 자신만의 자산(코인)을 가지며 이 자산의 상태가 기록되는 독립적인 거래원장을 갖는다.
-  
-SubChain 자산의 특성과 초기 상태는 X.Tx 에 기술되고 이는 다시 X.Block 에 기록된다. 여기서 기술되는 SucChain 자산의 초기 상태는 일반적인 블록체인의 genesis block 의 내용과 이더리움에서 Smart contract 를 통해 토큰을 발행할 때 기술되는 내용을 합친 것과 유사하다.
-  
-- **Asset Name** 자산 이름
-- **Asset Code** 자산 코드
-- **Initial Assets** 초기 자산 분배 상태
+X.Blockchain 은 자산을 분리한다. X.Blockchain 에서 MainChain 상의 자산과 SubChain 상의 자산, 그리고 또 다른 SubChain 상의 자산은 모두 완전히 다른 자산이다. 즉 MainChain을 포함하여 모든 SubChain 은 각자 자신만의 자산(코인)을 가지며 이 자산의 상태가 기록되는 독립적인 거래원장을 가지며 일반적인 거래 메커니즘으로는 자산간 상호 이동은 불가능하다. X.Blockchain 에서는 [Inter SubChain Communication](#intersubchaincommunication ) 을 통하여 SubChain 상의 서로 다른 자산의 이동이 가능하다.
   
   
 #### Accounts & States
@@ -291,7 +283,7 @@ ATX 의 추가 발행은, 시간이 지남에 따라 발생 가능한 ATX 집중
   
 >The permanent linear supply growth model reduces the risk of what some see as excessive wealth concentration in Bitcoin, and gives individuals living in present and future eras a fair chance to acquire currency units, while at the same time retaining a strong incentive to obtain and hold ether because the "supply growth rate" as a percentage still tends to zero over time. We also theorize that because coins are always lost over time due to carelessness, death, etc, and coin loss can be modeled as a percentage of the total supply per year, that the total currency supply in circulation will in fact eventually stabilize at a value equal to the annual issuance divided by the loss rate (eg. at a loss rate of 1%, once the supply reaches 26X then 0.26X will be mined and 0.26X lost every year, creating an equilibrium).
   
-X.Blockchain 은 이더리움의 모델을 참고하여 고정적으로 정해진 양의 추가 발행이 이루어지는 모델(permanent liner supply growth model)을 기본으로 한다. ATX 초기 발행량 대비 공급 성장율을 설정하고, 실질적인 통화량 유지와 인플레이션 문제등 충분한 조사와 시험을 통해 이 값을 수정해 나갈 것이며, 메인넷 오픈 시점에서 초기 공급 성장율 수치가 최종 결정될 것이다. 물론 이 값의 변경에 대한 합의는 메인넷 이후에도 충분히 가능할 것이지만, 현재 시점에서 이를 언급하는 것은 불확실성을 포함한 예측에 해당함으로 이에 대한 기술은 생략하도록 한다.
+X.Blockchain 은 이더리움의 모델을 참고하여 고정적으로 정해진 양의 추가 발행이 이루어지는 모델(permanent liner supply growth model)을 기본으로 한다. ATX 초기 발행량 대비 공급 성장율을 설정하고, 실질적인 통화량 유지와 인플레이션 문제등 충분한 조사와 시험을 통해 이 값을 수정해 나갈 것이며, 메인넷 오픈 시점에서 초기 공급 성장율 수치가 최종 결정될 것이다. 물론 이 값의 변경에 대한 합의는 메인넷 이후에도 충분히 가능할 것이지만, 현재 시점에서 이를 언급하는 것은 불확실성을 내포한 예측이 될 것이므로 이에 대한 기술은 생략하도록 한다.
   
 <br />
   
@@ -323,9 +315,7 @@ X.Blockchain 은 이더리움의 모델을 참고하여 고정적으로 정해�
 |    |이동률(%)|14.4%|
 *[단위:천명, %, 천건], 출처:통계청 「국내인구이동통계」*
   
-대한민국의 총인구는 국가통계포털([http://kosis.kr](http://kosis.kr )) 발표에 따르면 2015년말 기준 51,525,338명 이다. 인구 1명당 주민등록초본 1부가 존재하고 거주 지역을 이동 할 때 마다 이 초본은 갱신되어야 하며, 위 표의 데이터에 따르자면 2016년 한 해 동안 총 7,378,000번[^총인구]의 초본 갱신이 발생 되었음을 알 수 있다.
-  
-[^이동인구]: 국가통계포털의 발표 자료에 따르면 2016년 정확한 이동인구의 수는 7,378,383명이다.
+대한민국의 총인구는 국가통계포털([http://kosis.kr](http://kosis.kr )) 발표에 따르면 2015년말 기준 51,525,338명 이다. 인구 1명당 주민등록초본 1부가 존재하고 거주 지역을 이동 할 때 마다 이 초본은 갱신되어야 하며, 위 표의 데이터에 따르자면 2016년 한 해 동안 총 7,378,000번<sup id="a5">[5](#f5 )</sup>의 초본 갱신이 발생 되었음을 알 수 있다.
   
 이를 선형적인 블록체인으로 구성한다면, 최초 블록체인은 전체 인구수 만큼의 블록으로 구성되고, 해마다 인동 인구수 만큼의 블록이 추가되어야 한다. 만약 2016년부터 적용한다면 2016년 말 기준으로 블록체인의 블록 수는 아래와 같다.
   
@@ -334,32 +324,32 @@ X.Blockchain 은 이더리움의 모델을 참고하여 고정적으로 정해�
   
 <br />
   
-그리고 한 해 평균 7,000,000 명이 이동한다 가정 하였을 때, 해마다 7백만개의 블록이 추가된다. 여기에 한 블록당 80byte의 크기<sup id="a7">[7](#f7 )</sup>로 하여 10년 동안의 기록이 누적된 전체 블록체인 크기를 산출하면 아래와 같다.
+그리고 한 해 평균 7,000,000 명이 이동한다 가정 하였을 때, 해마다 7백만개의 블록이 추가된다. 여기에 한 블록당 80byte의 크기<sup id="a6">[6](#f6 )</sup>로 하여 10년 동안의 기록이 누적된 전체 블록체인 크기를 산출하면 아래와 같다.
   
 <br />
-<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;begin%20{align}&#x5C;text{블록체인의%20크기}%20&amp;=%20&#x5C;frac{51,525,338%20+%207,000,000%20&#x5C;times%2010}{1024^3}%20&#x5C;times%2080%20&#x5C;&#x5C;%20&amp;=%209.1%20G&#x5C;end%20{align}"/></p>  
+<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;begin%20{aligned}&#x5C;text{Full%20Blockchain&#x27;s%20Size}%20&amp;=%20&#x5C;frac{51,525,338%20+%207,000,000%20&#x5C;times%2010}{1024^3}%20&#x5C;times%2080%20&#x5C;&#x5C;%20&amp;=%209.1%20G&#x5C;end%20{aligned}"/></p>  
   
 <br />
   
 즉 선형 구조의 블록체인의 경우, 10년동안의 누적 블록체인 크기 9.1G 와 향후 매년 변경 증가분 0.52 G 가 선형적으로 증가한다.
   
-동일한 조건을 X.Blockchain에 적용하면, 전체 블록의 수와 크기는 동일하지만, 해마다 추가되는 변경 블록수가 MainChain에 선형적으로 연결되는 것이 아닌 SubChain으로 구성 될 것이다. 즉 10년 동안의 변경분에 대한 70,000,000개의 블록은 51,525,338 개의 블록으로 구성된 MainChain의 SubChain 으로 분산되어 구성될 것이다. 변경분의 블록이 MainChain의 SubChain에 분산되는 정도를 단순 산술 평균으로 적용하면, MainChain의 블록 1개당 1개의 SubChain을 갖고, SubChain당 1.35개<sup id="a8">[8](#f8 )</sup> 의 블록을 갖게 된다. 이에 근거한 인구 1명당 블록체인의 크기는 아래와 같다.
+동일한 조건을 X.Blockchain에 적용하면, 전체 블록의 수와 크기는 동일하지만, 해마다 추가되는 변경 블록수가 MainChain에 선형적으로 연결되는 것이 아닌 SubChain으로 구성 될 것이다. 즉 10년 동안의 변경분에 대한 70,000,000개의 블록은 51,525,338 개의 블록으로 구성된 MainChain의 SubChain 으로 분산되어 구성될 것이다. 변경분의 블록이 MainChain의 SubChain에 분산되는 정도를 단순 산술 평균으로 적용하면, MainChain의 블록 1개당 1개의 SubChain을 갖고, SubChain당 1.35개<sup id="a7">[7](#f7 )</sup> 의 블록을 갖게 된다. 이에 근거한 인구 1명당 블록체인의 크기는 아래와 같다.
   
 <br />
-<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;begin%20{align}&#x5C;text{SubChain의%20평균크기}%20&amp;=%20&#x5C;frac{7,000,000%20&#x5C;times%2010}{51,525,338}%20&#x5C;times%2080%20&#x5C;&#x5C;%20&amp;=%20108.68%20B%20&#x5C;&#x5C;&#x5C;&#x5C;&#x5C;text{MainChain의%20크기}%20&amp;=%20&#x5C;frac{51,525,338%20*%2080}{1024^3}%20&#x5C;times%2080%20&#x5C;&#x5C;%20&amp;=%203.83%20G&#x5C;end%20{align}"/></p>  
+<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;begin%20{aligned}&#x5C;text{SubChain%20Average%20Size}%20&amp;=%20&#x5C;frac{7,000,000%20&#x5C;times%2010}{51,525,338}%20&#x5C;times%2080%20&#x5C;&#x5C;%20&amp;=%20108.68%20B%20&#x5C;&#x5C;&#x5C;&#x5C;&#x5C;text{MainChain%20Average%20Size}%20&amp;=%20&#x5C;frac{51,525,338%20*%2080}{1024^3}%20&#x5C;times%2080%20&#x5C;&#x5C;%20&amp;=%203.83%20G&#x5C;end%20{aligned}"/></p>  
   
 <br />
   
 선형 구조의 블록체인과는 달리 X.Blockchain 의 경우, 필요한 데이터에 대한 선별적 관리가 가능하다. 만약 어떤 이유에 의하여 특정 인구 1백만명에 대한 주민등록초본관리 등과 같은 서비스가 가능하다는 것이다. 이 경우 인구 1백만명의 10년동안의 주민등록초본 변경 이력에 대한 검증을 위해서 필요한 총 저장 용량은 다음과 같다.
   
 <br />
-<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;begin%20{align}3.83G%20+%20&#x5C;frac{108.68B%20&#x5C;times%201,000,000}{1024^3}%20=%203.93%20G&#x5C;end%20{align}"/></p>  
+<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;begin%20{aligned}3.83%20G%20+%20&#x5C;frac{108.68%20B%20&#x5C;times%201,000,000}{1024^3}%20=%203.93%20G&#x5C;end%20{aligned}"/></p>  
   
 <br />
   
 향후 블록체인의 크기는 해마다 1백만명에 대한, 한해 평균 변경 블록 크기 만큼만 증가하게 된다.
   
-이 장에서 가정한 상황에는 출생에 따른 MainChain의 증가와 사망, 혼인, 이혼및 기타 사유에 따른 SubChain의 변경(증가)<sup id="a9">[9](#f9 )</sup> 에 대해서는 고려하지 않았다. 때문에 실제로는 더 큰 전체 블록체인이 필요할 것이다. 또한 MainChain의 분류 기준이 반드시 인구 1명이 되어야 하는 것도 아니며, 하나의 블록에 반드시 하나의 문서(Transaction)만 포함되어야 하는 것도 아니다. 때문에 위 산출 값은 실재적 의미가 아닌, 선형 구조의 블록체인과 다차원 구조의 X.Blockchain 비교를 위한 상대적인 값으로서의 의미만을 갖는다.
+이 장에서 가정한 상황에는 출생에 따른 MainChain의 증가와 사망, 혼인, 이혼및 기타 사유에 따른 SubChain의 변경(증가)<sup id="a8">[8](#f8 )</sup> 에 대해서는 고려하지 않았다. 때문에 실제로는 더 큰 전체 블록체인이 필요할 것이다. 또한 MainChain의 분류 기준이 반드시 인구 1명이 되어야 하는 것도 아니며, 하나의 블록에 반드시 하나의 문서(Transaction)만 포함되어야 하는 것도 아니다. 때문에 위 산출 값은 실재적 의미가 아닌, 선형 구조의 블록체인과 다차원 구조의 X.Blockchain 비교를 위한 상대적인 값으로서의 의미만을 갖는다.
   
   
   
@@ -377,10 +367,13 @@ X.Blockchain 은 이더리움의 모델을 참고하여 고정적으로 정해�
   
 <b id="f3">3</b>. 거래를 기술하는 모든 Transaction 데이터와 블록 헤더 정보를 포함하는 전체 블록체인 크기. [↩](#a3 )
   
-<b id="f4">4</b>.  [↩](#a4 )
-<b id="f5">5</b>.  [↩](#a5 )
-<b id="f6">6</b>.  [↩](#a6 )
-<b id="f7">7</b>. Bitcoin의 블록헤더 크기는 81 byte 이다. [↩](#a7 )
-<b id="f8">8</b>. 인구 1명당 10년동안 평균 이동 수에 해당한다. [↩](#a8 )
-<b id="f9">9</b>. SubChain의 증가분이 클수록 다차원 구조 X.Blockchain의 효율성은 높아진다. [↩](#a9 )
+<b id="f4">4</b>. 문서간의 상호 참조와 같은 것이 존재하는 경우, 문서 내용의 변경은 그것을 참조하는 다른 문서의 내용 변경을 발생시킨다고 볼 수 있으나, 이 때 문서간의 상호참조 관계는 문제는 각 문서의 개별적 상태일 뿐, 동일한 사건 집합에 포함되어야 할 조건으로서 동일한 상태변환 대상이 아니다. [↩](#a4 )
+  
+<b id="f5">5</b>. 국가통계포털의 발표 자료에 따르면 2016년 정확한 이동인구의 수는 7,378,383명이다. [↩](#a5 )
+  
+<b id="f6">6</b>. Bitcoin의 블록헤더 크기는 81 byte 이다. [↩](#a6 )
+  
+<b id="f7">7</b>. 인구 1명당 10년동안 평균 이동 수에 해당한다. [↩](#a7 )
+  
+<b id="f8">8</b>. SubChain의 증가분이 클수록 다차원 구조 X.Blockchain의 효율성은 높아진다. [↩](#a8 )
   

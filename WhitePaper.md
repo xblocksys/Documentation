@@ -26,8 +26,8 @@ April 24, 2018
   * [X.Block](#xblock)
   * [X.Transaction](#xtransaction)
 - [Consensus Algorithm](#consensus-algorithm)
-- [Inter SubChain Communication](#inter-subchain-communication)
 - [Coin Model](#coin-model)
+- [Inter SubChain Communication](#inter-subchain-communication)
 - [Accounts](#accounts)
 - [Reward Policy](#mining)
 - [Development Roadmap](#development-roadmap)
@@ -239,17 +239,25 @@ X.Transaction 은 보통의 Transaction 보다 높은 비용을 소비한다. �
 ## Consensus Algorithm
 
 X.Blockchain 은 기본적으로 PBFT + dPoS 메커니즘을 이용하여 합의에 도달한다. 이는 Tendermint 에서 제안한 합의 메커니즘으로 전통적인 BFT 알고리즘을 개선한 PBFT 알고리즘과, EOS 에서 제안한 dPoS 알고리즘을 결합한 것이다. 이 합의 메커니즘은 빠른 트랜잭션 처리를 보장하면서도 동시에 분기 발생을 허용하지 않는다. 또한 예치금을 통한 검증 노드 선정과 오동작을 유발하는 행위에 대한 일종의 처벌 개념을 도입함으로서 전통적인 PoS 알고리즘의 주요 문제점으로 지적되고 있는 Nothing at Stake 문제를 해결하였다.
-
-
-
-BFT 알고리즘에 기반을 두는 합의 메커니즘의 경우, 합의 과정에 참여하는 노드의 수가 커질 수록 발생되는 네트워크 비용이 높아지게 되는 문제가 있다. 그러나 Tendermint 에서 제안하는 PBFT + dPoS 는 100 여개의 노드로 구성된 상황에서도 높은 트랜잭션 처리 성능을 보장한다.
+BFT 알고리즘에 기반을 두는 합의 메커니즘의 경우, 합의 과정에 참여하는 노드의 수가 커질 수록 발생되는 네트워크 트래픽 비용 또한 높아지게 되는 문제가 있다. 그러나 Tendermint 에서 제안하는 PBFT + dPoS 는 100 여개의 노드로 구성된 상황에서도 높은 트랜잭션 처리 성능을 보장한다.
 
 *Note: <Tendermint 합의 알고리즘 개념 설명>*
 
-그 외 validator set 구성, 잘못된 블록을 제안 또는 커밋 한 경우 해당 계정에 대한 penalty 기능 등, PBFT + dPoS 에서 제안된 특징적인 기능은 모두 X.Blockchain 구현에 그대로 적용될 것이다. PBFT + dPoS 메커니즘에 대한 보다 자세한 사항은 <a href="tenderming.com">Tendermint의 기술 문서</a>를 참조하기 바란다.
+그 외 validator set 구성, 잘못된 블록을 제안 또는 커밋 한 경우 해당 계정에 대한 penalty 정책 등, PBFT + dPoS 에서 제안된 특징적인 개념들은 모두 구현되는 X.Blockchain 적용될 것이다. PBFT + dPoS 메커니즘에 대한 보다 자세한 사항은 <a href="tenderming.com">Tendermint의 기술 문서</a>를 참조하기 바란다.
 
-#### Proof of Fork
-X.Blockchain 의 특수한 블록 연결 구조로 인하여, 이미 알려진 합의 메커니즘을 그대로 적용하는 것은 불가능하다. 어떠한 합의 메커니즘도 X.Blockchain 이 제안하는 '분기허용' 에 대한 고려가 없기 때문이다. 즉 X.Blockchain 에서는 분기 허용을 고려한 추가적인 합의 과정이 필요하다. 바로 'X.Block 생성'과 '신규 블록이 특정 SubChain 으로 연결'이 적법한지에 대한 것이 그것이다. '분기 허용'을 고려한 증명 방식을 Proof of Fork (PoF) 라 하고 이는 PBFT + dPoS 와 함께 X.Blockchain 에서 사용되는 합의 메커니즘의 주요 구성 요소이다.
+#### Proof of Forkable
+X.Blockchain 의 특수한 블록 연결 구조로 인하여, 이미 알려진 합의 메커니즘을 그대로 적용하는 것은 불가능하다. 어떠한 합의 메커니즘도 X.Blockchain 이 제안하는 '분기허용' 에 대한 고려가 없기 때문이다. 즉 X.Blockchain 에서는 분기 허용을 고려한 추가적인 합의 과정이 필요하다. 바로 'X.Block 생성'과 '신규 블록이 특정 SubChain 으로 연결'이 적법한지에 대한 것이 그것이다. '분기 허용'을 고려한 증명 방식을 Proof of Forkable (PoF) 라 하고, 이는 PBFT + dPoS 와 함께 X.Blockchain 에서 사용되는 합의 메커니즘의 주요 구성 요소이다.
+
+알려진 바와 같이 PBFT 에서는 제안된 블록에 대한 합의를 이루는 과정이 다수의 round 로 이루어지고 각 round 는 복수의 단계(step)으로 이루어진다. 특정 블록에 대한 합의 절차가 완료되어 블록체인에 해당 블록이 연결되기 전까지 다음 블록에 대한 처리는 유예되어야 한다. 그러나 PoF 에서는 복수의 블록에 대한 합의 절차가 병렬적으로 진행되어질 수 있다. 서로 다른 SubChain 에 속하는 블록들은 동시적으로 '제안' 되어질 수 있고 각각의 블록에 대한 합의 절차는 타 블록에 대한 합의 절차 결과와 동기화 되어질 필요가 없기 때문이다.
+
+<br />
+<center>
+<img src="images/block_sync.png" width="480px" />
+<img src="images/block_async.png" width="480px" />
+</center>
+<br />
+
+물론 하나의 SubChain 내에서는 여전히 블록 생성을 위한 합의 절차 사이에 동기화가 이루어져야 하지만, 전체 블록체인의 범주에서 보자면 동일한 시간내에 더 많은 블록이, 보안에 대한 손상 없이 생성될 수 있으며 이는 더 빠르고 효율적인 트랜잭션 처리가 가능함을 의미한다.
 
 ##### X.Tx confirmation
 X.Tx 이 네트워크에 제출 되면, 트랜잭션을 구성하는 각 필드 값의 유효성과 현재 X.Tx 를 제출한 제출자의 전자서명을 확인하고, 해당 계정에 X.Block 생성에 필요한 비용을 지불할 충분한 자산이 있는지 확인한다.
@@ -260,26 +268,31 @@ X.Block 이 제출되면 포함된 X.Tx 에 대한 confirmation 작업을 각각
 이 과정이 완료되면 현재 X.Block 에 대하여 validator 각자의 서명이 이루어지고 서명된 X.Block 은 다시 다른 validators 에게 제출되어 PBFT 합의 알고리즘의 절차가 진행된다.
 
 ##### Forking on X.Block
-X.Block 에는 최대 2개의 블록이 연결될 수 있다. 첫번째가 MainChain 상에서 X.Block 다음을 차지하는 블록이다. 이 블록은 블록번호가 X.Block의 블록번호 +1 이 된다. 두번째는, X.Block 을 시작으로 생성되는 SubChain 으로 연결되어질 블록이다. 이 블록의 블록번호는 ```{ChainID}.{N}``` 의 형식을 갖는다. 여기서 ```{ChainID}```는 MainChain 에서 X.Block 이 갖는 블록번호이고, ```{N}```은 Subchain 내에서의 블록 연결 순서를 의미한다. 만일 블록번호가 100 인 X.Block 의 Subchain 에 10번째 블록의 블록 번호는 ```100.10```가 된다. 마찬가지로 이 SubChain의 200번째에 존재하는 X.Block(블록번호:```100.200```) 에서 시작되는 또 다른 SubChain 에 20번째 블록의 블록 번호는 ```100.200.20``` 이 된다.
+X.Block 에는 최대 2개의 블록이 연결될 수 있다. 첫번째가 MainChain 상에서 X.Block 다음에 연결되는 블록이다. 이 블록은 블록번호가 X.Block의 블록번호 +1 이 된다. 두번째는, X.Block 을 시작으로 생성되는 SubChain 상에서 X.Block 다음에 연결되는 블록이다. 이 블록의 블록번호는 ```{ChainID}.{N}``` 의 형식을 갖는다. 여기서 ```{ChainID}```는 MainChain 에서 X.Block 이 갖는 블록번호이고, ```{N}```은 Subchain 내에서의 블록 연결 순서를 의미한다. 만일 블록번호가 100 인 X.Block 의 Subchain 에 10번째 블록의 블록 번호는 ```100.10```가 된다. 마찬가지로 이 SubChain의 200번째에 존재하는 X.Block(블록번호:```100.200```) 에서 시작되는 또 다른 SubChain 에 20번째 블록의 블록 번호는 ```100.200.20``` 이 된다.
 
 <br /><br />
 
-## Coins Model & Accounts
-X.Blockchain 은 분기가 허용되는 특수한 블록, X.Block 을 통하여 수많은 SubChain 이 생성되고 연결이 이어질 수 있다. 그러나 X.Block 에서 발생되는 이러한 분기는 암호 화폐 거래에 있어서 '이중 지불 문제' 를 발생시킨다. 때문에 MainChain 상에서 관리되는 거래원장과 SubChain 상에서 관리되는 거래 원장 사이에는 어떠한 상관 관계가 존재 해서는 안되며, 이를 구현하기 위한 방법은 각 거래 원장을 통해 관리하는 계정을 철저히 분리하거나 아니면 자산 그 자체를 분리하여야 한다.
+## Coins Model & States
+X.Blockchain 은 분기가 허용되는 X.Block 을 통하여 다수의 SubChain 이 생성되고 연결이 이어질 수 있다. 그러나 X.Block 에서 발생되는 이러한 분기는 암호 화폐 거래에 있어서 '이중 지불 문제' 를 발생시킨다. 때문에 MainChain 상에서 관리되는 거래원장과 SubChain 상에서 관리되는 거래 원장 사이에는 어떠한 상관 관계가 존재 해서는 안되며, 이를 해결하기 위한 방법은 각 블록체인을 통해 관리되는 계정을 철저히 분리하거나 아니면 자산 그 자체(거래원장 그 자체)를 분리하여야 한다.
 
-X.Blockchain 은 자산을 분리한다. X.Blockchain 에서 MainChain 상의 자산과 SubChain 상의 자산, 그리고 또 다른 SubChain 상의 자산은 모두 완전히 다른 자산이며, 일반적인 거래 메커니즘으로는 서로 거래 될 수 없다. 즉 MainChain을 포함하여 모든 SubChain 은 각자 자신만의 자산(코인)을 갖는다.
+X.Blockchain 은 자산을 분리한다. X.Blockchain 에서 MainChain 상의 자산과 SubChain 상의 자산, 그리고 또 다른 SubChain 상의 자산은 모두 완전히 다른 자산이며, 일반적인 거래 메커니즘으로는 서로 거래 될 수 없다. 즉 MainChain을 포함하여 모든 SubChain 은 각자 자신만의 자산(코인)을 가지며 이 자산의 상태가 기록되는 독립적인 거래원장을 갖는다.
 
-SubChain 자산의 특성과 초기 상태는, 시작 블록에 해당되는 X.Block 에 기술되며 이는 해당 X.Block
+SubChain 자산의 특성과 초기 상태는 X.Tx 에 기술되고 이는 다시 X.Block 에 기록된다. 여기서 기술되는 SucChain 자산의 초기 상태는 일반적인 블록체인의 genesis block 의 내용과 이더리움에서 Smart contract 를 통해 토큰을 발행할 때 기술되는 내용을 합친 것과 유사하다.
 
-#### Accounts
+- **Asset Name** 자산 이름
+- **Asset Code** 자산 코드
+- **Initial Assets** 초기 자산 분배 상태
+
+
+#### Accounts & States
 X.Blockchain 상에서 각 계정별 상태를 기록 관리는 이더리움에서 채택하고 있는 Merkle Patricia Trie 구조를 사용한다. 각 계정에 대한 복수의 상태값은 Key-Value 형식으로 저장되고, 이는 하나의 해시 값으로 표현된다. 각 계정을 표현하는 해시 값들로 전체 계정 상태를 반영하는 Patricia Trie 의 최상위 해시 값인 월드 스테이트 해시 값이 구성된다. 즉 특정 계정의 상태 변경은 월드 스테이트 해시 값의 변경으로 이어지고, 이 월드 스테이트 해시값이 블록에 포함됨으로서 전체 계정의 상태가 각 블록에 반영되게 된다.  
-각 SubChain은 독립적인 자산을 가지므로 자산의 상태를 나타내는 계정의 관리 역시 SubChain 별로 독립적이어야 한다. 때문에 각 SubChain 은 계정의 독립적인 상태 관리를 위하여 독자적인 Patricia Trie 를 갖는다.
+각 SubChain은 독립적인 자산을 가지므로 각 계정의 자산의 상태를 나타내는 거래 원장 역시 SubChain 별로 독립적이어야 한다. 때문에 각 SubChain 은 계정의 독립적인 상태 관리를 위하여 독자적인 Merkle Patricia Trie 를 갖는다.
 
 <br /><br />
 
 ## Inter SubChain Communication
 
-*coin 간 환전 (inter SubChain communication)*
+*Note: coin 간 환전 (inter SubChain communication)*
 
 <br /><br />
 

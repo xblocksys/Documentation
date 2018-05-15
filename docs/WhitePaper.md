@@ -153,7 +153,7 @@ $$
 \begin{array}{c}
 T_A = \{t_{a1}, t_{a2},\space...\}, \space\space T_B = \{t_{b1}, t_{b2},\space...\}, \\\\ T_A \cap T_B = \emptyset , \\\\\\
 \text{A's blockchain} : S_{A,t_{a0}} \xrightarrow{t_{a1}} S_{A,t_{a1}} \xrightarrow{t_{a2}} S_{A,t_{a2}}  \cdots\\\\
-\text{B's blockchain} : S_{B,t_{b0}} \xrightarrow{t_{b1}} S_{B,t_{b1}} \xrightarrow{t_{b2}} S_{A,t_{b2}} \cdots
+\text{B's blockchain} : S_{B,t_{b0}} \xrightarrow{t_{b1}} S_{B,t_{b1}} \xrightarrow{t_{b2}} S_{B,t_{b2}} \cdots
 \end{array}
 $$
 <br />

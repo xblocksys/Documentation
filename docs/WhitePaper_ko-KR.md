@@ -1,11 +1,10 @@
 ---
 markdown:
-    image_dir: ./
+    image_dir: /docs/images
     path: WhitePaper_ko-KR.md
     ignore_from_front_matter: false
     absolute_image_path: false
 ---  
-  
   
 # X.Blockchain Technical White Paper
   

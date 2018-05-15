@@ -2,6 +2,6 @@
 mathjax:
   enable: true
   per_page: true
-  cdn: //xblocksys.github.io/Documentation/WhitePaper_?config=TeX-AMS-MML_HTMLorMML
+  cdn: //xblocksys.github.io/Documentation/WhitePaper?config=TeX-AMS-MML_HTMLorMML
 
 theme: jekyll-theme-cayman

@@ -339,16 +339,16 @@ X.Blockchain 상에서 각 계정별 상태를 기록 관리는 이더리움에�
 
 
 ## Currency & Issurance
-현재 X.Blockchain 의 자산 ATX 는 ICO 를 통해 공급된 량과 보유금 등을 합쳐 총 1,000,000,000 ATX 가 발행된 상태이다. 현재의 총 발행량은 X.Blockchain의 메인넷 오픈 이전 까지만 유지 될 것이며, 그 후에는 추가 발행이 이루어짐에 따라 총 발행량이 점차 증가하게 될 것이다.  
-ATX 의 추가 발행은, 시간이 지남에 따라 발생 가능한 ATX 집중화 현상을 막기 위함이다. 만일 적절한 추가 발행 방법이 제공되지 않는다면, 시간이 지남에 따라 트랜잭션 수수료 명목으로 일부 블록 생산자들에게 ATX 가 집중 되는 현상이 발생할 수 있고, 시장에 유통되는 실질 통화량은 감소하게 된다. 또한 추가 발행 및 공급이 없다면 블록체인 네트워크 유지를 위해 필요한 강력한 인센티브 수단이 사라지거나 적어도 심각한 수준으로 줄어들게 될 것이다. 블록 생산자들의 참여로 보다 높은 수준의 신뢰 확보가 가능한 X.Blockchain 과 같이 공개된 블록체인 네트워크에서 이는 치명적인 문제를 야기 할 수 있다.  
-반면 무제한 추가 발행은 인플레이션을 유발하여 화폐의 실질 가치를 떨어뜨리고 이는 결과적으로 앞서 언급한 블록체인 네트워크 참여자의 동기를 약화 시킬 수 있다는 문제점이 있다.
+현재 X.Blockchain 의 자산 ATX 는 ICO 를 통해 공급된 양과 보유금 등을 합쳐 총 1,000,000,000 ATX 가 발행된 상태이다. 현재의 총 발행량은 X.Blockchain의 메인넷 오픈 이전 까지만 유지 될 것이며, 그 후에는 추가 발행이 이루어짐에 따라 총 발행량이 점차 증가하게 될 것이다.  
+ATX 의 추가 발행은, 시간이 지남에 따라 발생 가능한 ATX 집중화 현상을 완화 시킬 것이다. 만일 적절한 추가 발행 방법이 제공되지 않는다면, 시간이 지남에 따라 블록 생성에 대한 보상으로 일부 블록 생산자들에게 ATX 가 집중 되는 현상이 충분히 발생할 수 있고, 이로 인해 시장에서 유통되는 실질 통화량은 감소하게 될 것이다. 또한 추가 발행 및 공급이 없다면 블록체인 네트워크 유지를 위해 필요한 강력한 인센티브 수단이 사라지거나 적어도 심각한 수준으로 줄어들게 될 것이다. 블록 생산자들의 참여로 보다 높은 수준의 신뢰 확보가 가능한 공개 블록체인 네트워크에서 이는 치명적인 문제를 야기 할 수 있다.  
+반면 무제한 추가 발행은 인플레이션을 유발하여 화폐의 실질 가치를 떨어뜨리고 이는 다시 앞서 언급한 블록체인 네트워크 참여자의 동기를 약화 시키게 되는 같은 문제를 유발 할 수 있다.
 
-이와 관련하여 대표적인 공개형 블록체인 이더리움의 통화 관련 정책을 살펴보면, 이더리움은 매년 정해진 양의 이더가 추가 발행 및 공급되도록 함으로서 '부의 집중 현상'을 완화 시킬 수 있다고 설명한다. 추가 발행량을 고정하여 공급함으로서 공급 성장률(Supply growth rate)은 계속해서 줄어들어 0 으로 수렴되도록 하였고, 현재 또는 미래의 참여자들이 계속해서 이더를 시장이 아닌 채굴을 통해 얻을 수 있는 기회를 제공한다. 동시에 추가 발행되는 이더의 양이, 시간이 지남에 따라 사용자들의 부주의 등으로 인해 현실적으로 사라지게 되는 일부 통화량과 균형을 이룰 것이라 말하고 있다. 아래는 이더리움 백서 내용의 일부이다.
+이와 관련하여 대표적인 공개 블록체인 이더리움의 통화 관련 정책을 살펴보면, 이더리움은 매년 일정량의 이더가 추가 발행되어 네트워크에 공급되도록 함으로서 '부의 집중 현상'을 완화 시킬 수 있다고 설명한다. 추가 공급량이 항상 동일하므로 증가 하는 전체 발행량 에서 추가 공급량이 차지하는 비율은 계속해서 줄어들게 된다. 결과적으로 장기 공급 성장률(Supply growth rate)은 0 으로 수렴됨과 동시에 현재 또는 미래의 참여자들이 계속해서 이더를 시장이 아닌 채굴을 통해 얻을 수 있는 기회를 제공한다. 또한 추가 발행되는 이더의 공급량이, 시간이 지남에 따라 사용자들의 부주의 등으로 인해 현실적으로 사라지게 되는 일부 통화량과 균형을 이룰 것이라 말하고 있다. 아래는 이더리움 백서 내용의 일부이다.
 
 >The permanent linear supply growth model reduces the risk of what some see as excessive wealth concentration in Bitcoin, and gives individuals living in present and future eras a fair chance to acquire currency units, while at the same time retaining a strong incentive to obtain and hold ether because the "supply growth rate" as a percentage still tends to zero over time. We also theorize that because coins are always lost over time due to carelessness, death, etc, and coin loss can be modeled as a percentage of the total supply per year, that the total currency supply in circulation will in fact eventually stabilize at a value equal to the annual issuance divided by the loss rate (eg. at a loss rate of 1%, once the supply reaches 26X then 0.26X will be mined and 0.26X lost every year, creating an equilibrium).
 
 #### Long-term Supply Growth Rate
-X.Blockchain 은 이더리움의 모델을 참고하여 고정적으로 정해진 양의 추가 발행이 이루어지는 모델(permanent liner supply growth model)을 기본으로 한다. ATX 초기 발행량 대비 공급 성장율을 설정하고, 실질적인 통화량 유지와 인플레이션 문제등 충분한 검토와 시험을 통해 이 값을 수정해 나갈 것이며, 메인넷 오픈 시점에서 초기 공급 성장율 수치가 최종 결정될 것이다. 물론 이 값의 변경에 대한 합의는 메인넷 이후에도 충분히 가능할 것이지만, 현재 시점에서 이를 언급하는 것은 불확실성을 내포한 예측이 될 것이므로 이에 대한 기술은 생략하도록 한다.
+X.Blockchain 은 이더리움의 모델을 참고하여 고정적으로 정해진 양의 추가 발행이 이루어지는 모델(permanent liner supply growth model)을 기본 정책으로 한다. ATX 초기 발행량 대비 적절한 공급 성장율을 설정하고, 실질적인 통화량 유지 및 인플레이션 문제등과 같은 문제에 대한 충분한 검토와 시험을 통해 이 값을 지속적으로 수정해 나갈 것이다. 그리고 메인넷 오픈 시점에서 최적의 초기 공급 성장율 수치가 결정될 것이다. 물론 이 값의 변경에 대한 합의는 메인넷 이후에도 충분히 가능할 것이지만, 현재 시점에서 이를 언급하는 것은 불확실성을 내포한 예측이 될 것이므로 이에 대한 명시는 생략하도록 한다.
 
 <br />
 
@@ -359,10 +359,9 @@ X.Blockchain 은 이더리움의 모델을 참고하여 고정적으로 정해�
 <br />
 
 #### Incentives
-추가 발행되는 자산은 블록생성에 대한 보상으로 지급 된다. X.Blockchain 은 PBFT 기반의 합의 알고리즘을 채택하였기 때문에 블록 생성 과정에서 validator 에 의한 합의가 필수적이다. 추가 발행되는 자산은 이 validator 들에게 블록 검증에 대한 보상으로 지급 될 것이다.  
-또한 X.Blockchain 은 DPoS 합의 알고리즘을 적용하여, validator 가 아니더라도 추가 발행 되는 자산의 일부를 보상으로 받을 수 있는 방법을 제공한다. X.Blockchain 상의 모든 노드는 원하는 validator 에게 자신의 지분을 '위임' 함으로서 delegator 가 될 수 있다. 이러한 지분 위임 방법을 통하여 validator 가 되지 못한 노드들은 delegator 로서 합의 과정에 간접적으로 참여하게 되고, 해당 validator 가 받게 될 보상의 일부를 지급 받게 될 것이다.
-
-마지막으로, 블록 생성 및 합의에 대한 보상으로서 validator 들과 delegator 들에게 지급되는 추가 발행 자산의 양과 각각의 비율에 대해서는, 위에서 언급된 공급 성장률을 정하는 문제와 연관된 문제로서 충분한 검토와 시험을 통해 최종적으로 결정 되어질 것이다.
+추가 발행되는 자산은 블록 생성에 대한 보상으로 지급 될 것이다. X.Blockchain 은 PBFT 기반의 합의 알고리즘이 적용 되기 때문에 블록의 연결과 확장시 validator 에 의한 합의가 필수적이다. 추가 발행되는 자산은 이 validator 들에게 블록 검증 및 확장에 대한 보상으로 지급 될 것이다.  
+또한 X.Blockchain 은 DPoS 합의 알고리즘을 적용하여, validator 가 아니더라도 추가 발행 되는 자산의 일부를 보상으로 지급 받을 수 있는 방법을 제공한다. X.Blockchain 상의 모든 노드는 원하는 validator 에게 자신의 지분을 '위임' 함으로서 delegator 가 될 수 있는데, validator 가 되지 못한 노드들은 이러한 지분 위임 방법을 통해 delegator 로서 합의 과정에 간접적으로 참여하게 되고, 해당 validator 가 받게 되는 보상의 일부를 나누어 지급 받게 될 것이다.  
+validator 들과 delegator 들에게 지급 되는 추가 발행 자산의 양과 각각의 비율에 대해서는, 위에서 언급된 공급 성장률을 정하는 문제와 연관된 문제로서 충분한 검토와 시험을 통해 최종적으로 결정 되어질 것이다.
 
 <br /><br />
 

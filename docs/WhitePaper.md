@@ -1,3 +1,11 @@
+---
+markdown:
+  image_dir: .
+  path: WhitePaper_ko-KR.md
+  ignore_from_front_matter: true
+  absolute_image_path: false
+---
+
 # X.Blockchain Technical White Paper
 Yongseok Kwon  
 May 15, 2018
@@ -269,9 +277,9 @@ PBFT 기반의 합의 알고리즘에서는 최초 블록을 제안하는 Primar
 <br />
 
 #### Validators and Delegating
-Validator 는 블록에 대한 검증 및 합의 과정에 참여하는 노드 이다. 이 validator set 에 포함된 노드들은 제안된 블록에 대한 동의 여부를 자신의 voting power 에 기초하여 투표를 통해 표현한다. 네트워크를 구성하는 모든 노드는 자신이 보유한 지분을 예치 함으로서 validator 가 될 수 있지만, validator set 을 구성하는 노드의 수가 정해져 있기에 항상 가능한 것은 아니다. 만일 현재의 validator set 을 구성하는 노드의 수가 최대값이 라면, 새로운 노드가 validator 가 되는 유일한 방법은, 현재 validator 들이 예치한 지분중 최소 지분 보다 큰 지분을 예치하는 것이다. 이 경우, 최소 예치금의 validator 는 비활성화 되고 그보다 큰 지분을 예치한 새로운 노드가 validator 역활을 수행하게 될 것이다.  
-Validator 가 되지 않더라도 합의 과정에 간접적으로 참여할 수 있는 방법이 있다. 바로 자신이 보유한 지분을 특정 validator 에게 위임하는 것이다. 네트워크 상의 모든 노드는 자신이 보유한 지분을 특정 validator 에게 위임할 수 있다. 위임을 받은 해당 validator 는 위임 받은 지분 만큼 voting power 가 상승하게 되고, 이에 따라 받는 보상 역시 증가 하게 된다. 이 때, 자신의 지분을 위임한 노드 역시 해당 validator 가 받게 되는 보상 중 일부를 위임에 대한 보상으로 받게 될 것이다.  
-Validator 가 되기 위해 예치한 지분은 해당 노드가 validator 역할을 수행하는 동안은 사용이 불가한 상태로 묶이게 된다. 만일 이 validator 가 약속된 합의 메커니즘을 지키지 않는 것과 같은 악의적인 행동을 한다면, 그에 대한 처벌로서 해당 예치금의 일부가 사라지게 될 것이다. 이는 합의 과정의 부정한 행위에 대한 일종의 처벌 개념을 도입한 것으로서 전통적인 PoS 알고리즘이 갖고 있는 Nothing at Stake 문제를 해결한다.
+Validator 는 블록에 대한 검증 및 합의 과정에 참여하는 노드 이다. Validator set 에 포함된 노드들은 제안된 블록에 대한 동의 여부를 자신의 voting power 에 기초하여 투표를 통해 결정한다. 네트워크를 구성하는 모든 노드는 자신이 보유한 지분을 예치 함으로서 validator 가 될 수 있지만, validator set 을 구성하는 최대 노드 수가 정해져 있기에 항상 가능한 것은 아니다. 만일 현재의 validator set 을 구성하는 노드의 수가 최대값이 라면, 새로운 노드가 validator 가 되는 유일한 방법은, 현재 validator 들 중 제일 작은 지분을 예치한 validator 보다 큰 지분을 예치하는 것이다. 이 경우, 예치 지분이 제일 작은 validator 는 비활성화 되고 그 보다 큰 지분을 예치한 새로운 노드가 validator 역활을 수행하게 될 것이다.  
+Validator 가 되지 않더라도 합의 과정에 간접적으로 참여할 수 있는 방법이 있다. 바로 자신이 보유한 지분을 특정 validator 에게 위임하는 것이다. 네트워크 상의 모든 노드는 자신이 보유한 지분을 특정 validator 에게 위임 할 수 있다. 위임을 받은 validator 의 voting power 는 위임 받은 지분 만큼 상승하게 되고, 이에 따라 validator 가 받게 될 보상 역시 증가 하게 된다. 이 때, 자신의 지분을 위임한 노드 역시 해당 validator 가 받게 되는 보상의 일부를 위임에 대한 보상으로 받게 될 것이다.  
+Validator 가 되기 위해 예치한 지분은 해당 노드가 validator 역할을 수행하는 동안은 사용이 불가한 상태로 묶이게 된다. 만일 이 validator 가 약속된 합의 메커니즘을 지키지 않는 것과 같은 악의적인 행동을 한다면, 예치금의 일부 또는 전부가 사라지게 될 것이다. 이는 합의 과정의 부정한 행위에 대한 일종의 처벌 개념을 도입한 것으로서 전통적인 PoS 알고리즘이 갖고 있는 Nothing at Stake 문제를 해결한다.
 
 PBFT + dPoS 메커니즘에 대한 보다 자세한 사항은 <a href="tenderming.com">Tendermint 문서</a>를 참조하기 바란다.
 
@@ -303,9 +311,9 @@ X.Block 에는 최대 2개의 블록이 연결될 수 있다. 첫번째가 MainC
 <br /><br />
 
 ## Coin Model
-X.Blockchain 은 분기가 허용되는 X.Block 을 통하여 다수의 SubChain 이 생성되고 연결이 이어질 수 있다. 그러나 X.Block 에서 발생되는 이러한 분기는 암호 화폐 거래에 있어서 '이중 지불 문제' 를 발생시킨다. 때문에 MainChain 상에서 관리되는 거래원장과 SubChain 상에서 관리되는 거래 원장 사이에는 어떠한 상관 관계가 존재 해서는 안되며, 이를 해결하기 위한 방법은 각 블록체인을 통해 관리되는 계정을 철저히 분리하거나 아니면 자산 그 자체(거래원장 그 자체)를 분리하여야 한다.
+X.Blockchain 은 분기가 허용되는 X.Block 을 통하여 다수의 SubChain 이 생성되고 연결이 이어질 수 있다. 그러나 X.Block 에서 발생되는 이러한 분기는 암호 화폐 거래에 있어서 '이중 지불 문제' 를 발생시킨다. 때문에 MainChain 상에서 관리되는 거래 원장과 SubChain 상에서 관리되는 거래 원장 사이에는 어떠한 상관 관계가 존재 해서는 안되며, 이를 해결하기 위한 방법은 각 블록체인을 통해 관리되는 계정을 철저히 분리하거나 아니면 자산 그 자체(거래원장 그 자체)를 분리하여야 한다.
 
-X.Blockchain 은 자산을 분리한다. X.Blockchain 에서 MainChain 상의 자산과 SubChain 상의 자산, 그리고 또 다른 SubChain 상의 자산은 모두 완전히 다른 자산이다. 즉 MainChain을 포함하여 모든 SubChain 은 각자 자신만의 자산(코인)을 가지며 이 자산의 상태가 기록되는 독립적인 거래원장을 갖는다. 각 SubChain 상의 자산은 일반적인 거래 메커니즘으로는 서로 다른 자산간 상호 이동이 원칙적으로 금지 된다. 단, [Communication between SubChains](#communication-between-chains) 절차에 따를 때, 서로 다른 SubChain 간의 자산 이동은 가능하다.
+X.Blockchain 은 자산을 분리한다. X.Blockchain 에서 MainChain 상의 자산과 SubChain 상의 자산, 그리고 또 다른 SubChain 상의 자산은 모두 완전히 다른 자산이다. 즉 MainChain을 포함하여 모든 SubChain 은 각자 자신만의 자산(코인)을 가지며 이 자산의 상태가 기록되는 독립적인 거래원장을 갖는다. 각 SubChain 상의 자산은 일반적인 거래 메커니즘으로는 서로 다른 자산간 상호 이동이 원칙적으로 금지 된다. 단, [Communication between SubChains](#communication-between-chains) 절차에 따를 때, 서로 다른 SubChain 간의 자산 이동이 가능하다.
 
 <br /><br />
 

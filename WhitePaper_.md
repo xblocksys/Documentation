@@ -25,12 +25,18 @@ May 15, 2018
 - [Problems](#problems )
 - [Background](#background )
 - [X.Blockchain Overview](#xblockchain-overview )
+  + [MainChain](#mainchain )
+  + [SubChain](#subchain )
+  + [X.Block](#xblock )
+  + [X.Transaction](#xtransaction )
 - [Consensus Algorithm](#consensus-algorithm )
+  + [PBFT (Practical Byzantine Fault Tolerance)](#pbft-practical-byzantine-fault-tolerance )
+  + [Validators and Delegating](#validators-and-delegating )
+  + [Proof of Forkability](#proof-of-forkability )
 - [Coin Model](#coin-model )
-- [Communication between Chains](#communication-between-chains )
 - [Accounts & States](#accounts-states )
 - [Currency & Issurance](#currency-issurance )
-- [Development Roadmap](#development-roadmap )
+- [Use Cases](#use-cases )
   
 <br /><br />
   
@@ -42,14 +48,14 @@ May 15, 2018
 <br />
 <p align="center">
 <img src="images/blockchain_sz.png" width="480px" /><br />
-Bitcoin & Ethtereum blockchain size (출처:http://bc.daniel.net.nz/)
+<i>Bitcoin & Ethtereum blockchain size - 출처: <a href="http://bc.daniel.net.nz/">http://bc.daniel.net.nz/</a></i>
 </p>
   
 <br />
   
 <p align="center">
 <img src="images/cpu_pw.png" width="480px" /><br />
-Bitcoin & Ethtereum CPU usage (출처:http://bc.daniel.net.nz/)
+<i>Bitcoin & Ethtereum CPU usage - 출처: <a href="http://bc.daniel.net.nz/">http://bc.daniel.net.nz/</a></i>
 </p>
 <br />
   
@@ -215,7 +221,8 @@ PBFT 기반의 합의 알고리즘에서는 합의 과정에 참여하는 전체
   
 <br />
 <p align="center">
-<img src="images/pbft.png" width="480px" />
+<img src="images/pbft.png" width="480px" /><br />
+<i>PBFT 알고리즘 - 출처: <a href="http://pmg.csail.mit.edu/papers/osdi99.pdf">http://pmg.csail.mit.edu/papers/osdi99.pdf</a></i>
 </p>
 <br />
   
@@ -232,6 +239,13 @@ PBFT 기반의 합의 알고리즘에서는 최초 블록을 제안하는 Primar
 현재 많이 사용되는 PBFT 기반의 알고리즘들은 모두 위와 같은 기본 합의 절차에 기초하여 필요에 따라 적절한 변형이 가해진 알고리즘들이다.
 그중 대표적인 것인 Tendermint 에서 채택하고 있는 PBFT + DPoS 이다. Tendermint 의 합의 절차에서는 Primary 노드를 Proposer 라고 하고 Replica 노드를 Validator 라 칭하며, 네트워크상의 모든 노드가 validator 가 되는 것이 아니라 자신이 보유한 지분을 예치한 노드만이 validator 가 되어 합의 과정에 참여한다.
 또한 전통적인 PBFT 에서는 모든 노드가 동일한 weight 를 갖지만, Tendermint 의 합의 알고리즘에서는 각 validator 가 예치한 지분 의 양에 비례하여 weight 를 갖기 때문에, 여기서 정족수가 의미하는 것은 validator 수가 아닌 validator 들이 예치한 지분(voting power) 총합의 <img src="https://latex.codecogs.com/gif.latex?&#x5C;frac{2}{3}"/> 가 된다.
+  
+<br />
+<p align="center">
+<img src="images/tm_overview.png" width="480px" /><br />
+<i>Tendermint 합의 절차 - 출처: <a href="https://tendermint.com/static/docs/tendermint.pdf">https://tendermint.com/static/docs/tendermint.pdf</a></i>
+</p>
+<br />
   
 #### Validators and Delegating
   
@@ -306,9 +320,9 @@ X.Blockchain 은 이더리움의 모델을 참고하여 고정적으로 정해�
   
 <br />
   
-*[장기공급성장률]*
 <p align="center">
-<img src="images/sgr.png" width="480px" />
+<img src="images/sgr.png" width="480px" /><br />
+<i>[장기공급성장률]</i>
 </p>
 <br />
   

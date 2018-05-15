@@ -43,8 +43,8 @@ May 15, 2018
   + [Validators and Delegating](#validators-and-delegating )
   + [Proof of Forkability](#proof-of-forkability )
 - [Coin Model](#coin-model )
-- [Accounts & States](#accounts-states )
-- [Currency & Issurance](#currency-issurance )
+- [Accounts & States](#accounts--states )
+- [Currency & Issurance](#currency--issurance )
 - [Use Cases](#use-cases )
   
 <br /><br />

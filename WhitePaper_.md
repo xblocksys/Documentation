@@ -27,7 +27,7 @@ April 24, 2018
 - [X.Blockchain Overview](#xblockchain-overview )
 - [Consensus Algorithm](#consensus-algorithm )
 - [Coin Model](#coin-model )
-- [Inter SubChain Communication](#inter-subchain-communication )
+- [Communication between Chains](#communication-between-chains )
 - [Accounts & States](#accounts-states )
 - [Currency & Issurance](#currency-issurance )
 - [Development Roadmap](#development-roadmap )
@@ -125,7 +125,7 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
 * **Blockchain Depth**: 노드가 관리하는 최상위 블록체인을 기준으로 관리 하고자 하는 SubChain의 Depth.
   
 앞서 기존의 블록체인이 선형적인 구조에 한정될 수 밖에 없었던 이유를 이중 지불 문제를 중심으로 하여 살펴 보았다. 동일한 대상의 상태 변경을 일으키는 모든 사건은 동시성을 가질 수 없으며 반드시 순차적인 처리가 강제 되어야 한다는 것이 그것이다.  
-그러나 서로 다른 대상의 상태를 변경하는 사건들의 경우, '반드시' 순차적으로 처리 되어야 할 필요가 없다. 예를 들어 각각 독립적으로 존재하는 '문서'를 대상으로 할 경우, 특정 문서의 상태 변경이 다른 문서의 상태 변경과 의미있는 관계를 갖지 않는다<sup id="a4">[4](#f4 ). 개별 사건들이 오직 하나의 대상 (여기서는 특정 문서) 에 대해서만 적용되기 때문에, 사건들은 서로에 대하여 동기화 될 필요가 없다. 다시 말해서 다수의 문서들의 각 상태가 동시에 변경되어도 앞서 언급한 이중 지불 문제와 같은 모순은 발생되지 않을 것이다. 사건의 순차적인 처리는 동일한 대상의 상태 변환을 일으키는 사건들 사이에서만 의미를 갖기 때문이다.
+그러나 서로 다른 대상의 상태를 변경하는 사건들의 경우, '반드시' 순차적으로 처리 되어야 할 필요가 없다. 예를 들어 각각 독립적으로 존재하는 '문서'를 대상으로 할 경우, 특정 문서의 상태 변경이 다른 문서의 상태 변경과 의미있는 관계를 갖지 않는다<sup id="a4">[4](#f4 )</sup>. 개별 사건들이 오직 하나의 대상 (여기서는 특정 문서) 에 대해서만 적용되기 때문에, 사건들은 서로에 대하여 동기화 될 필요가 없다. 다시 말해서 다수의 문서들의 각 상태가 동시에 변경되어도 앞서 언급한 이중 지불 문제와 같은 모순은 발생되지 않을 것이다. 사건의 순차적인 처리는 동일한 대상의 상태 변환을 일으키는 사건들 사이에서만 의미를 갖기 때문이다.
   
 이것은 복수의 서로 다른 대상(문서) A, B, C ... 각각의 사건 집합을 T<sub>A</sub>, T<sub>B</sub>, T<sub>C</sub>, ... 이라 할 때, 각각의 사건 집합은 하나의 독립적인 선형 구조로 구성되는 것이 가능함을 의미한다. 즉, 서로 다른 사건 집합 T<sub>A</sub> 과 T<sub>B</sub> 에 속하는 사건 t<sub>a1</sub> 과 t<sub>b1</sub> 은 서로에 대하여 순차적으로 처리되어야 할 필요도, 동일한 직렬화 구조에 포함될 필요도 없다.
   
@@ -179,7 +179,6 @@ X.Blockchain 상의 모든 블록체인 (MainChain & SubChain) 은 X.Block 과 �
 </p>
 <br />
   
-  
 #### X.Transaction
   
 X.Block 을 생성하기 위한 특별한 트랜잭션을 X.Transactioin 이라 한다. X.Tx 에는 생성된 SubChain 의 특성과 이 SubChain 상의 생성될 자산 특성 및 초기 상태에 대한 내용이 기술 되어야 한다. 이 것은 일반적인 블록체인에서 genesis block 의 내용과 이더리움에서 스마트 컨트랙트를 통해 생성되는 '토큰' 에 대한 기술 내용을 합친 것과 유사하다.
@@ -207,18 +206,46 @@ SubChain 자산으로 지급되는 수수료는 SubChain 자산의 초기 상태
 ## Consensus Algorithm
   
   
-X.Blockchain 은 기본적으로 PBFT + dPoS 메커니즘을 이용하여 합의에 도달한다. 이는 Tendermint 에서 제안한 합의 메커니즘으로 전통적인 BFT 알고리즘을 개선한 PBFT 알고리즘과, EOS 에서 제안한 dPoS 알고리즘을 결합한 것이다. 이 합의 메커니즘은 빠른 트랜잭션 처리를 보장하면서도 동시에 분기 발생을 허용하지 않는다. 또한 예치금을 통한 검증 노드 선정과 오동작을 유발하는 행위에 대한 일종의 처벌 개념을 도입함으로서 전통적인 PoS 알고리즘의 주요 문제점으로 지적되고 있는 Nothing at Stake 문제를 해결하였다.  
-BFT 알고리즘에 기반을 두는 합의 메커니즘의 경우, 합의 과정에 참여하는 노드의 수가 커질 수록 발생되는 네트워크 트래픽 비용 또한 높아지게 되는 문제가 있다. 그러나 Tendermint 에서 제안하는 PBFT + dPoS 는 100 여개의 노드로 구성된 상황에서도 높은 트랜잭션 처리 성능을 보장한다.
+X.Blockchain 은 기본적으로 PBFT + dPoS 메커니즘을 이용하여 합의에 도달한다. 이는 Tendermint 에서 제안된 것으로서, 전통적인 PBFT 알고리즘에 DPoS 개념을 결합하여 Public & Private blockchain 구성이 가능하도록 한 합의 메커니즘이다.
   
-*Note: <Tendermint 합의 알고리즘 개념 설명>*
+#### PBFT (Practical Byzantine Fault Tolerance)
   
-그 외 validator set 구성, 잘못된 블록을 제안 또는 커밋 한 경우 해당 계정에 대한 penalty 정책 등, PBFT + dPoS 에서 제안된 특징적인 개념들은 모두 구현되는 X.Blockchain 적용될 것이다. PBFT + dPoS 메커니즘에 대한 보다 자세한 사항은 <a href="tenderming.com">Tendermint의 기술 문서</a>를 참조하기 바란다.
+PBFT는 90년대 후반 소개된 합의 알고리즘이다. 기존의 BFT 는 동기식 환경을 가정한 상태에서 작동 가능하였으며 실제 사용하기에는 너무 많은 성능상의 문제점을 갖고 있었다. 이런 BFT 를 비동기식 환경에서도 작동 가능하도록 개선하여 비잔틴 장군 문제를 해결하는 동시에 고속의 트랜잭션 처리가 가능하도록 한 것이 PBFT 이다.  
+PBFT 기반의 합의 알고리즘에서는 합의 과정에 참여하는 전체 노드 n 중에서 <img src="https://latex.codecogs.com/gif.latex?&#x5C;ge%20&#x5C;frac{2}{3}%20n"/> 이 동의 할 경우, 제안된 블록을 받아들이므로서 악의적인 노드의 구성 비율이 <img src="https://latex.codecogs.com/gif.latex?&#x5C;frac{1}{3}n"/> 을 넘지 않는 한 합의에 도달 할 수 있다.
   
-#### Proof of Forkable
+<br />
+<p align="center">
+<img src="images/pbft.png" width="480px" />
+</p>
+<br />
   
-X.Blockchain 의 특수한 블록 연결 구조로 인하여, 이미 알려진 합의 메커니즘을 그대로 적용하는 것은 불가능하다. 어떠한 합의 메커니즘도 X.Blockchain 이 제안하는 '분기허용' 에 대한 고려가 없기 때문이다. 즉 X.Blockchain 에서는 분기 허용을 고려한 추가적인 합의 과정이 필요하다. 바로 'X.Block 생성'과 '신규 블록이 특정 SubChain 으로 연결'이 적법한지에 대한 것이 그것이다. '분기 허용'을 고려한 증명 방식을 Proof of Forkable (PoF) 라 하고, 이는 PBFT + dPoS 와 함께 X.Blockchain 에서 사용되는 합의 메커니즘의 주요 구성 요소이다.
+PBFT 기반의 합의 알고리즘에서는 최초 블록을 제안하는 Primary 노드가 존재한다. 이 Proposer 노드는 발생한 트랜잭션을 요청 순서대로 정렬하여 네트워크 상의 다른 노드(Replica)들에게 전파하는 역할을 수행한다. 이후 합의 과정을 간략히 기술하면 다음과 같다.
   
-알려진 바와 같이 PBFT 에서는 제안된 블록에 대한 합의를 이루는 과정이 다수의 round 로 이루어지고 각 round 는 복수의 단계(step)으로 이루어진다. 특정 블록에 대한 합의 절차가 완료되어 블록체인에 해당 블록이 연결되기 전까지 다음 블록에 대한 처리는 유예되어야 한다. 그러나 PoF 에서는 복수의 블록에 대한 합의 절차가 병렬적으로 진행되어질 수 있다. 서로 다른 SubChain 에 속하는 블록들은 동시적으로 '제안' 되어질 수 있고 각각의 블록에 대한 합의 절차는 타 블록에 대한 합의 절차 결과와 동기화 되어질 필요가 없기 때문이다.
+1. Primary 노드는 클라이언트로 부터의 모든 트랜잭션 요청을 수집한다.
+1. Primary 노드가 트랜잭션을 요청 순서로 정렬하여 블록으로 구성하여 블록체인 네트워크에 전파한다.
+2. Replica 노드는 Primary 노드로 부터 받은 블록을 다시 다른 Replica 노드들에게 전파한다.
+3. 각 Replica 노드는 자신이 전파한 블록과 다른 노드로 부터 수신한 블록이 동일한지를 확인한다. 동일한 블록을 전송한 노드의 수가 정족수 (<img src="https://latex.codecogs.com/gif.latex?&#x5C;frac{2}{3}%20n"/>) 를 넘었다면 해당 블록을 검증한다.
+4. 블록의 유효성 검증 결과를 다른 노드들에게 전파한다.
+5. 각 노드는 다른 노드들이 보내온 블록 검증 결과 값을 취함한다. 동일한 결과 값이 정족수 (<img src="https://latex.codecogs.com/gif.latex?&#x5C;frac{2}{3}%20n"/>)를 넘었다면 해당 블록을 자신의 블록체인에 연결한다. 그렇지 않다면 해당 블록을 블록체인에 연결하지 않는다.
+6. 해당 결과를 클라이언트에게 전송한다.
+  
+현재 많이 사용되는 PBFT 기반의 알고리즘들은 모두 위와 같은 기본 합의 절차에 기초하여 필요에 따라 적절한 변형이 가해진 알고리즘들이다.
+그중 대표적인 것인 Tendermint 에서 채택하고 있는 PBFT + DPoS 이다. Tendermint 의 합의 절차에서는 Primary 노드를 Proposer 라고 하고 Replica 노드를 Validator 라 칭하며, 네트워크상의 모든 노드가 validator 가 되는 것이 아니라 자신이 보유한 지분을 예치한 노드만이 validator 가 되어 합의 과정에 참여한다.
+또한 전통적인 PBFT 에서는 모든 노드가 동일한 weight 를 갖지만, Tendermint 의 합의 알고리즘에서는 각 validator 가 예치한 지분 의 양에 비례하여 weight 를 갖기 때문에, 여기서 정족수가 의미하는 것은 validator 수가 아닌 validator 들이 예치한 지분(voting power) 총합의 <img src="https://latex.codecogs.com/gif.latex?&#x5C;frac{2}{3}"/> 가 된다.
+  
+#### Validators and Delegating
+  
+Validator 는 블록에 대한 검증 및 합의 과정에 참여하는 노드 이다. 이 validator set 에 포함된 노드들은 제안된 블록에 대한 동의 여부를 자신의 voting power 에 기초하여 투표를 통해 표현한다. 네트워크를 구성하는 모든 노드는 자신이 보유한 지분을 예치 함으로서 validator 가 될 수 있지만, validator set 을 구성하는 노드의 수가 정해져 있기에 항상 가능한 것은 아니다. 만일 현재의 validator set 을 구성하는 노드의 수가 최대값이 라면, 새로운 노드가 validator 가 되는 유일한 방법은, 현재 validator 들이 예치한 지분중 최소 지분 보다 큰 지분을 예치하는 것이다. 이 경우, 최소 예치금의 validator 는 비활성화 되고 그보다 큰 지분을 예치한 새로운 노드가 validator 역활을 수행하게 될 것이다.  
+Validator 가 되지 않더라도 합의 과정에 간접적으로 참여할 수 있는 방법이 있다. 바로 자신이 보유한 지분을 특정 validator 에게 위임하는 것이다. 네트워크 상의 모든 노드는 자신이 보유한 지분을 특정 validator 에게 위임할 수 있다. 위임을 받은 해당 validator 는 위임 받은 지분 만큼 voting power 가 상승하게 되고, 이에 따라 받는 보상 역시 증가 하게 된다. 이 때, 자신의 지분을 위임한 노드 역시 해당 validator 가 받게 되는 보상 중 일부를 위임에 대한 보상으로 받게 될 것이다.  
+Validator 가 되기 위해 예치한 지분은 해당 노드가 validator 역할을 수행하는 동안은 사용이 불가한 상태로 묶이게 된다. 만일 이 validator 가 약속된 합의 메커니즘을 지키지 않는 것과 같은 악의적인 행동을 한다면, 그에 대한 처벌로서 해당 예치금의 일부가 사라지게 될 것이다. 이는 합의 과정의 부정한 행위에 대한 일종의 처벌 개념을 도입한 것으로서 전통적인 PoS 알고리즘이 갖고 있는 Nothing at Stake 문제를 해결한다.
+  
+PBFT + dPoS 메커니즘에 대한 보다 자세한 사항은 <a href="tenderming.com">Tendermint의 기술 문서</a>를 참조하기 바란다.
+  
+#### Proof of Forkability
+  
+X.Blockchain 의 특수한 블록 연결 구조로 인하여, 이미 알려진 합의 메커니즘을 그대로 적용하는 것은 불가능하다. 어떠한 합의 메커니즘도 X.Blockchain 이 제안하는 '분기허용' 에 대한 고려가 없기 때문이다. 즉 X.Blockchain 에서는 분기 허용을 고려한 추가적인 합의 과정이 필요하다. 바로 'X.Block 생성'과 '신규 블록이 특정 SubChain 으로 연결'이 적법한지에 대한 것이 그것이다. '분기 허용'을 고려한 증명 방식을 Proof of Forkability (PoF) 라 하고, 이는 PBFT + dPoS 와 함께 X.Blockchain 에서 사용되는 합의 메커니즘의 주요 구성 요소이다.
+  
+BFT 기반의 합의 메커니즘에서는 제안된 블록에 대한 합의를 이루는 과정이 다수의 round 로 이루어지고 각 round 는 복수의 단계(stage)로 구성된다. 특정 블록에 대한 합의 절차가 완료되어 블록체인에 해당 블록이 연결되기 전까지 다음 블록에 대한 처리는 유예되어야 한다. 그러나 PoF 에서는 복수의 블록에 대한 합의 절차가 병렬적으로 진행되어질 수 있다. 서로 다른 SubChain 에 속하는 블록들은 동시적으로 '제안' 되어질 수 있고 각각의 블록에 대한 합의 절차는 타 블록에 대한 합의 절차 결과와 동기화 되어질 필요가 없기 때문이다.
   
 <br />
 <p align="center">
@@ -249,16 +276,12 @@ X.Block 에는 최대 2개의 블록이 연결될 수 있다. 첫번째가 MainC
   
 X.Blockchain 은 분기가 허용되는 X.Block 을 통하여 다수의 SubChain 이 생성되고 연결이 이어질 수 있다. 그러나 X.Block 에서 발생되는 이러한 분기는 암호 화폐 거래에 있어서 '이중 지불 문제' 를 발생시킨다. 때문에 MainChain 상에서 관리되는 거래원장과 SubChain 상에서 관리되는 거래 원장 사이에는 어떠한 상관 관계가 존재 해서는 안되며, 이를 해결하기 위한 방법은 각 블록체인을 통해 관리되는 계정을 철저히 분리하거나 아니면 자산 그 자체(거래원장 그 자체)를 분리하여야 한다.
   
-X.Blockchain 은 자산을 분리한다. X.Blockchain 에서 MainChain 상의 자산과 SubChain 상의 자산, 그리고 또 다른 SubChain 상의 자산은 모두 완전히 다른 자산이다. 즉 MainChain을 포함하여 모든 SubChain 은 각자 자신만의 자산(코인)을 가지며 이 자산의 상태가 기록되는 독립적인 거래원장을 가지며 일반적인 거래 메커니즘으로는 자산간 상호 이동은 불가능하다. X.Blockchain 에서는 [Inter SubChain Communication](#intersubchaincommunication ) 을 통하여 SubChain 상의 서로 다른 자산의 이동이 가능하다.
+X.Blockchain 은 자산을 분리한다. X.Blockchain 에서 MainChain 상의 자산과 SubChain 상의 자산, 그리고 또 다른 SubChain 상의 자산은 모두 완전히 다른 자산이다. 즉 MainChain을 포함하여 모든 SubChain 은 각자 자신만의 자산(코인)을 가지며 이 자산의 상태가 기록되는 독립적인 거래원장을 갖는다. 각 SubChain 상의 자산은 일반적인 거래 메커니즘으로는 서로 다른 자산간 상호 이동이 원칙적으로 금지 된다. 단, [Communication between SubChains](#communication-between-chains ) 절차에 따를 때, 서로 다른 SubChain 간의 자산 이동은 가능하다.
   
 <br /><br />
   
-## Inter SubChain Communication
   
   
-*Note: coin 간 환전 (inter SubChain communication)*
-  
-<br /><br />
   
 ## Accounts & States
   
@@ -288,7 +311,6 @@ X.Blockchain 은 이더리움의 모델을 참고하여 고정적으로 정해�
 <img src="images/sgr.png" width="480px" />
 </p>
 <br />
-  
   
   
 <br /><br />

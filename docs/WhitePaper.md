@@ -278,12 +278,12 @@ PBFT 기반의 합의 알고리즘에서는 최초 블록을 제안하는 Primar
 </p>
 <br />
 
-#### Validators and Delegating
-Validator 는 블록에 대한 검증 및 합의 과정에 참여하는 노드 이다. Validator set 에 포함된 노드들은 제안된 블록에 대한 동의 여부를 자신의 voting power 에 기초하여 투표를 통해 결정한다. 네트워크를 구성하는 모든 노드는 자신이 보유한 지분을 예치 함으로서 validator 가 될 수 있지만, validator set 을 구성하는 최대 노드 수가 정해져 있기에 항상 가능한 것은 아니다. 만일 현재의 validator set 을 구성하는 노드의 수가 최대값이 라면, 새로운 노드가 validator 가 되는 유일한 방법은, 현재 validator 들 중 제일 작은 지분을 예치한 validator 보다 큰 지분을 예치하는 것이다. 이 경우, 예치 지분이 제일 작은 validator 는 비활성화 되고 그 보다 큰 지분을 예치한 새로운 노드가 validator 역활을 수행하게 될 것이다.  
-Validator 가 되지 않더라도 합의 과정에 간접적으로 참여할 수 있는 방법이 있다. 바로 자신이 보유한 지분을 특정 validator 에게 위임하는 것이다. 네트워크 상의 모든 노드는 자신이 보유한 지분을 특정 validator 에게 위임 할 수 있다. 위임을 받은 validator 의 voting power 는 위임 받은 지분 만큼 상승하게 되고, 이에 따라 validator 가 받게 될 보상 역시 증가 하게 된다. 이 때, 자신의 지분을 위임한 노드 역시 해당 validator 가 받게 되는 보상의 일부를 위임에 대한 보상으로 받게 될 것이다.  
-Validator 가 되기 위해 예치한 지분은 해당 노드가 validator 역할을 수행하는 동안은 사용이 불가한 상태로 묶이게 된다. 만일 이 validator 가 약속된 합의 메커니즘을 지키지 않는 것과 같은 악의적인 행동을 한다면, 예치금의 일부 또는 전부가 사라지게 될 것이다. 이는 합의 과정의 부정한 행위에 대한 일종의 처벌 개념을 도입한 것으로서 전통적인 PoS 알고리즘이 갖고 있는 Nothing at Stake 문제를 해결한다.
+PBFT + DPoS 합의 메커니즘에 대한 자세한 내용은 <a href="tenderming.com">Tendermint 문서</a>를 참조하기 바란다.
 
-PBFT + dPoS 메커니즘에 대한 보다 자세한 사항은 <a href="tenderming.com">Tendermint 문서</a>를 참조하기 바란다.
+#### Validators and Delegators
+Validator 는 블록에 대한 검증 및 합의 과정에 참여하는 노드 이다. Validator set 에 포함된 노드들은 제안된 블록에 대한 동의 여부를 자신의 voting power 에 기초하여 투표를 통해 결정한다. 네트워크를 구성하는 모든 노드는 자신이 보유한 지분을 예치 함으로서 validator 가 될 수 있지만, validator set 을 구성하는 최대 노드 수가 정해져 있기에 항상 가능한 것은 아니다. 만일 현재의 validator set 을 구성하는 노드의 수가 최대값이 라면, 새로운 노드가 validator 가 되는 유일한 방법은, 현재 validator 들 중 제일 작은 지분을 예치한 validator 보다 큰 지분을 예치하는 것이다. 이 경우, 예치 지분이 제일 작은 validator 는 비활성화 되고 그 보다 큰 지분을 예치한 새로운 노드가 validator 역활을 수행하게 될 것이다.  
+Validator 가 되지 않더라도 합의 과정에 간접적으로 참여할 수 있는 방법이 있다. 바로 자신이 보유한 지분을 특정 validator 에게 위임하는 것이다. 네트워크 상의 모든 노드는 자신이 보유한 지분을 특정 validator 에게 위임 할 수 있다. 이러한 노드를 delegator 라고 한다. 위임을 받은 validator 의 voting power 는 위임 받은 지분 만큼 상승하게 되고, 이에 따라 validator 가 받게 될 보상 역시 증가 하게 된다. 이 때, 자신의 지분을 위임한 delegator 역시 해당 validator 가 받게 되는 보상의 일부를 위임에 대한 보상으로 받게 될 것이다.  
+Validator 가 되기 위해 예치한 지분은 해당 노드가 validator 역할을 수행하는 동안은 사용이 불가한 상태로 묶이게 된다. 만일 이 validator 가 약속된 합의 메커니즘을 지키지 않는 것과 같은 악의적인 행동을 한다면, 예치금의 일부 또는 전부가 사라지게 될 것이다. 이는 합의 과정의 부정한 행위에 대한 일종의 처벌 개념을 도입한 것으로서 전통적인 PoS 알고리즘이 갖고 있는 Nothing at Stake 문제를 해결한다.
 
 #### Proof of Forkability
 X.Blockchain 의 특수한 블록 연결 구조로 인하여, 이미 알려진 합의 메커니즘을 그대로 적용하는 것은 불가능하다. 어떠한 합의 메커니즘도 X.Blockchain 이 제안하는 '분기허용' 에 대한 고려가 없기 때문이다. 즉 X.Blockchain 에서는 분기 허용을 고려한 추가적인 합의 과정이 필요하다. 바로 'X.Block 생성'과 '신규 블록이 특정 SubChain 으로 연결'이 적법한지에 대한 것이 그것이다. '분기 허용'을 고려한 증명 방식을 Proof of Forkability (PoF) 라 하고, 이는 PBFT + dPoS 와 함께 X.Blockchain 에서 사용되는 합의 메커니즘의 주요 구성 요소이다.

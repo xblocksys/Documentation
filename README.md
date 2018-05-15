@@ -1,5 +1,5 @@
 # X.Blockchain Technical White Paper
 
-- [Korean](WhitePaper_.md)
+- [Korean](docs/WhitePaper_.md)
 - English
 - Chinese

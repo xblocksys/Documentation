@@ -345,16 +345,20 @@ ATX 의 추가 발행은, 시간이 지남에 따라 발생 가능한 ATX 집중
 
 >The permanent linear supply growth model reduces the risk of what some see as excessive wealth concentration in Bitcoin, and gives individuals living in present and future eras a fair chance to acquire currency units, while at the same time retaining a strong incentive to obtain and hold ether because the "supply growth rate" as a percentage still tends to zero over time. We also theorize that because coins are always lost over time due to carelessness, death, etc, and coin loss can be modeled as a percentage of the total supply per year, that the total currency supply in circulation will in fact eventually stabilize at a value equal to the annual issuance divided by the loss rate (eg. at a loss rate of 1%, once the supply reaches 26X then 0.26X will be mined and 0.26X lost every year, creating an equilibrium).
 
-X.Blockchain 은 이더리움의 모델을 참고하여 고정적으로 정해진 양의 추가 발행이 이루어지는 모델(permanent liner supply growth model)을 기본으로 한다. ATX 초기 발행량 대비 공급 성장율을 설정하고, 실질적인 통화량 유지와 인플레이션 문제등 충분한 조사와 시험을 통해 이 값을 수정해 나갈 것이며, 메인넷 오픈 시점에서 초기 공급 성장율 수치가 최종 결정될 것이다. 물론 이 값의 변경에 대한 합의는 메인넷 이후에도 충분히 가능할 것이지만, 현재 시점에서 이를 언급하는 것은 불확실성을 내포한 예측이 될 것이므로 이에 대한 기술은 생략하도록 한다.
+X.Blockchain 은 이더리움의 모델을 참고하여 고정적으로 정해진 양의 추가 발행이 이루어지는 모델(permanent liner supply growth model)을 기본으로 한다. ATX 초기 발행량 대비 공급 성장율을 설정하고, 실질적인 통화량 유지와 인플레이션 문제등 충분한 검토와 시험을 통해 이 값을 수정해 나갈 것이며, 메인넷 오픈 시점에서 초기 공급 성장율 수치가 최종 결정될 것이다. 물론 이 값의 변경에 대한 합의는 메인넷 이후에도 충분히 가능할 것이지만, 현재 시점에서 이를 언급하는 것은 불확실성을 내포한 예측이 될 것이므로 이에 대한 기술은 생략하도록 한다.
 
 <br />
 
 <p align="center">
 <img src="images/sgr.png" width="480px" /><br />
-<i>[장기공급성장률]</i>
+<i>X.Blockchain 장기 공급 성장률</i>
 </p>
 <br />
 
+추가 발행되는 자산은 블록생성에 대한 보상으로 지급 된다. X.Blockchain 은 PBFT 기반의 합의 알고리즘을 채택하였기 때문에 블록 생성 과정에서 validator 에 의한 합의가 필수적이다. 추가 발행되는 자산은 이 validator 들에게 블록 검증에 대한 보상으로 지급 될 것이다.  
+또한 X.Blockchain 은 DPoS 합의 알고리즘을 적용하여, validator 가 아니더라도 추가 발행 되는 자산의 일부를 보상으로 받을 수 있는 방법을 제공한다. X.Blockchain 상의 모든 노드는 원하는 validator 에게 자신의 지분을 '위임' 함으로서 delegator 가 될 수 있다. 이러한 지분 위임 방법을 통하여 validator 가 되지 못한 노드들은 delegator 로서 합의 과정에 간접적으로 참여하게 되고, 해당 validator 가 받게 될 보상의 일부를 지급 받게 될 것이다.
+
+하나의 블록 생성시 validator 들과 delegator 들에게 보상으로 지급될 추가 발행 양과 각각의 비율에 대해서는, 위에서 언급된 공급 성장률을 정하는 문제와 연관된 문제로서 충분한 검토와 시험을 통해 최종적으로 결정 되어질 것이다.
 
 <br /><br />
 

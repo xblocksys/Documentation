@@ -217,7 +217,7 @@ X.Blockchain 은 기본적으로 PBFT + dPoS 메커니즘을 이용하여 합의
 #### PBFT (Practical Byzantine Fault Tolerance)
   
 PBFT는 90년대 후반 소개된 합의 알고리즘이다. 기존의 BFT 는 동기식 환경을 가정한 상태에서 작동 가능하였으며 실제 사용하기에는 너무 많은 성능상의 문제점을 갖고 있었다. 이런 BFT 를 비동기식 환경에서도 작동 가능하도록 개선하여 비잔틴 장군 문제를 해결하는 동시에 고속의 트랜잭션 처리가 가능하도록 한 것이 PBFT 이다.  
-PBFT 기반의 합의 알고리즘에서는 합의 과정에 참여하는 전체 노드 n 중에서 <img src="https://latex.codecogs.com/gif.latex?&#x5C;ge&#x5C;frac{2}{3}%20n"/> 이 동의 할 경우, 제안된 블록을 받아들이므로서 악의적인 노드의 구성 비율이 <img src="https://latex.codecogs.com/gif.latex?&#x5C;frac{1}{3}n"/> 을 넘지 않는 한 합의에 도달 할 수 있다.
+PBFT 기반의 합의 알고리즘에서는 합의 과정에 참여하는 전체 노드 n 중에서 <img src="https://latex.codecogs.com/gif.latex?&#x5C;ge&#x5C;frac{2}{3}n"/> 가 동의 할 경우, 제안된 블록을 수용 하는 것으로서, 악의적인 노드의 구성 비율이 <img src="https://latex.codecogs.com/gif.latex?&#x5C;frac{1}{3}"/> 을 넘지 않는 한 합의에 도달 할 수 있다.
   
 <br />
 <p align="center">
@@ -231,9 +231,9 @@ PBFT 기반의 합의 알고리즘에서는 최초 블록을 제안하는 Primar
 1. Primary 노드는 클라이언트로 부터의 모든 트랜잭션 요청을 수집한다.
 1. Primary 노드가 트랜잭션을 요청 순서로 정렬하여 블록으로 구성하여 블록체인 네트워크에 전파한다.
 2. Replica 노드는 Primary 노드로 부터 받은 블록을 다시 다른 Replica 노드들에게 전파한다.
-3. 각 Replica 노드는 자신이 전파한 블록과 다른 노드로 부터 수신한 블록이 동일한지를 확인한다. 동일한 블록을 전송한 노드의 수가 정족수 <img src="https://latex.codecogs.com/gif.latex?(%20&#x5C;frac{2}{3}%20n)"/> 를 넘었다면 해당 블록을 검증한다.
+3. 각 Replica 노드는 자신이 전파한 블록과 다른 노드로 부터 수신한 블록이 동일한지를 확인한다. 동일한 블록을 전송한 노드의 수가 정족수 <img src="https://latex.codecogs.com/gif.latex?(%20&#x5C;frac{2}{3}n)"/> 를 넘었다면 해당 블록을 검증한다.
 4. 블록의 유효성 검증 결과를 다른 노드들에게 전파한다.
-5. 각 노드는 다른 노드들이 보내온 블록 검증 결과 값을 취함한다. 동일한 결과 값이 정족수 <img src="https://latex.codecogs.com/gif.latex?(&#x5C;frac{2}{3}%20n)"/>를 넘었다면 해당 블록을 자신의 블록체인에 연결한다. 그렇지 않다면 해당 블록을 블록체인에 연결하지 않는다.
+5. 각 노드는 다른 노드들이 보내온 블록 검증 결과 값을 취함한다. 동일한 결과 값이 정족수 <img src="https://latex.codecogs.com/gif.latex?(&#x5C;frac{2}{3}n)"/>를 넘었다면 해당 블록을 자신의 블록체인에 연결한다. 그렇지 않다면 해당 블록을 블록체인에 연결하지 않는다.
 6. 해당 결과를 클라이언트에게 전송한다.
   
 현재 많이 사용되는 PBFT 기반의 알고리즘들은 모두 위와 같은 기본 합의 절차에 기초하여 필요에 따라 적절한 변형이 가해진 알고리즘들이다.

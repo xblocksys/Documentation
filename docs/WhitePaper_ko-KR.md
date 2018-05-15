@@ -84,7 +84,7 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
   
   
 기존의 블록체인에서 분기(fork)는 블록에 기록된 데이터의 일관성을 훼손 시킨다. 분기되어 같은 블록 높이(block height)를 갖는 복수의 블록이 존재한다는 것은 특정 시점에 단일한 대상이 복수의 서로 다른 상태값을 동시에 갖는다는 것을 의미하며 이것은 그 자체로 모순이다. 즉 'A 계좌 잔고가 현재 2백만원이면서 동시에 3백만원이다' 라고 정의하는 것과 다름 아니다. A계좌에서 250만원을 인출했다고 하자. 인출 후 A 계좌의 잔액은 얼마인가? 그 전에 인출이 가능한가?  
-이러한 문제를 피하기 위해서는 동일한 대상의 상태를 변경하는 사건들은 반드시 순차적으로 처리되어야 한다. 상태를 변경시키는 임의의 사건에 대한 처리가 완료되어 상태 변경이 확정된 이후 또 다른 사건에 대한 처리 결과가 앞서 변경된 상태에 추가적으로 반영되어야 함을 의미한다. 예를 들어 A의 상태를 S<sub>A</sub>, 이를 변경하는 사건들의 집합을 T<sub>A</sub>라 하고, 개별 사건 t (<img align="center" src="https://latex.codecogs.com/gif.latex?t%20&#x5C;in%20T_{A}"/>) 에 의하여 변경된 A의 상태를 S<sub>A,t</sub> 라 하자. 복수의 사건 t1 과 t2 를 가정하였을 때, 사건 t1 의 처리가 완료되어 A의 상태가 S<sub>A,t1</sub> 으로 확정된 이후에 사건 t2 의 처리가 진행되어야 한다. t2가 선행하여 발생하는 경우도 마찬가지 이다. t2 의 처리 결과로서 A의 상태가 S<sub>A,t2</sub>로 확정된 상황에서 t1 처리가 진행되어야 한다.
+이러한 문제를 피하기 위해서는 동일한 대상의 상태를 변경하는 사건들은 반드시 순차적으로 처리되어야 한다. 상태를 변경시키는 임의의 사건에 대한 처리가 완료되어 상태 변경이 확정된 이후 또 다른 사건에 대한 처리 결과가 앞서 변경된 상태에 추가적으로 반영되어야 함을 의미한다. 예를 들어 A의 상태를 S<sub>A</sub>, 이를 변경하는 사건들의 집합을 T<sub>A</sub>라 하고, 개별 사건 t (<img src="https://latex.codecogs.com/gif.latex?t%20&#x5C;in%20T_{A}"/>) 에 의하여 변경된 A의 상태를 S<sub>A,t</sub> 라 하자. 복수의 사건 t1 과 t2 를 가정하였을 때, 사건 t1 의 처리가 완료되어 A의 상태가 S<sub>A,t1</sub> 으로 확정된 이후에 사건 t2 의 처리가 진행되어야 한다. t2가 선행하여 발생하는 경우도 마찬가지 이다. t2 의 처리 결과로서 A의 상태가 S<sub>A,t2</sub>로 확정된 상황에서 t1 처리가 진행되어야 한다.
   
 <br />
 <p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;begin{array}{c}T_A%20=%20&#x5C;{t1,%20t2,%20&#x5C;space%20...&#x5C;},%20&#x5C;&#x5C;&#x5C;&#x5C;&#x5C;&#x5C;S_{A,t0}%20&#x5C;xrightarrow{t1}%20S_{A,t1}%20&#x5C;xrightarrow{t2}%20S_{A,t2}%20&#x5C;&#x5C;or%20&#x5C;&#x5C;S_{A,t0}%20&#x5C;xrightarrow{t2}%20S_{A,t2}%20&#x5C;xrightarrow{t1}%20S_{A,t1}&#x5C;end{array}"/></p>  
@@ -144,7 +144,7 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
 이것은 복수의 서로 다른 대상(문서) A, B, C ... 각각의 사건 집합을 T<sub>A</sub>, T<sub>B</sub>, T<sub>C</sub>, ... 이라 할 때, 각각의 사건 집합은 하나의 독립적인 선형 구조로 구성되는 것이 가능함을 의미한다. 즉, 서로 다른 사건 집합 T<sub>A</sub> 과 T<sub>B</sub> 에 속하는 사건 t<sub>a1</sub> 과 t<sub>b1</sub> 은 서로에 대하여 순차적으로 처리되어야 할 필요도, 동일한 직렬화 구조에 포함될 필요도 없다.
   
 <br />
-<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;begin{array}{c}T_A%20=%20&#x5C;{t_{a1},%20t_{a2},&#x5C;space...&#x5C;},%20&#x5C;space&#x5C;space%20T_B%20=%20&#x5C;{t_{b1},%20t_{b2},&#x5C;space...&#x5C;},%20&#x5C;&#x5C;&#x5C;&#x5C;%20T_A%20&#x5C;cap%20T_B%20=%20&#x5C;emptyset%20,%20&#x5C;&#x5C;&#x5C;&#x5C;&#x5C;&#x5C;A&#x27;s%20&#x5C;space%20blockchain%20:%20S_{A,t_{a0}}%20&#x5C;xrightarrow{t_{a1}}%20S_{A,t_{a1}}%20&#x5C;xrightarrow{t_{a2}}%20S_{A,t_{a2}}%20%20&#x5C;cdots&#x5C;&#x5C;&#x5C;&#x5C;B&#x27;s%20&#x5C;space%20blockchain%20:%20S_{A,t_{b0}}%20&#x5C;xrightarrow{t_{b1}}%20S_{A,t_{b1}}%20&#x5C;xrightarrow{t_{b2}}%20S_{A,t_{b2}}%20&#x5C;cdots&#x5C;end{array}"/></p>  
+<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;begin{array}{c}T_A%20=%20&#x5C;{t_{a1},%20t_{a2},&#x5C;space...&#x5C;},%20&#x5C;space&#x5C;space%20T_B%20=%20&#x5C;{t_{b1},%20t_{b2},&#x5C;space...&#x5C;},%20&#x5C;&#x5C;&#x5C;&#x5C;%20T_A%20&#x5C;cap%20T_B%20=%20&#x5C;emptyset%20,%20&#x5C;&#x5C;&#x5C;&#x5C;&#x5C;&#x5C;&#x5C;text{A&#x27;s%20blockchain}%20:%20S_{A,t_{a0}}%20&#x5C;xrightarrow{t_{a1}}%20S_{A,t_{a1}}%20&#x5C;xrightarrow{t_{a2}}%20S_{A,t_{a2}}%20%20&#x5C;cdots&#x5C;&#x5C;&#x5C;&#x5C;&#x5C;text{B&#x27;s%20blockchain}%20:%20S_{B,t_{b0}}%20&#x5C;xrightarrow{t_{b1}}%20S_{B,t_{b1}}%20&#x5C;xrightarrow{t_{b2}}%20S_{A,t_{b2}}%20&#x5C;cdots&#x5C;end{array}"/></p>  
   
 <br />
   
@@ -228,7 +228,7 @@ X.Blockchain 은 기본적으로 PBFT + dPoS 메커니즘을 이용하여 합의
 #### PBFT (Practical Byzantine Fault Tolerance)
   
 PBFT는 90년대 후반 소개된 합의 알고리즘이다. 기존의 BFT 는 동기식 환경을 가정한 상태에서 작동 가능하였으며 실제 사용하기에는 너무 많은 성능상의 문제점을 갖고 있었다. 이런 BFT 를 비동기식 환경에서도 작동 가능하도록 개선하여 비잔틴 장군 문제를 해결하는 동시에 고속의 트랜잭션 처리가 가능하도록 한 것이 PBFT 이다.  
-PBFT 기반의 합의 알고리즘에서는 합의 과정에 참여하는 전체 노드 n 중에서 <img align="center" src="https://latex.codecogs.com/gif.latex?&#x5C;ge&#x5C;frac{2}{3}n"/> 가 동의 할 경우, 제안된 블록을 확정하고 블록체인의 다음 블록으로 연결 함으로서, 악의적인 노드 구성 비율이 <img align="center" src="https://latex.codecogs.com/gif.latex?&#x5C;frac{1}{3}"/> 을 넘지 않는 한도 내에서 어떠한 경우에도 합의에 도달 하게 된다.
+PBFT 기반의 합의 알고리즘에서는 합의 과정에 참여하는 전체 노드 n 중에서 <img src="https://latex.codecogs.com/gif.latex?&#x5C;ge&#x5C;frac{2}{3}n"/> 가 동의 할 경우, 제안된 블록을 확정하고 블록체인의 다음 블록으로 연결 함으로서, 악의적인 노드 구성 비율이 <img src="https://latex.codecogs.com/gif.latex?&#x5C;frac{1}{3}"/> 을 넘지 않는 한도 내에서 어떠한 경우에도 합의에 도달 하게 된다.
   
 <br />
 <p align="center">
@@ -242,14 +242,14 @@ PBFT 기반의 합의 알고리즘에서는 최초 블록을 제안하는 Primar
 1. Primary 노드는 클라이언트로 부터의 모든 트랜잭션 요청을 수집한다.
 1. Primary 노드가 트랜잭션을 요청 순서로 정렬하여 블록으로 구성하여 블록체인 네트워크에 전파한다.
 2. Replica 노드는 Primary 노드로 부터 받은 블록을 다시 다른 Replica 노드들에게 전파한다.
-3. 각 Replica 노드는 자신이 전파한 블록과 다른 노드로 부터 수신한 블록이 동일한지를 확인한다. 동일한 블록을 전송한 노드의 수가 정족수 <img align="center" src="https://latex.codecogs.com/gif.latex?(&#x5C;frac{2}{3}n)"/> 를 넘었다면 해당 블록을 검증한다.
+3. 각 Replica 노드는 자신이 전파한 블록과 다른 노드로 부터 수신한 블록이 동일한지를 확인한다. 동일한 블록을 전송한 노드의 수가 정족수 <img src="https://latex.codecogs.com/gif.latex?(&#x5C;frac{2}{3}n)"/> 를 넘었다면 해당 블록을 검증한다.
 4. 블록의 유효성 검증 결과를 다른 노드들에게 전파한다.
-5. 각 노드는 다른 노드들이 보내온 블록 검증 결과를 취합한다. 동일한 결과가 정족수 <img align="center" src="https://latex.codecogs.com/gif.latex?(&#x5C;frac{2}{3}n)"/> 을 넘었다면 해당 블록을 자신의 블록체인에 연결한다. 그렇지 않다면 해당 블록을 블록체인에 연결하지 않는다.
+5. 각 노드는 다른 노드들이 보내온 블록 검증 결과를 취합한다. 동일한 결과가 정족수 <img src="https://latex.codecogs.com/gif.latex?(&#x5C;frac{2}{3}n)"/> 을 넘었다면 해당 블록을 자신의 블록체인에 연결한다. 그렇지 않다면 해당 블록을 블록체인에 연결하지 않는다.
 6. 해당 결과를 클라이언트에게 전송한다.
   
 현재 많이 사용되는 PBFT 기반의 알고리즘들은 모두 위와 같은 기본 합의 절차에 기초하여 필요에 따라 적절한 변형이 가해진 알고리즘들이다.
 그 중 대표적인 것인 Tendermint 에서 채택하고 있는 PBFT + DPoS 이다. Tendermint 의 합의 절차에서는 Primary 노드를 Proposer 라고 하고 Replica 노드를 Validator 라 칭하며, 네트워크상의 모든 노드가 validator 가 되는 것이 아니라 자신이 보유한 지분을 예치한 노드만이 validator 가 되어 합의 과정에 참여한다.
-또한 전통적인 PBFT 에서는 모든 노드가 동일한 weight 를 갖지만, Tendermint 의 합의 알고리즘에서는 각 validator 가 예치한 지분 의 양에 비례하여 weight 를 갖기 때문에, 여기서 정족수는 validator 수가 아닌 validator 들이 예치한 지분(voting power) 총합의 <img align="center" src="https://latex.codecogs.com/gif.latex?&#x5C;frac{2}{3}"/> 를 의미한다.
+또한 전통적인 PBFT 에서는 모든 노드가 동일한 weight 를 갖지만, Tendermint 의 합의 알고리즘에서는 각 validator 가 예치한 지분 의 양에 비례하여 weight 를 갖기 때문에, 여기서 정족수는 validator 수가 아닌 validator 들이 예치한 지분(voting power) 총합의 <img src="https://latex.codecogs.com/gif.latex?&#x5C;frac{2}{3}"/> 를 의미한다.
   
 <br />
 <p align="center">
@@ -319,17 +319,17 @@ X.Blockchain 상에서 각 계정별 상태를 기록 관리는 이더리움에�
   
 ## Currency & Issurance
   
-현재 X.Blockchain 의 자산 ATX 는 ICO 를 통해 공급된 량과 보유금 등을 합쳐 총 1,000,000,000 ATX 가 발행된 상태이다. 현재의 총 발행량은 X.Blockchain의 메인넷 오픈 이전 까지만 유지 될 것이며, 그 후에는 추가 발행이 이루어짐에 따라 총 발행량이 점차 증가하게 될 것이다.  
-ATX 의 추가 발행은, 시간이 지남에 따라 발생 가능한 ATX 집중화 현상을 막기 위함이다. 만일 적절한 추가 발행 방법이 제공되지 않는다면, 시간이 지남에 따라 트랜잭션 수수료 명목으로 일부 블록 생산자들에게 ATX 가 집중 되는 현상이 발생할 수 있고, 시장에 유통되는 실질 통화량은 감소하게 된다. 또한 추가 발행 및 공급이 없다면 블록체인 네트워크 유지를 위해 필요한 강력한 인센티브 수단이 사라지거나 적어도 심각한 수준으로 줄어들게 될 것이다. 블록 생산자들의 참여로 보다 높은 수준의 신뢰 확보가 가능한 X.Blockchain 과 같이 공개된 블록체인 네트워크에서 이는 치명적인 문제를 야기 할 수 있다.  
-반면 무제한 추가 발행은 인플레이션을 유발하여 화폐의 실질 가치를 떨어뜨리고 이는 결과적으로 앞서 언급한 블록체인 네트워크 참여자의 동기를 약화 시킬 수 있다는 문제점이 있다.
+현재 X.Blockchain 의 자산 ATX 는 ICO 를 통해 공급된 양과 보유금 등을 합쳐 총 1,000,000,000 ATX 가 발행된 상태이다. 현재의 총 발행량은 X.Blockchain의 메인넷 오픈 이전 까지만 유지 될 것이며, 그 후에는 추가 발행이 이루어짐에 따라 총 발행량이 점차 증가하게 될 것이다.  
+ATX 의 추가 발행은, 시간이 지남에 따라 발생 가능한 ATX 집중화 현상을 완화 시킬 것이다. 만일 적절한 추가 발행 방법이 제공되지 않는다면, 시간이 지남에 따라 블록 생성에 대한 보상으로 일부 블록 생산자들에게 ATX 가 집중 되는 현상이 충분히 발생할 수 있고, 이로 인해 시장에서 유통되는 실질 통화량은 감소하게 될 것이다. 또한 추가 발행 및 공급이 없다면 블록체인 네트워크 유지를 위해 필요한 강력한 인센티브 수단이 사라지거나 적어도 심각한 수준으로 줄어들게 될 것이다. 블록 생산자들의 참여로 보다 높은 수준의 신뢰 확보가 가능한 공개 블록체인 네트워크에서 이는 치명적인 문제를 야기 할 수 있다.  
+반면 무제한 추가 발행은 인플레이션을 유발하여 화폐의 실질 가치를 떨어뜨리고 이는 다시 앞서 언급한 블록체인 네트워크 참여자의 동기를 약화 시키게 되는 같은 문제를 유발 할 수 있다.
   
-이와 관련하여 대표적인 공개형 블록체인 이더리움의 통화 관련 정책을 살펴보면, 이더리움은 매년 정해진 양의 이더가 추가 발행 및 공급되도록 함으로서 '부의 집중 현상'을 완화 시킬 수 있다고 설명한다. 추가 발행량을 고정하여 공급함으로서 공급 성장률(Supply growth rate)은 계속해서 줄어들어 0 으로 수렴되도록 하였고, 현재 또는 미래의 참여자들이 계속해서 이더를 시장이 아닌 채굴을 통해 얻을 수 있는 기회를 제공한다. 동시에 추가 발행되는 이더의 양이, 시간이 지남에 따라 사용자들의 부주의 등으로 인해 현실적으로 사라지게 되는 일부 통화량과 균형을 이룰 것이라 말하고 있다. 아래는 이더리움 백서 내용의 일부이다.
+이와 관련하여 대표적인 공개 블록체인 이더리움의 통화 관련 정책을 살펴보면, 이더리움은 매년 일정량의 이더가 추가 발행되어 네트워크에 공급되도록 함으로서 '부의 집중 현상'을 완화 시킬 수 있다고 설명한다. 추가 공급량이 항상 동일하므로 증가 하는 전체 발행량 에서 추가 공급량이 차지하는 비율은 계속해서 줄어들게 된다. 결과적으로 장기 공급 성장률(Supply growth rate)은 0 으로 수렴됨과 동시에 현재 또는 미래의 참여자들이 계속해서 이더를 시장이 아닌 채굴을 통해 얻을 수 있는 기회를 제공한다. 또한 추가 발행되는 이더의 공급량이, 시간이 지남에 따라 사용자들의 부주의 등으로 인해 현실적으로 사라지게 되는 일부 통화량과 균형을 이룰 것이라 말하고 있다. 아래는 이더리움 백서 내용의 일부이다.
   
 >The permanent linear supply growth model reduces the risk of what some see as excessive wealth concentration in Bitcoin, and gives individuals living in present and future eras a fair chance to acquire currency units, while at the same time retaining a strong incentive to obtain and hold ether because the "supply growth rate" as a percentage still tends to zero over time. We also theorize that because coins are always lost over time due to carelessness, death, etc, and coin loss can be modeled as a percentage of the total supply per year, that the total currency supply in circulation will in fact eventually stabilize at a value equal to the annual issuance divided by the loss rate (eg. at a loss rate of 1%, once the supply reaches 26X then 0.26X will be mined and 0.26X lost every year, creating an equilibrium).
   
 #### Long-term Supply Growth Rate
   
-X.Blockchain 은 이더리움의 모델을 참고하여 고정적으로 정해진 양의 추가 발행이 이루어지는 모델(permanent liner supply growth model)을 기본으로 한다. ATX 초기 발행량 대비 공급 성장율을 설정하고, 실질적인 통화량 유지와 인플레이션 문제등 충분한 검토와 시험을 통해 이 값을 수정해 나갈 것이며, 메인넷 오픈 시점에서 초기 공급 성장율 수치가 최종 결정될 것이다. 물론 이 값의 변경에 대한 합의는 메인넷 이후에도 충분히 가능할 것이지만, 현재 시점에서 이를 언급하는 것은 불확실성을 내포한 예측이 될 것이므로 이에 대한 기술은 생략하도록 한다.
+X.Blockchain 은 이더리움의 모델을 참고하여 고정적으로 정해진 양의 추가 발행이 이루어지는 모델(permanent liner supply growth model)을 기본 정책으로 한다. ATX 초기 발행량 대비 적절한 공급 성장율을 설정하고, 실질적인 통화량 유지 및 인플레이션 문제등과 같은 문제에 대한 충분한 검토와 시험을 통해 이 값을 지속적으로 수정해 나갈 것이다. 그리고 메인넷 오픈 시점에서 최적의 초기 공급 성장율 수치가 결정될 것이다. 물론 이 값의 변경에 대한 합의는 메인넷 이후에도 충분히 가능할 것이지만, 현재 시점에서 이를 언급하는 것은 불확실성을 내포한 예측이 될 것이므로 이에 대한 명시는 생략하도록 한다.
   
 <br />
   
@@ -341,10 +341,9 @@ X.Blockchain 은 이더리움의 모델을 참고하여 고정적으로 정해�
   
 #### Incentives
   
-추가 발행되는 자산은 블록생성에 대한 보상으로 지급 된다. X.Blockchain 은 PBFT 기반의 합의 알고리즘을 채택하였기 때문에 블록 생성 과정에서 validator 에 의한 합의가 필수적이다. 추가 발행되는 자산은 이 validator 들에게 블록 검증에 대한 보상으로 지급 될 것이다.  
-또한 X.Blockchain 은 DPoS 합의 알고리즘을 적용하여, validator 가 아니더라도 추가 발행 되는 자산의 일부를 보상으로 받을 수 있는 방법을 제공한다. X.Blockchain 상의 모든 노드는 원하는 validator 에게 자신의 지분을 '위임' 함으로서 delegator 가 될 수 있다. 이러한 지분 위임 방법을 통하여 validator 가 되지 못한 노드들은 delegator 로서 합의 과정에 간접적으로 참여하게 되고, 해당 validator 가 받게 될 보상의 일부를 지급 받게 될 것이다.
-  
-마지막으로, 블록 생성 및 합의에 대한 보상으로서 validator 들과 delegator 들에게 지급되는 추가 발행 자산의 양과 각각의 비율에 대해서는, 위에서 언급된 공급 성장률을 정하는 문제와 연관된 문제로서 충분한 검토와 시험을 통해 최종적으로 결정 되어질 것이다.
+추가 발행되는 자산은 블록 생성에 대한 보상으로 지급 될 것이다. X.Blockchain 은 PBFT 기반의 합의 알고리즘이 적용 되기 때문에 블록의 연결과 확장시 validator 에 의한 합의가 필수적이다. 추가 발행되는 자산은 이 validator 들에게 블록 검증 및 확장에 대한 보상으로 지급 될 것이다.  
+또한 X.Blockchain 은 DPoS 합의 알고리즘을 적용하여, validator 가 아니더라도 추가 발행 되는 자산의 일부를 보상으로 지급 받을 수 있는 방법을 제공한다. X.Blockchain 상의 모든 노드는 원하는 validator 에게 자신의 지분을 '위임' 함으로서 delegator 가 될 수 있는데, validator 가 되지 못한 노드들은 이러한 지분 위임 방법을 통해 delegator 로서 합의 과정에 간접적으로 참여하게 되고, 해당 validator 가 받게 되는 보상의 일부를 나누어 지급 받게 될 것이다.  
+validator 들과 delegator 들에게 지급 되는 추가 발행 자산의 양과 각각의 비율에 대해서는, 위에서 언급된 공급 성장률을 정하는 문제와 연관된 문제로서 충분한 검토와 시험을 통해 최종적으로 결정 되어질 것이다.
   
 <br /><br />
   

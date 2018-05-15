@@ -76,7 +76,7 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
   
   
 기존의 블록체인에서 분기(fork)는 블록에 기록된 데이터의 일관성을 훼손 시킨다. 분기되어 같은 블록 높이(block height)를 갖는 복수의 블록이 존재한다는 것은 특정 시점에 단일한 대상이 복수의 서로 다른 상태값을 동시에 갖는다는 것을 의미하며 이것은 그 자체로 모순이다. 즉 'A 계좌 잔고가 현재 2백만원이면서 동시에 3백만원이다' 라고 정의하는 것과 다름 아니다. A계좌에서 250만원을 인출했다고 하자. 인출 후 A 계좌의 잔액은 얼마인가? 그 전에 인출이 가능한가?  
-이러한 문제를 피하기 위해서는 동일한 대상의 상태를 변경하는 사건들은 반드시 순차적으로 처리되어야 한다. 상태를 변경시키는 임의의 사건에 대한 처리가 완료되어 상태 변경이 확정된 이후 또 다른 사건에 대한 처리 결과가 앞서 변경된 상태에 추가적으로 반영되어야 함을 의미한다. 예를 들어 A의 상태를 S<sub>A</sub>, 이를 변경하는 사건들의 집합을 T<sub>A</sub>라 하고, 개별 사건 t (<img src="https://latex.codecogs.com/gif.latex?t%20&#x5C;in%20T_{A}"/>) 에 의하여 변경된 A의 상태를 S<sub>A,t</sub> 라 하자. 복수의 사건 t1 과 t2 를 가정하였을 때, 사건 t1 의 처리가 완료되어 A의 상태가 S<sub>A,t1</sub> 으로 확정된 이후에 사건 t2 의 처리가 진행되어야 한다. t2가 선행하여 발생하는 경우도 마찬가지 이다. t2 의 처리 결과로서 A의 상태가 S<sub>A,t2</sub>로 확정된 상황에서 t1 처리가 진행되어야 한다.
+이러한 문제를 피하기 위해서는 동일한 대상의 상태를 변경하는 사건들은 반드시 순차적으로 처리되어야 한다. 상태를 변경시키는 임의의 사건에 대한 처리가 완료되어 상태 변경이 확정된 이후 또 다른 사건에 대한 처리 결과가 앞서 변경된 상태에 추가적으로 반영되어야 함을 의미한다. 예를 들어 A의 상태를 S<sub>A</sub>, 이를 변경하는 사건들의 집합을 T<sub>A</sub>라 하고, 개별 사건 t (<img align="center" src="https://latex.codecogs.com/gif.latex?t%20&#x5C;in%20T_{A}"/>) 에 의하여 변경된 A의 상태를 S<sub>A,t</sub> 라 하자. 복수의 사건 t1 과 t2 를 가정하였을 때, 사건 t1 의 처리가 완료되어 A의 상태가 S<sub>A,t1</sub> 으로 확정된 이후에 사건 t2 의 처리가 진행되어야 한다. t2가 선행하여 발생하는 경우도 마찬가지 이다. t2 의 처리 결과로서 A의 상태가 S<sub>A,t2</sub>로 확정된 상황에서 t1 처리가 진행되어야 한다.
   
 <br />
 <p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;begin{array}{c}T_A%20=%20&#x5C;{t1,%20t2,%20&#x5C;space%20...&#x5C;},%20&#x5C;&#x5C;&#x5C;&#x5C;&#x5C;&#x5C;S_{A,t0}%20&#x5C;xrightarrow{t1}%20S_{A,t1}%20&#x5C;xrightarrow{t2}%20S_{A,t2}%20&#x5C;&#x5C;or%20&#x5C;&#x5C;S_{A,t0}%20&#x5C;xrightarrow{t2}%20S_{A,t2}%20&#x5C;xrightarrow{t1}%20S_{A,t1}&#x5C;end{array}"/></p>  
@@ -217,7 +217,7 @@ X.Blockchain 은 기본적으로 PBFT + dPoS 메커니즘을 이용하여 합의
 #### PBFT (Practical Byzantine Fault Tolerance)
   
 PBFT는 90년대 후반 소개된 합의 알고리즘이다. 기존의 BFT 는 동기식 환경을 가정한 상태에서 작동 가능하였으며 실제 사용하기에는 너무 많은 성능상의 문제점을 갖고 있었다. 이런 BFT 를 비동기식 환경에서도 작동 가능하도록 개선하여 비잔틴 장군 문제를 해결하는 동시에 고속의 트랜잭션 처리가 가능하도록 한 것이 PBFT 이다.  
-PBFT 기반의 합의 알고리즘에서는 합의 과정에 참여하는 전체 노드 n 중에서 <img src="https://latex.codecogs.com/gif.latex?&#x5C;ge&#x5C;frac{2}{3}n"/> 가 동의 할 경우, 제안된 블록을 수용 하는 것으로서, 악의적인 노드의 구성 비율이 <img src="https://latex.codecogs.com/gif.latex?&#x5C;frac{1}{3}"/> 을 넘지 않는 한 합의에 도달 할 수 있다.
+PBFT 기반의 합의 알고리즘에서는 합의 과정에 참여하는 전체 노드 n 중에서 <img align="center" src="https://latex.codecogs.com/gif.latex?&#x5C;ge&#x5C;frac{2}{3}n"/> 가 동의 할 경우, 제안된 블록을 수용 하는 것으로서, 악의적인 노드의 구성 비율이 <img align="center" src="https://latex.codecogs.com/gif.latex?&#x5C;frac{1}{3}"/> 을 넘지 않는 한 합의에 도달 할 수 있다.
   
 <br />
 <p align="center">
@@ -231,14 +231,14 @@ PBFT 기반의 합의 알고리즘에서는 최초 블록을 제안하는 Primar
 1. Primary 노드는 클라이언트로 부터의 모든 트랜잭션 요청을 수집한다.
 1. Primary 노드가 트랜잭션을 요청 순서로 정렬하여 블록으로 구성하여 블록체인 네트워크에 전파한다.
 2. Replica 노드는 Primary 노드로 부터 받은 블록을 다시 다른 Replica 노드들에게 전파한다.
-3. 각 Replica 노드는 자신이 전파한 블록과 다른 노드로 부터 수신한 블록이 동일한지를 확인한다. 동일한 블록을 전송한 노드의 수가 정족수 <img src="https://latex.codecogs.com/gif.latex?(&#x5C;frac{2}{3}n)"/> 를 넘었다면 해당 블록을 검증한다.
+3. 각 Replica 노드는 자신이 전파한 블록과 다른 노드로 부터 수신한 블록이 동일한지를 확인한다. 동일한 블록을 전송한 노드의 수가 정족수 <img align="center" src="https://latex.codecogs.com/gif.latex?(&#x5C;frac{2}{3}n)"/> 를 넘었다면 해당 블록을 검증한다.
 4. 블록의 유효성 검증 결과를 다른 노드들에게 전파한다.
-5. 각 노드는 다른 노드들이 보내온 블록 검증 결과 값을 취함한다. 동일한 결과 값이 정족수 <img src="https://latex.codecogs.com/gif.latex?(&#x5C;frac{2}{3}n)"/> 을 넘었다면 해당 블록을 자신의 블록체인에 연결한다. 그렇지 않다면 해당 블록을 블록체인에 연결하지 않는다.
+5. 각 노드는 다른 노드들이 보내온 블록 검증 결과 값을 취함한다. 동일한 결과 값이 정족수 <img align="center" src="https://latex.codecogs.com/gif.latex?(&#x5C;frac{2}{3}n)"/> 을 넘었다면 해당 블록을 자신의 블록체인에 연결한다. 그렇지 않다면 해당 블록을 블록체인에 연결하지 않는다.
 6. 해당 결과를 클라이언트에게 전송한다.
   
 현재 많이 사용되는 PBFT 기반의 알고리즘들은 모두 위와 같은 기본 합의 절차에 기초하여 필요에 따라 적절한 변형이 가해진 알고리즘들이다.
 그중 대표적인 것인 Tendermint 에서 채택하고 있는 PBFT + DPoS 이다. Tendermint 의 합의 절차에서는 Primary 노드를 Proposer 라고 하고 Replica 노드를 Validator 라 칭하며, 네트워크상의 모든 노드가 validator 가 되는 것이 아니라 자신이 보유한 지분을 예치한 노드만이 validator 가 되어 합의 과정에 참여한다.
-또한 전통적인 PBFT 에서는 모든 노드가 동일한 weight 를 갖지만, Tendermint 의 합의 알고리즘에서는 각 validator 가 예치한 지분 의 양에 비례하여 weight 를 갖기 때문에, 여기서 정족수가 의미하는 것은 validator 수가 아닌 validator 들이 예치한 지분(voting power) 총합의 <img src="https://latex.codecogs.com/gif.latex?&#x5C;frac{2}{3}"/> 가 된다.
+또한 전통적인 PBFT 에서는 모든 노드가 동일한 weight 를 갖지만, Tendermint 의 합의 알고리즘에서는 각 validator 가 예치한 지분 의 양에 비례하여 weight 를 갖기 때문에, 여기서 정족수가 의미하는 것은 validator 수가 아닌 validator 들이 예치한 지분(voting power) 총합의 <img align="center" src="https://latex.codecogs.com/gif.latex?&#x5C;frac{2}{3}"/> 가 된다.
   
 <br />
 <p align="center">

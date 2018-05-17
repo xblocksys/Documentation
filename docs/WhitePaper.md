@@ -218,8 +218,10 @@ X.Tx 에는 다음과 같은 내용이 기술 되어야 한다.
 ```
 <!-- - Tx. Fee in SubChain Asset -->
 
-X.Transaction 의 처리 수수료는 MainChain의 자산으로 지불 되는 것과 SubChain의 자산으로 지급 되는 것으로 구성된다. MainChain 자산으로 지급 되는 최소 수수료는 일반 Tx. 수수료 x10 로 책정된다. 이는 불필요한 X.Block 및 SubChain 생성으로 이어지는 X.Transaction 의 과다한 발생을 막아 전체 블록체인의 효율성을 높이기 위함이다.  
+X.Transaction 의 처리 수수료는 MainChain의 자산으로 지불 된다. X.Tx 처리를 위한 수수료는 일반 Tx. 수수료 보다 높은 수수료를 지불해야 하지만 이에 대한 결정은 어디까지나 블록 생성 및 검증자의 재량으로 위임할 것이다. 불필요한 X.Block 및 SubChain 생성으로 이어지는 X.Transaction 의 과다한 발생을 막아 전체 블록체인의 효율성을 높이기 위해서는 일반 Tx. 의 수수료 보다 높은 수수료가 책정되는 것이 올바르다.  
+
 <!--
+X.Transaction 의 처리 수수료는 MainChain의 자산으로 지불 되는 것과 SubChain의 자산으로 지급 되는 것으로 구성된다. MainChain 자산으로 지급 되는 최소 수수료는 일반 Tx. 수수료 x10 로 책정된다. 이는 불필요한 X.Block 및 SubChain 생성으로 이어지는 X.Transaction 의 과다한 발생을 막아 전체 블록체인의 효율성을 높이기 위함이다.  
 SubChain 자산으로 지급되는 수수료는 SubChain 자산의 초기 상태 (초기 발행량) 에 대한 백분율로 기술되어야 하며, 블록 생산자에게 수수료로 지급되는 SubChain 자산 정보는 X.Tx 생성자에 의하여 기술된 ```Initial State of SubChain Assets``` 에 추가되어 X.Block 에 기록된다. 이렇게 블록 생성자에게 지급되는 SubChain 자산은, 이 후 설명 되어질 X.Blockchain 의 합의 알고리즘 특성상, 블록 생성자에게 자신의 자산을 예치한 수많은 사용자에게로 분배 되어 질 것이다. 결과적으로 기존 코인 경제에서의 AirDrop 과 같은 결과를 낳게 되는데, 이는 X.Blockchain 상의 합의 과정에 대한 참여를 촉진 시키고, X.Blockchain 상에서 발행되는 다양한 자산의 사용률을 높이는 결과로 이어지게 될 것이다.
 -->
 

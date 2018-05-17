@@ -389,7 +389,7 @@ Validator 들과 delegator 들에게 지급 되는 추가 발행 자산의 양�
 동일한 조건을 X.Blockchain에 적용하면, 전체 블록의 수와 크기는 동일하지만, 해마다 추가되는 변경 블록수가 MainChain에 선형적으로 연결되는 것이 아닌 SubChain으로 구성 될 것이다. 즉 10년 동안의 변경분에 대한 70,000,000개의 블록은 51,525,338 개의 블록으로 구성된 MainChain의 SubChain 으로 분산되어 구성될 것이다. 변경분의 블록이 MainChain의 SubChain에 분산되는 정도를 단순 산술 평균으로 적용하면, MainChain의 블록 1개당 1개의 SubChain을 갖고, SubChain당 1.35개<sup id="a7">[7](#f7 )</sup> 의 블록을 갖게 된다. 이에 근거한 인구 1명당 블록체인의 크기는 아래와 같다.
   
 <br />
-<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;begin%20{aligned}&#x5C;text{SubChain%20Average%20Size}%20&amp;=%20&#x5C;frac{7,000,000%20&#x5C;times%2010}{51,525,338}%20&#x5C;times%2080%20&#x5C;&#x5C;%20&amp;=%20108.68%20B%20&#x5C;&#x5C;&#x5C;&#x5C;&#x5C;text{MainChain%20Average%20Size}%20&amp;=%20&#x5C;frac{51,525,338%20*%2080}{1024^3}%20&#x5C;times%2080%20&#x5C;&#x5C;%20&amp;=%203.83%20G&#x5C;end%20{aligned}"/></p>  
+<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;begin%20{aligned}&#x5C;text{SubChain%20Size%20(avg.)}%20&amp;=%20&#x5C;frac{7,000,000%20&#x5C;times%2010}{51,525,338}%20&#x5C;times%2080%20&#x5C;&#x5C;%20&amp;=%20108.68%20B%20&#x5C;&#x5C;&#x5C;&#x5C;&#x5C;text{MainChain%20Size}%20&amp;=%20&#x5C;frac{51,525,338}{1024^3}%20&#x5C;times%2080%20&#x5C;&#x5C;%20&amp;=%203.83%20G&#x5C;end%20{aligned}"/></p>  
   
 <br />
   

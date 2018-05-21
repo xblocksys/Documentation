@@ -55,14 +55,14 @@ May 21, 2018
   
 <br />
 <p align="center">
-<img src="docs/images/blockchain_sz.png" width="480px" /><br />
+<img src="blockchain_sz.png" width="480px" /><br />
 <i>Bitcoin & Ethtereum blockchain size - 출처: <a href="http://bc.daniel.net.nz/">http://bc.daniel.net.nz/</a></i>
 </p>
   
 <br />
   
 <p align="center">
-<img src="docs/images/cpu_pw.png" width="480px" /><br />
+<img src="images/cpu_pw.png" width="480px" /><br />
 <i>Bitcoin & Ethtereum CPU usage - 출처: <a href="http://bc.daniel.net.nz/">http://bc.daniel.net.nz/</a></i>
 </p>
 <br />

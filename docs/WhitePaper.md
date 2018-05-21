@@ -1,7 +1,6 @@
 ---
 markdown:
-    image_dir: /docs/images
-    path: /docs/WhitePaper_ko-KR.md
+    path: WhitePaper_ko-KR.md
     ignore_from_front_matter: false
     absolute_image_path: false
 ---

@@ -1,7 +1,7 @@
 ---
 markdown:
     image_dir: /docs/images
-    path: WhitePaper_ko-KR.md
+    path: /docs/WhitePaper_ko-KR.md
     ignore_from_front_matter: false
     absolute_image_path: false
 ---
@@ -373,7 +373,6 @@ Validator 들과 delegator 들에게 지급 되는 추가 발행 자산의 양�
 ## Use cases
 
 #### 주민등록초본 관리 시스템
-
 주민등록초본을 전자문서화 하고 블록체인 기술을 적용 하여 관리 하는 상황을 가정하였을 때, X.Blockchain 적용과 기존 블록체인 적용이 어떻게 다른가에 대하여 설명한다.
 
 구성 인구 1명당 1개의 초본이 존재하고 이는 다시 1개의 블록을 구성한다고 가정하였으며, 해마다 이동 인구수 만큼 주민등록초본 갱신이 발생하고 이 역시 하나의 블록으로 기록됨을 가정하였다.

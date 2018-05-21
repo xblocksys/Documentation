@@ -108,7 +108,7 @@ $$
 S_{A,t0} \xrightarrow{t1} S_{A,t1} \\\\
 S_{A,t0} \xrightarrow{t2} S_{A,t2}
 \end{array}
-\right \} \space \text{What is A's state?} \space\space\space S_{A,t1} \space\space\space or \space\space\space S_{A,t2}
+\right \} \space \text{What is A's state?    } S_{A,t1} \text{    or    } S_{A,t2}
 $$
 
 <br />

@@ -226,7 +226,7 @@ X.Transaction 의 처리 수수료는 MainChain의 자산으로 지불 된다. X
 ## Consensus Algorithm
   
   
-X.Blockchain 은 기본적으로 PBFT + dPoS 메커니즘을 이용하여 합의에 도달한다. 이는 Tendermint 에서 제안된 것으로써, 전통적인 PBFT 알고리즘에 DPoS 개념을 결합하여 Public & Private blockchain 구성이 가능하도록 한 합의 메커니즘이다.
+X.Blockchain 은 기본적으로 PBFT + DPoS 메커니즘을 이용하여 합의에 도달한다. 이는 Tendermint 에서 제안된 것으로써, 전통적인 PBFT 알고리즘에 DPoS 개념을 결합하여 Public & Private blockchain 구성이 가능하도록 한 합의 메커니즘이다.
   
 #### PBFT (Practical Byzantine Fault Tolerance)
   
@@ -313,7 +313,7 @@ X.Blockchain 은 자산을 분리한다. X.Blockchain 에서 MainChain 상의 �
   
 ## Accounts & States
   
-X.Blockchain 상에서 각 계정별 상태를 기록 관리는 이더리움에서 채택하고 있는 Merkle Patricia Trie 구조를 사용한다. 각 계정에 대한 복수의 상태값은 Key-Value 형식으로 저장되고, 이는 하나의 해시 값으로 표현된다. 각 계정을 표현하는 해시 값들로 전체 계정 상태를 반영하는 Patricia Trie 의 최상위 해시 값인 월드 스테이트 해시 값이 구성된다. 즉 특정 계정의 상태 변경은 월드 스테이트 해시 값의 변경으로 이어지고, 이 월드 스테이트 해시값이 블록에 포함 됨으로써 전체 계정의 상태가 각 블록에 반영되게 된다.
+X.Blockchain 상에서 각 계정간 거래의 상태 기록은 이더리움에서 채택하고 있는 Merkle Patricia Trie 구조를 사용하여 관리한다. 각 계정의 다양한 상태 값은 Key-Value 형식으로 저장되고, 이는 하나의 해시 값으로 표현된다. 각 계정을 표현하는 해시 값들로 전체 계정 상태를 반영하는 Patricia Trie 의 최상위 해시 값인 월드 스테이트 해시 값이 구성된다. 즉 특정 계정의 상태 변경은 월드 스테이트 해시 값의 변경으로 이어지고, 이 월드 스테이트 해시값이 블록에 포함 됨으로써 전체 계정의 상태가 각 블록에 반영되게 된다.
   
 각 SubChain은 독립적인 자산을 가지므로 각 계정의 자산의 상태를 나타내는 거래 원장 역시 SubChain 별로 독립적이어야 한다. 때문에 각 SubChain 은 계정의 독립적인 상태 관리를 위하여 독자적인 Merkle Patricia Trie 를 갖는다.
   

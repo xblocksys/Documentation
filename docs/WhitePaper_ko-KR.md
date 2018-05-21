@@ -102,7 +102,7 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
 그러나 S<sub>A</sub> 에 대하여 t1 의 처리가 완료되기 이전에 t2 에 대한 처리가 동시에 이루어진다면, 사건 t1 이 처리되는 시점의 A의 이전 상태를 S<sub>A,t0</sub> 라 할 때, 사건 t2 가 처리되는 시점의 A의 이전 상태 역시 S<sub>A,t0</sub> 가 되므로, S<sub>A,t0</sub>는 S<sub>A,t1</sub> 와 S<sub>A,t2</sub> 두가지 상태로 분기된다.
   
 <br />
-<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;left%20.&#x5C;begin{array}{c}S_{A,t0}%20&#x5C;xrightarrow{t1}%20S_{A,t1}%20&#x5C;&#x5C;&#x5C;&#x5C;S_{A,t0}%20&#x5C;xrightarrow{t2}%20S_{A,t2}&#x5C;end{array}&#x5C;right%20&#x5C;}%20&#x5C;space%20&#x5C;text{What%20is%20A&#x27;s%20state?}%20&#x5C;space&#x5C;space&#x5C;space&#x5C;space%20S_{A,t1}%20&#x5C;space&#x5C;space%20&#x5C;text{or}%20&#x5C;space&#x5C;space%20S_{A,t2}"/></p>  
+<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;left%20.&#x5C;begin{array}{c}S_{A,t0}%20&#x5C;xrightarrow{t1}%20S_{A,t1}%20&#x5C;&#x5C;&#x5C;&#x5C;S_{A,t0}%20&#x5C;xrightarrow{t2}%20S_{A,t2}&#x5C;end{array}&#x5C;right%20&#x5C;}%20&#x5C;space%20&#x5C;text{What%20is%20A&#x27;s%20state?}%20&#x5C;space&#x5C;space&#x5C;space%20S_{A,t1}%20&#x5C;space&#x5C;space%20&#x5C;text{or}%20&#x5C;space&#x5C;space%20S_{A,t2}"/></p>  
   
   
 <br />

@@ -102,7 +102,7 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
 그러나 S<sub>A</sub> 에 대하여 t1 의 처리가 완료되기 이전에 t2 에 대한 처리가 동시에 이루어진다면, 사건 t1 이 처리되는 시점의 A의 이전 상태를 S<sub>A,t0</sub> 라 할 때, 사건 t2 가 처리되는 시점의 A의 이전 상태 역시 S<sub>A,t0</sub> 가 되므로, S<sub>A,t0</sub>는 S<sub>A,t1</sub> 와 S<sub>A,t2</sub> 두가지 상태로 분기된다.
   
 <br />
-<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;left%20.&#x5C;begin{array}{c}S_{A,t0}%20&#x5C;xrightarrow{t1}%20S_{A,t1}%20&#x5C;&#x5C;&#x5C;&#x5C;S_{A,t0}%20&#x5C;xrightarrow{t2}%20S_{A,t2}&#x5C;end{array}&#x5C;right%20&#x5C;}%20&#x5C;space%20&#x5C;text{What%20is%20A&#x27;s%20state?%20}%20S_{A,t1}%20&#x5C;text{%20or%20}%20S_{A,t2}"/></p>  
+<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;left%20.&#x5C;begin{array}{c}S_{A,t0}%20&#x5C;xrightarrow{t1}%20S_{A,t1}%20&#x5C;&#x5C;&#x5C;&#x5C;S_{A,t0}%20&#x5C;xrightarrow{t2}%20S_{A,t2}&#x5C;end{array}&#x5C;right%20&#x5C;}%20&#x5C;space%20&#x5C;text{What%20is%20A&#x27;s%20state?}%20&#x5C;space&#x5C;space&#x5C;space&#x5C;space%20S_{A,t1}%20&#x5C;space&#x5C;space%20&#x5C;text{or}%20&#x5C;space&#x5C;space%20S_{A,t2}"/></p>  
   
   
 <br />
@@ -301,7 +301,7 @@ X.Block 에는 최대 2개의 블록이 연결될 수 있다. 첫번째가 MainC
   
 ## Asset Model
   
-X.Blockchain 은 분기가 허용되는 X.Block 을 통하여 다수의 SubChain 이 생성되고 연결이 이어질 수 있다. 그러나 X.Block 에서 발생되는 이러한 분기는 자산(암호 화폐, 코인) 거래에 있어서 '이중 지불 문제' 를 발생시킨다. 때문에 MainChain 상에서 관리되는 거래 원장과 SubChain 상에서 관리되는 거래 원장 사이에는 어떠한 상관 관계가 존재 해서는 안되며, 이를 해결하기 위한 방법은 각 블록체인을 통해 관리되는 계정을 철저히 분리하거나 아니면 자산 그 자체(거래원장 그 자체)를 분리하여야 한다.
+X.Blockchain 은 분기가 허용되는 X.Block 을 통하여 다수의 SubChain 이 생성되고 연결이 이어질 수 있다. 그러나 X.Block 에서 발생되는 이러한 분기는 자산(암호화폐, 코인) 거래에 있어서 '이중 지불 문제' 를 발생시킨다. 때문에 MainChain 상에서 관리되는 거래 원장과 SubChain 상에서 관리되는 거래 원장 사이에는 어떠한 상관 관계가 존재 해서는 안되며, 이를 해결하기 위한 방법은 각 블록체인을 통해 관리되는 계정을 철저히 분리하거나 아니면 자산 그 자체(거래원장 그 자체)를 분리하여야 한다.
   
 X.Blockchain 은 자산을 분리한다. X.Blockchain 에서 MainChain 상의 자산과 SubChain 상의 자산, 그리고 또 다른 SubChain 상의 자산은 모두 완전히 다른 자산이다. 즉 MainChain을 포함하여 모든 SubChain 은 각자 자신만의 자산을 가지며 이 자산의 상태가 기록되는 독립적인 거래원장을 갖는다. 각 SubChain 상의 자산은 일반적인 거래 메커니즘으로는 서로 다른 자산간 상호 이동이 원칙적으로 금지 된다. 단, 향후 본 백서에 추가될 [Communication between SubChains](#communication-between-chains ) 절차에 따라, 서로 다른 SubChain 간의 자산 이동이 가능 하게 될 것이다.
   

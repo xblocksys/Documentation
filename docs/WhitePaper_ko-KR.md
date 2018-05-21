@@ -92,6 +92,8 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
   
 이것을 블록 구조로 표현하면 다음과 같다.
   
+<br />
+  
 <p align="center">
 <img src="images/bc1.png" width="320px"/>
 <br /> or <br /><br />

@@ -102,7 +102,7 @@ X.Blockchain 은, 발생되는 모든 기록(Transaction) 을 반드시 하나�
 그러나 S<sub>A</sub> 에 대하여 t1 의 처리가 완료되기 이전에 t2 에 대한 처리가 동시에 이루어진다면, 사건 t1 이 처리되는 시점의 A의 이전 상태를 S<sub>A,t0</sub> 라 할 때, 사건 t2 가 처리되는 시점의 A의 이전 상태 역시 S<sub>A,t0</sub> 가 되므로, S<sub>A,t0</sub>는 S<sub>A,t1</sub> 와 S<sub>A,t2</sub> 두가지 상태로 분기된다.
   
 <br />
-<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;left%20.&#x5C;begin{array}{c}S_{A,t0}%20&#x5C;xrightarrow{t1}%20S_{A,t1}%20&#x5C;&#x5C;&#x5C;&#x5C;S_{A,t0}%20&#x5C;xrightarrow{t2}%20S_{A,t2}&#x5C;end{array}&#x5C;right%20&#x5C;}%20&#x5C;space%20&#x5C;text{What%20is%20real%20?}%20&#x5C;space&#x5C;space%20S_{A,t1}%20&#x5C;space&#x5C;space%20or%20&#x5C;space&#x5C;space%20S_{A,t2}"/></p>  
+<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;left%20.&#x5C;begin{array}{c}S_{A,t0}%20&#x5C;xrightarrow{t1}%20S_{A,t1}%20&#x5C;&#x5C;&#x5C;&#x5C;S_{A,t0}%20&#x5C;xrightarrow{t2}%20S_{A,t2}&#x5C;end{array}&#x5C;right%20&#x5C;}%20&#x5C;space%20&#x5C;text{What%20is%20A&#x27;s%20state?}%20&#x5C;space&#x5C;space&#x5C;space%20S_{A,t1}%20&#x5C;space&#x5C;space&#x5C;space%20or%20&#x5C;space&#x5C;space&#x5C;space%20S_{A,t2}"/></p>  
   
   
 <br />
@@ -358,14 +358,13 @@ Validator 들과 delegator 들에게 지급 되는 추가 발행 자산의 양�
   
 구성 인구 1명당 1개의 초본이 존재하고 이는 다시 1개의 블록을 구성한다고 가정하였으며, 해마다 이동 인구수 만큼 주민등록초본 갱신이 발생하고 이 역시 하나의 블록으로 기록됨을 가정하였다.
   
-| | |2016년|
-|---|---|---:|
-|총이동|이동자수|7,378 명|
-|    |이동률(%)|14.4%|
-|    |전입신고건수|14.4%|
-|    |이동률(%)|14.4%|
-  
-*[단위:천명, %, 천건], 출처:통계청 「국내인구이동통계」*
+|구분|2016년|
+|---|---:|
+|이동자수|<b>7,378</b>|
+|이동률(%)|14.4%|
+|전입신고건수|4,636|
+|이동자성비(여자=100)|103.9|
+*출처:통계청 「국내인구이동통계」, [단위:천명, 천건]*
   
 대한민국의 총인구는 국가통계포털([http://kosis.kr](http://kosis.kr )) 발표에 따르면 2015년말 기준 51,525,338명 이다. 인구 1명당 주민등록초본 1부가 존재하고 거주 지역을 이동 할 때 마다 이 초본은 갱신되어야 하며, 위 표의 데이터에 따르자면 2016년 한 해 동안 총 7,378,000번<sup id="a5">[5](#f5 )</sup>의 초본 갱신이 발생 되었음을 알 수 있다.  
 이를 선형적인 블록체인으로 구성한다면, 최초 블록체인은 전체 인구수 만큼의 블록으로 구성되고, 해마다 인동 인구수 만큼의 블록이 추가되어야 한다. 만약 2016년부터 적용한다면 2016년 말 기준으로 블록체인의 블록 수는 아래와 같다.

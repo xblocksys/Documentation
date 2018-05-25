@@ -9,7 +9,7 @@ markdown:
 # X.Blockchain Technical White Paper
   
   
-Yongseok Kwon
+Yongseok Kwon  
 May 21, 2018
   
 *Copyright © 2018 XBLOCK SYSTEMS CO., LTD.*

@@ -2,4 +2,7 @@
 
 - [Korean](docs/WhitePaper_ko-KR.md)
 - [English](docs/WhitePaper_en-US.md)
-- Chinese
+- Chinese  
+
+# Q&A
+- [Q&A](issues/1)

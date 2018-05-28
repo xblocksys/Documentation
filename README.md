@@ -5,4 +5,4 @@
 - Chinese  
 
 # Q&A
-- [Q&A](https://github.com/xblocksys/Documentation/issues)
+- [Q&A](https://github.com/xblocksys/Documentation/issues/1)

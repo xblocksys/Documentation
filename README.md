@@ -6,4 +6,4 @@
 
 <br />
 
-- [Q&A](https://github.com/xblocksys/Documentation/issues)
+- [Q&A](http://blog.naver.com/aston_company)

@@ -1,7 +1,7 @@
 # X.Blockchain Technical White Paper
 
-- [Korean](docs/WhitePaper_ko-KR.md)
-- [English](docs/WhitePaper_en-US.md)
+- [Korean](https://xblocksys.github.io/Documentation/WhitePaper_ko-KR)
+- [English](https://xblocksys.github.io/Documentation/WhitePaper_en-US)
 - Chinese  
 
 # Q&A

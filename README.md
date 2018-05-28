@@ -6,4 +6,4 @@
 
 <br />
 
-- [Q&A](https://github.com/xblocksys/Documentation/issues/1)
+- [Q&A](https://github.com/xblocksys/Documentation/issues)

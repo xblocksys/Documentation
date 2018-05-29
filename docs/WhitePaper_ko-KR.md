@@ -314,9 +314,10 @@ X.Blockchain 은 자산을 분리한다. X.Blockchain 에서 MainChain 상의 �
   
 ## Accounts & States
   
-X.Blockchain 상에서 각 계정간 거래의 상태 기록은 이더리움에서 채택하고 있는 Merkle Patricia Trie 구조를 사용하여 관리한다. 각 계정의 다양한 상태 값은 Key-Value 형식으로 저장되고, 이는 하나의 해시 값으로 표현된다. 각 계정을 표현하는 해시 값들로 전체 계정 상태를 반영하는 Patricia Trie 의 최상위 해시 값인 월드 스테이트 해시 값이 구성된다. 즉 특정 계정의 상태 변경은 월드 스테이트 해시 값의 변경으로 이어지고, 이 월드 스테이트 해시값이 블록에 포함 됨으로써 전체 계정의 상태가 각 블록에 반영되게 된다.
+X.Blockchain 상에서 각 계정간 거래, 데이터의 무결성을 위한 변경 불가능한 모든 상태 데이터의 기록은 IAVL+ tree 구조를 사용하여 기록된다. X.Blockchain 에서 다루는 다양한 상태 값은 Key-Value 형식으로 저장되고, 각각의 key-value 쌍으로 IAVL+ tree 구조가 구성되며 이 tree 의 최상위 해시 값인 Merkle Root Hash 가 결정된다. 즉 특정 계정의 상태 변경은 Merkle Root Hash 값의 변경으로 이어지고, 이 Merkle Root Hash 값이 블록에 포함 됨으로써 전체 계정의 상태가 각 블록에 반영되게 된다.
+이 tree 구조는 새로운 노드의 추가 또는 변경으로 인하여 재구성이 필요한 경우, [AVL 알고리즘](https://en.wikipedia.org/wiki/AVL_tree )의 변형을 따르는데 이는 O(log(n))의 시간 복잡도를 갖는다.
   
-각 SubChain은 독립적인 자산을 가지므로 각 계정의 자산의 상태를 나타내는 거래 원장 역시 SubChain 별로 독립적이어야 한다. 때문에 각 SubChain 은 계정의 독립적인 상태 관리를 위하여 독자적인 Merkle Patricia Trie 를 갖는다.
+각 SubChain은 독립적인 자산을 가지므로 각 계정의 자산의 상태를 나타내는 거래 원장 역시 SubChain 별로 독립적이어야 한다. 때문에 각 SubChain 은 계정의 독립적인 상태 관리를 위하여 독자적인 IAVL+ tree 구조를 갖는다.
   
 <br /><br />
   

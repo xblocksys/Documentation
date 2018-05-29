@@ -327,10 +327,8 @@ X.Blockchain separates assets. In X.Blockchain, the assets on MainChain, the ass
   
 ## Accounts & States
   
+Not Yet.
   
-Record management of each account state on X.Blockchain uses the Merkle Patricia Trie structure adopted by Ethereum. Multiple status values for each account are stored in a Key-Value format, which is represented by a single hash value. The hash values representing each account constitute the world-state hash value, the top-level hash value of Patricia Trie, which reflects the overall account state. That is, the state change of a specific account leads to the change of the world state hash value, and the state of the whole account is reflected in each block by including this world state hash value in the block.
-  
-Since each SubChain has independent assets, the transaction ledger representing the status of each account's assets must also be independent for each SubChain. Because of this, each SubChain has its own Merkle Patricia Trie for independent state management of accounts.
   
 <br /><br />
   

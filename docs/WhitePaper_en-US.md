@@ -331,7 +331,7 @@ The recording of all the impossible status data such as transaction between each
 The various state values handled by X.Blockchain are stored in a key-value format.
 Each key-value pair forms an IAVL + tree structure, and the Merkle Root Hash that the highest hash value of this tree is determined.
 In other words, The state change of a specific account leads to the change of the Merkle Root Hash value and this Merkle Root Hash value is included in the block so that the state of the whole account is reflected in each block.
-This tree structure follows a variant of [AVL Algorithm] (https://en.wikipedia.org/wiki/AVL_tree) when reconstruction is required due to addition or modification of new nodes has a time complexity of O(log(n)).
+This tree structure follows a variant of [AVL Algorithm](https://en.wikipedia.org/wiki/AVL_tree ) when reconstruction is required due to addition or modification of new nodes has a time complexity of O(log(n)).
 Since each SubChain has independent assets, the transaction ledger representing the status of each account's assets must also be independent for each SubChain.
 Therefore, each SubChain has its own IAVL + tree structure for independent state management of accounts.
   

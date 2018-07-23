@@ -1,3 +1,4 @@
 ignore/*
 docs/_*
 Roadmap.md
+docs/.DS_Store

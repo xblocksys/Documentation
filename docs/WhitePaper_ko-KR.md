@@ -856,23 +856,23 @@ X.Blockchain 을 이용하여 서비스 또는 어플리케이션을 개발하�
   
 ## Command Line Options
   
-Command Option | Desc.
----|---|---|---
---datadir | X.Blockchain 의 블록 및 상태 데이터가 생성되는 디렉토리.<br/>기본값은 \$HOME/.xnode
---keystore | xnode 를 통해 생성된 계정의 Private Key 와 Address 저장 디렉토리.<br/>기본값은 \$HOME/.xnode/keystore
---xchainid | xnode 가 유지할 X.Chain 의 ChainID. ',' 를 구분자로 하여 복수개 지정 가능.<br/>기본값은 0.
---syncmode | 동기화 모드 지정. full 또는 light 지정.<br/>기본값은 full.
---configpath | xnode 구동을 위한 환경 설정 파일 위치.
---p2pladdr | xnode 가 p2p 통신을 위해 사용할 tcp/ip 주소. <br/> 기본값은 tcp://0.0.0.0:26656
---txpool.size | 메모리상에 유지할 Tx. 의 개수.<br/> 기본값은 4096.
---unlock | xnode 기동시 unlock 상태로 시작할 계정의 주소. ',' 를 구분자로 하여 복수개 지정 가능.
---password | ~~xnode 기동시 unlock 상태로 시작할 계정의 패스워드. ',' 를 구분자로 하여 복수개 지정 가능.~~<span style="color:red">보안상 문제 될 소지가 있어 파일 입출력으로 변경 진행.</span>
---rpcenable | rpc 사용 가능 여부. <br/>기본값은 false.
---rpcport | rpc 허용시 사용할 포트 번호. <br/>기본값은 7979.
---rpcwhitelist | rpc 허용 IP 목록. ',' 를 구분자로 하여 복수개 지정 가능. <br/>기본값은 *
---rpcblacklist | rpc 허용 IP 목록. ',' 를 구분자로 하여 복수개 지정 가능.
---rpcapis | 허용 API 목록. ',' 를 구분자로 하여 복수개 지정 가능.  <br/>기본값은 false.
---rpcsize | rpc 통신으로 주고 받을 수 있는 데이터의 최대 크기.<br/>숫자만 표기하는 경우는 Byte 단위.<br/>1K,1M,1G 형식으로 지정 가능. <br/>기본값은 1K.
+| Command Option | Desc. |
+|---|---|---|---|
+|--datadir | X.Blockchain 의 블록 및 상태 데이터가 생성되는 디렉토리.<br/>기본값은 \$HOME/.xnode |
+|--keystore | xnode 를 통해 생성된 계정의 Private Key 와 Address 저장 디렉토리.<br/>기본값은 \$HOME/.xnode/keystore |
+|--xchainid | xnode 가 유지할 X.Chain 의 ChainID. ',' 를 구분자로 하여 복수개 지정 가능.<br/>기본값은 0.|
+|--syncmode | 동기화 모드 지정. full 또는 light 지정.<br/>기본값은 full.|
+|--configpath | xnode 구동을 위한 환경 설정 파일 위치.|
+|--p2pladdr | xnode 가 p2p 통신을 위해 사용할 tcp/ip 주소. <br/> 기본값은 tcp://0.0.0.0:26656|
+|--txpool.size | 메모리상에 유지할 Tx. 의 개수.<br/> 기본값은 4096.|
+|--unlock | xnode 기동시 unlock 상태로 시작할 계정의 주소. ',' 를 구분자로 하여 복수개 지정 가능.|
+|--password | ~~xnode 기동시 unlock 상태로 시작할 계정의 패스워드. ',' 를 구분자로 하여 복수개 지정 가능.~~ <span style="color:red">보안상 문제 될 소지가 있어 파일 입출력으로 변경 진행.</span>|
+|--rpcenable | rpc 사용 가능 여부. <br/>기본값은 false.|
+|--rpcport | rpc 허용시 사용할 포트 번호. <br/>기본값은 7979.|
+|--rpcwhitelist | rpc 허용 IP 목록. ',' 를 구분자로 하여 복수개 지정 가능. <br/>기본값은 * |
+|--rpcblacklist | rpc 허용 IP 목록. ',' 를 구분자로 하여 복수개 지정 가능.|
+|--rpcapis | 허용 API 목록. ',' 를 구분자로 하여 복수개 지정 가능.  <br/>기본값은 false.|
+|--rpcsize | rpc 통신으로 주고 받을 수 있는 데이터의 최대 크기.<br/>숫자만 표기하는 경우는 Byte 단위.<br/>1K,1M,1G 형식으로 지정 가능. <br/>기본값은 1K.|
   
 <br /><br />
   

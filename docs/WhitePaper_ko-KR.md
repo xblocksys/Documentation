@@ -625,16 +625,16 @@ X.Blockchain 을 이용하여 서비스 또는 어플리케이션을 개발하�
   
 #### Header
   
-필드명|타입|설명|비고
----|---|---|---
-ChainID | string | X.Chain 식별자.
-ChildChainID | string | 현재 블록이 X.Block 인 경우, 현재 블록으로 부터 생성되는 ChildChain 의 ChainID.
-Height | int64 | 현재 block 번호. |
-BIndex | int64 | ParentChain 과 ChildChainList 의 Block Index.
-Time | time | Block 생성 시간.
-NumTxs | int64 | Block 에 포함된 Tx. 개수.
-Reward | \*big.Int | Block 생성에 대한 보상량. | xto 단위.
-LastBlockID | BlockID | 이전 BlockID
+|필드명|타입|설명|비고|
+|---|---|---|---|
+|ChainID | string | X.Chain 식별자.| |
+|ChildChainID | string | 현재 블록이 X.Block 인 경우, 현재 블록으로 부터 생성되는 ChildChain 의 ChainID.| |
+|Height | int64 | 현재 block 번호. | |
+|BIndex | int64 | ParentChain 과 ChildChainList 의 Block Index.| |
+|Time | time | Block 생성 시간.| |
+|NumTxs | int64 | Block 에 포함된 Tx. 개수.| |
+|Reward | \*big.Int | Block 생성에 대한 보상량. | xto 단위.|
+|LastBlockID | BlockID | 이전 BlockID| |
 <br />
   
 #### Data
@@ -645,31 +645,31 @@ LastBlockID | BlockID | 이전 BlockID
 |Hash | byte[] | Txs 로 구성된 Merkle Tree 의 Root Hash.| |
 <br/>
   
-###### EvidenceData
+#### EvidenceData
   
 <br/>
   
-###### LastCommit
+#### LastCommit
   
 <br />  
   
-###### ExtentionData
+#### ExtentionData
   
 <br />  
   
-###### BlockID
+#### BlockID
   
 <br />  
   
-###### PartSetHeader
+#### PartSetHeader
   
 <br />  
   
-###### Vote
+#### Vote
   
 <br />  
   
-###### Proposal
+#### Proposal
   
 <br />
   
@@ -747,7 +747,7 @@ LastBlockID | BlockID | 이전 BlockID
   
 <br />
   
-###### TxFilePayloadBody
+#### TxFilePayloadBody
   
   
 <br />
@@ -787,17 +787,17 @@ LastBlockID | BlockID | 이전 BlockID
   
 <br />
   
-###### TxGRProposalPayloadBody
+#### TxGRProposalPayloadBody
   
   
 <br />
   
-###### TxGRVotePayloadBody
+#### TxGRVotePayloadBody
   
   
 <br />
   
-###### TxRecoverValidatorPayloadBody
+#### TxRecoverValidatorPayloadBody
   
   
 <br />

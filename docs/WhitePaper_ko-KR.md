@@ -857,7 +857,7 @@ X.Blockchain 을 이용하여 서비스 또는 어플리케이션을 개발하�
 ## Command Line Options
   
 | Command Option | Desc. |
-|---|---|---|---|
+|---|---|
 |--datadir | X.Blockchain 의 블록 및 상태 데이터가 생성되는 디렉토리.<br/>기본값은 \$HOME/.xnode |
 |--keystore | xnode 를 통해 생성된 계정의 Private Key 와 Address 저장 디렉토리.<br/>기본값은 \$HOME/.xnode/keystore |
 |--xchainid | xnode 가 유지할 X.Chain 의 ChainID. ',' 를 구분자로 하여 복수개 지정 가능.<br/>기본값은 0.|

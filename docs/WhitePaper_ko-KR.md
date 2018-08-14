@@ -620,6 +620,7 @@ X.Blockchain 을 이용하여 서비스 또는 어플리케이션을 개발하�
 |BlockID | BlockID | Block 식별자. | |
 |Header | Header | Block 헤더.| |
 |Data | Data | Block 데이터.| |
+  
 <br />
   
 #### Header
@@ -635,12 +636,13 @@ NumTxs | int64 | Block 에 포함된 Tx. 개수.
 Reward | \*big.Int | Block 생성에 대한 보상량. | xto 단위.
 LastBlockID | BlockID | 이전 BlockID
 <br />
+  
 #### Data
   
-필드명|타입|설명|비고
+|필드명|타입|설명|비고|
 |---|---|---|---|
-|Txs | Transaction[] | Block 에 포함된 Tx 목록.|
-|Hash | byte[] | Txs 로 구성된 Merkle Tree 의 Root Hash.|  
+|Txs | Transaction[] | Block 에 포함된 Tx 목록.| |
+|Hash | byte[] | Txs 로 구성된 Merkle Tree 의 Root Hash.| |
 <br/>
   
 ###### EvidenceData

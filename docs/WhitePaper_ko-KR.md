@@ -866,7 +866,7 @@ X.Blockchain 을 이용하여 서비스 또는 어플리케이션을 개발하�
 |--p2pladdr | xnode 가 p2p 통신을 위해 사용할 tcp/ip 주소. <br/> 기본값은 tcp://0.0.0.0:26656|
 |--txpool.size | 메모리상에 유지할 Tx. 의 개수.<br/> 기본값은 4096.|
 |--unlock | xnode 기동시 unlock 상태로 시작할 계정의 주소. ',' 를 구분자로 하여 복수개 지정 가능.|
-|--password | ~~xnode 기동시 unlock 상태로 시작할 계정의 패스워드. ',' 를 구분자로 하여 복수개 지정 가능.~~<br/><span style="color:red">보안상의 문제로 파일 입출력으로 변경 진행.</span>|
+|--password | ~~xnode 기동시 unlock 상태로 시작할 계정의 패스워드. ',' 를 구분자로 하여 복수개 지정 가능.~~ <br/> <span style="color:red">보안상의 문제로 파일 입출력으로 변경 진행.</span>|
 |--rpcenable | rpc 사용 가능 여부. <br/>기본값은 false.|
 |--rpcport | rpc 허용시 사용할 포트 번호. <br/>기본값은 7979.|
 |--rpcwhitelist | rpc 허용 IP 목록. ',' 를 구분자로 하여 복수개 지정 가능. <br/>기본값은 * |

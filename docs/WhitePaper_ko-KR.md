@@ -635,6 +635,7 @@ X.Blockchain 을 이용하여 서비스 또는 어플리케이션을 개발하�
 |NumTxs | int64 | Block 에 포함된 Tx. 개수.| |
 |Reward | \*big.Int | Block 생성에 대한 보상량. | xto 단위.|
 |LastBlockID | BlockID | 이전 BlockID| |
+  
 <br />
   
 #### Data
@@ -643,6 +644,7 @@ X.Blockchain 을 이용하여 서비스 또는 어플리케이션을 개발하�
 |---|---|---|---|
 |Txs | Transaction[] | Block 에 포함된 Tx 목록.| |
 |Hash | byte[] | Txs 로 구성된 Merkle Tree 의 Root Hash.| |
+  
 <br/>
   
 #### EvidenceData
@@ -824,7 +826,7 @@ X.Blockchain 을 이용하여 서비스 또는 어플리케이션을 개발하�
   
 |필드명|타입|설명|비고|
 |---|---|---|---|
-|address | Address | Publick Key 로 부터 유도 계정 주소. | Ethereum 의 계정 주소와 동일.|
+|address | Address | Publick Key 로 부터 유도 계정 주소. | |
 |txNo | uint64 | 현재 계정이 지금까지 발생시킨 Tx. 의 개수.|
 |balance | *big.Int | 자산 보유량.|
 |bondingBalance | *big.Int | bonding 또는 위임한 지분의 총합.|
@@ -856,7 +858,8 @@ X.Blockchain 을 이용하여 서비스 또는 어플리케이션을 개발하�
   
 Command Option | Desc.
 ---|---|---|---
---datadir | X.Blockchain 의 블록 및 상태 데이터가 생성되는 디렉토리.<br/>기본값은 <img align="center" src="https://latex.codecogs.com/gif.latex?HOME&#x2F;.xnode--keystore%20|%20xnode%20를%20통해%20생성된%20계정의%20Private%20Key%20와%20Address%20저장%20디렉토리.&lt;br&#x2F;&gt;기본값은"/>HOME/.xnode/keystore
+--datadir | X.Blockchain 의 블록 및 상태 데이터가 생성되는 디렉토리.<br/>기본값은 \$HOME/.xnode
+--keystore | xnode 를 통해 생성된 계정의 Private Key 와 Address 저장 디렉토리.<br/>기본값은 \$HOME/.xnode/keystore
 --xchainid | xnode 가 유지할 X.Chain 의 ChainID. ',' 를 구분자로 하여 복수개 지정 가능.<br/>기본값은 0.
 --syncmode | 동기화 모드 지정. full 또는 light 지정.<br/>기본값은 full.
 --configpath | xnode 구동을 위한 환경 설정 파일 위치.

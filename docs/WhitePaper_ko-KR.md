@@ -619,8 +619,9 @@ X.Blockchain 을 이용하여 서비스 또는 어플리케이션을 개발하�
 |---|---|---|---|
 |BlockID | BlockID | Block 식별자. | |
 |Header | Header | Block 헤더.| |
-|Data | Data | Block 데이터.| |  
+|Data | Data | Block 데이터.| |
 <br />
+  
 #### Header
   
 필드명|타입|설명|비고

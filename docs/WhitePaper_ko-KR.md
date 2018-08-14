@@ -619,8 +619,8 @@ X.Blockchain 을 이용하여 서비스 또는 어플리케이션을 개발하�
 |---|---|---|---|
 |BlockID | BlockID | Block 식별자. | |
 |Header | Header | Block 헤더.| |
-|Data | Data | Block 데이터.| |
-<br/>
+|Data | Data | Block 데이터.| |  
+<br />
 #### Header
   
 필드명|타입|설명|비고
@@ -633,7 +633,7 @@ Time | time | Block 생성 시간.
 NumTxs | int64 | Block 에 포함된 Tx. 개수.
 Reward | \*big.Int | Block 생성에 대한 보상량. | xto 단위.
 LastBlockID | BlockID | 이전 BlockID
-<br/>
+<br />
 #### Data
   
 필드명|타입|설명|비고

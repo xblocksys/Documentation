@@ -398,7 +398,7 @@ X.Blockchain 은 이더리움의 모델을 참고하여 고정적으로 정해�
   
   
   
-### Unit of assets
+### Unit of assets <sup><span style="font-size:10px;color:gray;">from XIP-M2</span></sup>
   
 X.Blockchain 에서 사용되는 자산의 최소 단위는, **X**.Blockchain's **To**ken 을 의미하는 **xto** 로 표기하고 *['ekto]* 또는 *['ek(s)to]* 로 발음한다. ( Not *['iksto]*. )  <!-- *['ӕkto]* -->  
 X.Blokcchain 에서 모든 자산은 소수점 이하 최대 18 자리까지 표현되므로 1 xto 는 10<sup>-18</sup> ATX 가 된다. Ethereum 의 *ETH* 와 *wei* 와 동일한 관계이다.
@@ -500,7 +500,7 @@ X.Node 의 **RPC Server** 가 제공하는 API 는 [RPC Interfaces](#rpc-interfa
   
 <br />
   
-### Validators & Delegators
+### Validators & Delegators <sup><span style="font-size:10px;color:gray;">from XIP-S2</span></sup>
   
 블록 합의 및 생성에 직접적(Validator) 또는 간접적(Delegator)으로 참여하기 위하여 자산을 동결(Bonding Tx) 해야 한다. 자산 동결은 현재 가용 자산(Available Assets) 내에서 가능하고, 동결 자산은 동결 처리 Tx (Bonding Tx) 이 기록된 블록에서 부터 즉시 자산 이동이 금지된다.  
 동결 자산의 해제는 동결 해제 Tx (Unbonding Tx) 으로 시작된다. 동결 자산 내에서 일부를 동결 해제 할 수 있으며 해제된 자산은 약 7일 이후 부터 자산 이동이 가능해 진다.
@@ -522,7 +522,8 @@ X.Blockchain 상에서의 Block 생성 주기를 3초로 계산할 때, 201,600�
 </p>
 <br />
   
-### Governance Rules
+### Governance Rules <sup><span style="font-size:10px;color:gray;">from XIP-S3</span></sup>
+  
   
 블록체인의 특성상 참여자들의 동의가 없는 업데이트 특히 합의 규칙과 관련된 사항의 업데이트는 경우에 따라서 Hard Fork 를 유발하여 네트워크가 둘로 나누어지게 되는 결과를 야기한다. 이는 X.Blockchain 의 PoF 를 통한 X.Chain 의 생성 그것과는 다른 문제로서 X.Blockchain Network 자체가 하나 이상이 됨을 의미한다. 또한 참여자들의 '동의' 를 확보하는 과정 자체가 불가능한 일이 되기도 한다.  
 이는 블록체인만의 신뢰 확보가 가능토록 하지만 동시에 변화되는 외부 환경에 적응을 힘들게 하는 요인이 되기도 한다.
@@ -550,16 +551,17 @@ X.Blockchain 에서 안건 발의(Proposal)와 투표(Voting)로 변경 가능�
   
 #### Proposal
   
+  
 규칙 변경은 TxProposeGRPayloadBody 를 포함한 Tx 을 발생 시킴으로서 시작된다. 규칙 변경 제안 자격은 최근 **N**개 블록의 생성에 참여하고 현재 Tx. 처리 시점에서도 Validator 자격을 유지하는 계정에게 주어진다. 여기서 **N**은 **BlockCountForGRProposal** 의 값을 의미한다.  
   
 #### Vote
   
-제안된 규칙 변경안에 대한 투표인단은, 해당 제안 사항을 담은 블록 생성 시점의 Validators 이다. 예를 들어 TxGRProposalPayloadBody 를 포함하는 트랜잭션이 블록 B<sub>n</sub> 에 기록되었다면, 블록 B<sub>n</sub> 생성 시점의 Validators 가 투표 인단이 되고, 변경안 가결 여부 판단의 기준이 되는 지분 역시 이 시점의 지분으로 계산된다.  
-해당 시점 투표인단 지분의 2/3 이상이 찬성하는 경우 해당 제안은 가결 된 것으로 간주 한다.
+제안된 규칙 변경안에 대한 투표인단은, 해당 제안 사항을 담은 블록 생성 시점의 Validators 이다. 예를 들어 TxGRProposalPayloadBody 를 포함하는 트랜잭션이 블록 B<sub>n</sub> 에 기록되었다면, 블록 B<sub>n</sub> 생성 시점의 Validators 가 투표인단이 되고, 변경안 가결 여부 판단의 기준이 되는 지분 역시 이 시점의 지분으로 계산된다.  
+해당 시점 투표인단 지분의 2/3 이상이 찬성하는 경우 해당 제안은 가결되어 정해진 시점에 반영 되어질 것이다.
   
 #### Apply
   
-제안 사항은 블록 B<sub>n</sub>에서 가결 되었다면  B<sub>n+403200</sub> 부터 적용된다. 블록 생성 주기를 3초로 하였을 때 403,200 개 블록 생성에는 14일이 걸린다.  
+제안 사항이 블록 B<sub>n</sub>에서 가결 되었다면  B<sub>n+403200</sub> 부터 적용된다. 블록 생성 주기를 3초로 하였을 때 403,200 개 블록 생성에는 14일이 걸린다.  
   
 <br />
 <p align="center">
@@ -570,7 +572,7 @@ X.Blockchain 에서 안건 발의(Proposal)와 투표(Voting)로 변경 가능�
 <br/>
 <br/>
   
-## RPC Interfaces
+## RPC Interfaces <sup><span style="font-size:10px;color:gray;">from XIP-I1</span></sup>
   
 X.Blockchain 을 이용하여 서비스 또는 어플리케이션을 개발하기 위해서 X.Node 가 HTTP 또는 IPC 형태로 제공하는 다음과 같은 API 를 활용할 수 있다.
   
@@ -609,7 +611,7 @@ X.Blockchain 을 이용하여 서비스 또는 어플리케이션을 개발하�
 <br />
 <br />
   
-## Data Structure
+## Data Structure <sup><span style="font-size:10px;color:gray;">from XIP-S1</span></sup>
   
 ### Block
   

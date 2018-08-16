@@ -1,5 +1,5 @@
-# X.Blockchain Technical White Paper (Draft)
-- [Korean](https://xblocksys.github.io/Documentation/WhitePaper_ko-KR)
+# X.Blockchain Technical White Paper V1 (Draft)
+- [Korean](https://xblocksys.github.io/Documentation/WhitePaper_ko-KR) <sup><span style="color:green;font-size:8pt;;">Update</span></sup>
 - [English](https://xblocksys.github.io/Documentation/WhitePaper_en-US)
 - [Russian](https://xblocksys.github.io/Documentation/WhitePaper_ru-RU)
 <!-- -->

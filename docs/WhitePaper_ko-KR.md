@@ -49,26 +49,26 @@ May 21, 2018
 - [Asset Model](#asset-model )
   + [Currency & Issurance](#currency--issurance )
   + [Incentives](#incentives )
-  + [Unit of Assets](#unit-of-assets ) <sup><span style="color:orangered;font-size:8pt;">New</span></sup>
-- [System Architecture](#system-architecture ) <sup><span style="color:orangered;font-size:8pt;;">New</span></sup>
-  + [X.Node](#xnode ) <sup><span style="color:orangered;font-size:8pt;;">New</span></sup>
-  + [X.State Core](#xstate-core ) <sup><span style="color:orangered;font-size:8pt;;">New</span></sup>
-  + [X.Consensus Core](#xconsensus-core ) <sup><span style="color:orangered;font-size:8pt;;">New</span></sup>
-  + [X.Chain MUX](#xchain-mux ) <sup><span style="color:orangered;font-size:8pt;;">New</span></sup>
-  + [RPC Server](#rpc-server ) <sup><span style="color:orangered;font-size:8pt;;">New</span></sup>
-  + [Validators & Delegators](#validators--delegators ) <sup><span style="color:orangered;font-size:8pt;;">New</span></sup>
-    + [Bonding Assets](#bonding-assets ) <sup><span style="color:orangered;font-size:8pt;;">New</span></sup>
-    + [Unbonding Assets](#unbonding-assets ) <sup><span style="color:orangered;font-size:8pt;;">New</span></sup>
-  + [Governance Rules](#governance-rules ) <sup><span style="color:orangered;font-size:8pt;;">New</span></sup>
-    + [Proposal](#proposal ) <sup><span style="color:orangered;font-size:8pt;;">New</span></sup>
-    + [Vote](#vote ) <sup><span style="color:orangered;font-size:8pt;;">New</span></sup>
-    + [Apply](#apply ) <sup><span style="color:orangered;font-size:8pt;;">New</span></sup>
-- [RPC Interfaces](#rpc-interfaces ) <sup><span style="color:orangered;font-size:8pt;;">New</span></sup>
-- [Data Structure](#data-structure ) <sup><span style="color:orangered;font-size:8pt;;">New</span></sup>
-    + [Block](#block ) <sup><span style="color:orangered;font-size:8pt;;">New</span></sup>
-    + [Transactions](#transactions ) <sup><span style="color:orangered;font-size:8pt;;">New</span></sup>
-    + [Account](#Account ) <sup><span style="color:orangered;font-size:8pt;;">New</span></sup>
-- [Command Line Options](#command-line-options ) <sup><span style="color:orangered;font-size:8pt;;">New</span></sup>
+  + [Unit of Assets](#unit-of-assets ) <sup>`New`</sup>
+- [System Architecture](#system-architecture ) <sup>`New`</sup>
+  + [X.Node](#xnode ) <sup>`New`</sup>
+  + [X.State Core](#xstate-core ) <sup>`New`</sup>
+  + [X.Consensus Core](#xconsensus-core ) <sup>`New`</sup>
+  + [X.Chain MUX](#xchain-mux ) <sup>`New`</sup>
+  + [RPC Server](#rpc-server ) <sup>`New`</sup>
+  + [Validators & Delegators](#validators--delegators ) <sup>`New`</sup>
+    + [Bonding Assets](#bonding-assets ) <sup>`New`</sup>
+    + [Unbonding Assets](#unbonding-assets ) <sup>`New`</sup>
+  + [Governance Rules](#governance-rules ) <sup>`New`</sup>
+    + [Proposal](#proposal ) <sup>`New`</sup>
+    + [Vote](#vote ) <sup>`New`</sup>
+    + [Apply](#apply ) <sup>`New`</sup>
+- [RPC Interfaces](#rpc-interfaces ) <sup>`New`</sup>
+- [Data Structure](#data-structure ) <sup>`New`</sup>
+    + [Block](#block ) <sup>`New`</sup>
+    + [Transactions](#transactions ) <sup>`New`</sup>
+    + [Account](#Account ) <sup>`New`</sup>
+- [Command Line Options](#command-line-options ) <sup>`New`</sup>
 - [Use Cases](#use-cases )
   
 <br /><br />
@@ -398,7 +398,9 @@ X.Blockchain 은 이더리움의 모델을 참고하여 고정적으로 정해�
   
   
   
-### Unit of assets <sup><span style="font-size:10px;color:gray;">from XIP-M2</span></sup>
+### Unit of assets
+  
+<sup>`from XIP-M2`</sup>  
   
 X.Blockchain 에서 사용되는 자산의 최소 단위는, **X**.Blockchain's **To**ken 을 의미하는 **xto** 로 표기하고 *['ekto]* 또는 *['ek(s)to]* 로 발음한다. ( Not *['iksto]*. )  <!-- *['ӕkto]* -->  
 X.Blokcchain 에서 모든 자산은 소수점 이하 최대 18 자리까지 표현되므로 1 xto 는 10<sup>-18</sup> ATX 가 된다. Ethereum 의 *ETH* 와 *wei* 와 동일한 관계이다.
@@ -500,7 +502,9 @@ X.Node 의 **RPC Server** 가 제공하는 API 는 [RPC Interfaces](#rpc-interfa
   
 <br />
   
-### Validators & Delegators <sup><span style="font-size:10px;color:gray;">from XIP-S2</span></sup>
+### Validators & Delegators
+  
+<sup>`from XIP-S2`</sup>  
   
 블록 합의 및 생성에 직접적(Validator) 또는 간접적(Delegator)으로 참여하기 위하여 자산을 동결(Bonding Tx) 해야 한다. 자산 동결은 현재 가용 자산(Available Assets) 내에서 가능하고, 동결 자산은 동결 처리 Tx (Bonding Tx) 이 기록된 블록에서 부터 즉시 자산 이동이 금지된다.  
 동결 자산의 해제는 동결 해제 Tx (Unbonding Tx) 으로 시작된다. 동결 자산 내에서 일부를 동결 해제 할 수 있으며 해제된 자산은 약 7일 이후 부터 자산 이동이 가능해 진다.
@@ -522,8 +526,9 @@ X.Blockchain 상에서의 Block 생성 주기를 3초로 계산할 때, 201,600�
 </p>
 <br />
   
-### Governance Rules <sup><span style="font-size:10px;color:gray;">from XIP-S3</span></sup>
+### Governance Rules
   
+<sup>`from XIP-S3`</sup>  
   
 블록체인의 특성상 참여자들의 동의가 없는 업데이트 특히 합의 규칙과 관련된 사항의 업데이트는 경우에 따라서 Hard Fork 를 유발하여 네트워크가 둘로 나누어지게 되는 결과를 야기한다. 이는 X.Blockchain 의 PoF 를 통한 X.Chain 의 생성 그것과는 다른 문제로서 X.Blockchain Network 자체가 하나 이상이 됨을 의미한다. 또한 참여자들의 '동의' 를 확보하는 과정 자체가 불가능한 일이 되기도 한다.  
 이는 블록체인만의 신뢰 확보가 가능토록 하지만 동시에 변화되는 외부 환경에 적응을 힘들게 하는 요인이 되기도 한다.
@@ -572,7 +577,9 @@ X.Blockchain 에서 안건 발의(Proposal)와 투표(Voting)로 변경 가능�
 <br/>
 <br/>
   
-## RPC Interfaces <sup><span style="font-size:10px;color:gray;">from XIP-I1</span></sup>
+## RPC Interfaces
+  
+<sup>`from XIP-I1`</sup>  
   
 X.Blockchain 을 이용하여 서비스 또는 어플리케이션을 개발하기 위해서 X.Node 가 HTTP 또는 IPC 형태로 제공하는 다음과 같은 API 를 활용할 수 있다.
   
@@ -611,7 +618,9 @@ X.Blockchain 을 이용하여 서비스 또는 어플리케이션을 개발하�
 <br />
 <br />
   
-## Data Structure <sup><span style="font-size:10px;color:gray;">from XIP-S1</span></sup>
+## Data Structure
+  
+<sup>`from XIP-S1`</sup>  
   
 ### Block
   

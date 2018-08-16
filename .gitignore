@@ -1,6 +1,6 @@
+*DS_Store*
 ignore/*
 docs/_*
-*DS_Store*
 docs/*DS_Store*
 docs/XIPs/*
 Roadmap.md

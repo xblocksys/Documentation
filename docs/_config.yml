@@ -1,9 +1,0 @@
-# MathJax Support
-title: X.Blockchain
-description: "Technical White Paper"
-author:
-  name: "Yongseok Kwon"
-  email: "yskown@certon.co.kr"
-  url: "http://xblocksys.com"
-markdown: kramdown
-theme: jekyll-theme-cayman
